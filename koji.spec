@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.10.0
-Release  : 17
+Release  : 18
 URL      : https://fedorahosted.org/released/koji/koji-1.10.0.tar.bz2
 Source0  : https://fedorahosted.org/released/koji/koji-1.10.0.tar.bz2
 Summary  : Build system tools
