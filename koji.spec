@@ -4,9 +4,9 @@
 #
 Name     : koji
 Version  : 1.10.0
-Release  : 18
-URL      : https://fedorahosted.org/released/koji/koji-1.10.0.tar.bz2
-Source0  : https://fedorahosted.org/released/koji/koji-1.10.0.tar.bz2
+Release  : 19
+URL      : https://github.com/koji-project/koji/archive/koji-1.10.0.tar.gz
+Source0  : https://github.com/koji-project/koji/archive/koji-1.10.0.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
@@ -15,6 +15,7 @@ Requires: koji-python
 Requires: koji-data
 Requires: koji-config
 BuildRequires : pkgconfig(systemd)
+BuildRequires : python-dev
 BuildRequires : systemd-dev
 
 %description
@@ -56,12 +57,18 @@ python components for the koji package.
 
 
 %prep
-%setup -q -n koji-1.10.0
+%setup -q -n koji-koji-1.10.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1494960216
 make V=1  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1494960216
 rm -rf %{buildroot}
 %make_install
 
@@ -196,4 +203,4 @@ rm -rf %{buildroot}
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
