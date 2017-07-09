@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.12.0
-Release  : 21
+Release  : 22
 URL      : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Summary  : Build system tools
@@ -80,17 +80,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1499371018
+export SOURCE_DATE_EPOCH=1499642912
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1499371018
+export SOURCE_DATE_EPOCH=1499642912
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
 /usr/bin/make DESTDIR=%{buildroot} INSTALLROOT=%{buildroot} install_prefix=%{buildroot} BUILDROOT=%{buildroot} BUILD_ROOT=%{buildroot} INSTALL_ROOT=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
+cp -a docs  %{buildroot}/usr/share/doc/koji/
 ## make_install_append end
 
 %files

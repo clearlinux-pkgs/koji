@@ -1,3 +1,4 @@
 /usr/bin/make DESTDIR=%{buildroot} INSTALLROOT=%{buildroot} install_prefix=%{buildroot} BUILDROOT=%{buildroot} BUILD_ROOT=%{buildroot} INSTALL_ROOT=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
+cp -a docs  %{buildroot}/usr/share/doc/koji/
