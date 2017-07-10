@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.12.0
-Release  : 23
+Release  : 24
 URL      : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Summary  : Build system tools
@@ -16,6 +16,7 @@ Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
 Requires: python-dateutil
+Requires: six
 BuildRequires : python-dev
 BuildRequires : systemd-dev
 
@@ -81,11 +82,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1499644384
+export SOURCE_DATE_EPOCH=1499651283
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1499644384
+export SOURCE_DATE_EPOCH=1499651283
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
