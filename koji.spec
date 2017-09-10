@@ -4,14 +4,14 @@
 #
 Name     : koji
 Version  : 1.12.0
-Release  : 25
+Release  : 26
 URL      : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.12.0.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
-Requires: koji-python
+Requires: koji-legacypython
 Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
@@ -68,12 +68,12 @@ Group: Default
 extras components for the koji package.
 
 
-%package python
-Summary: python components for the koji package.
+%package legacypython
+Summary: legacypython components for the koji package.
 Group: Default
 
-%description python
-python components for the koji package.
+%description legacypython
+legacypython components for the koji package.
 
 
 %prep
@@ -84,11 +84,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1499651414
+export SOURCE_DATE_EPOCH=1505004847
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1499651414
+export SOURCE_DATE_EPOCH=1505004847
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -343,6 +343,6 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/static/themes/README
 /usr/share/kojivmd/kojikamid
 
-%files python
+%files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
