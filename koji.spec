@@ -4,14 +4,14 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 32
+Release  : 33
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
-Requires: koji-python3
+Requires: koji-legacypython
 Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
@@ -22,10 +22,10 @@ Requires: pycurl
 Requires: python-dateutil
 Requires: python-rpm
 Requires: six
-BuildRequires : python3-dev
+BuildRequires : python-dev
 BuildRequires : systemd-dev
-BuildRequires : usrbinpython
 Patch1: 0001-builder-use-sudo-to-call-mock.patch
+Patch2: 0002-Force-usr-bin-python2.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -73,38 +73,39 @@ Group: Default
 extras components for the koji package.
 
 
+%package legacypython
+Summary: legacypython components for the koji package.
+Group: Default
+Requires: python-core
+
+%description legacypython
+legacypython components for the koji package.
+
+
 %package python
 Summary: python components for the koji package.
 Group: Default
-Requires: koji-python3
+Requires: koji-legacypython
 
 %description python
 python components for the koji package.
 
 
-%package python3
-Summary: python3 components for the koji package.
-Group: Default
-Requires: python3-core
-
-%description python3
-python3 components for the koji package.
-
-
 %prep
 %setup -q -n koji-koji-1.14.0
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518184913
-make  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1518209176
+make  %{?_smp_mflags} PYTHON=python2
 
 %install
-export SOURCE_DATE_EPOCH=1518184913
+export SOURCE_DATE_EPOCH=1518209176
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -116,22 +117,22 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/koji-builder-plugins/__pycache__/runroot.cpython-36.pyc
-/usr/lib/koji-builder-plugins/__pycache__/save_failed_tree.cpython-36.pyc
 /usr/lib/koji-builder-plugins/runroot.py
+/usr/lib/koji-builder-plugins/runroot.pyc
 /usr/lib/koji-builder-plugins/save_failed_tree.py
-/usr/lib/koji-hub-plugins/__pycache__/echo.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/messagebus.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/protonmsg.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/rpm2maven.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/runroot_hub.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/save_failed_tree.cpython-36.pyc
+/usr/lib/koji-builder-plugins/save_failed_tree.pyc
 /usr/lib/koji-hub-plugins/echo.py
+/usr/lib/koji-hub-plugins/echo.pyc
 /usr/lib/koji-hub-plugins/messagebus.py
+/usr/lib/koji-hub-plugins/messagebus.pyc
 /usr/lib/koji-hub-plugins/protonmsg.py
+/usr/lib/koji-hub-plugins/protonmsg.pyc
 /usr/lib/koji-hub-plugins/rpm2maven.py
+/usr/lib/koji-hub-plugins/rpm2maven.pyc
 /usr/lib/koji-hub-plugins/runroot_hub.py
+/usr/lib/koji-hub-plugins/runroot_hub.pyc
 /usr/lib/koji-hub-plugins/save_failed_tree.py
+/usr/lib/koji-hub-plugins/save_failed_tree.pyc
 
 %files bin
 %defattr(-,root,root,-)
@@ -158,9 +159,13 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %files data
 %defattr(-,root,root,-)
 %exclude /usr/share/koji-hub/kojihub.py
+%exclude /usr/share/koji-hub/kojihub.pyc
 %exclude /usr/share/koji-hub/kojixmlrpc.py
+%exclude /usr/share/koji-hub/kojixmlrpc.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/__init__.py
+%exclude /usr/share/koji-web/lib/kojiweb/__init__.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/util.py
+%exclude /usr/share/koji-web/lib/kojiweb/util.pyc
 %exclude /usr/share/koji-web/scripts/archiveinfo.chtml
 %exclude /usr/share/koji-web/scripts/archivelist.chtml
 %exclude /usr/share/koji-web/scripts/buildinfo.chtml
@@ -184,6 +189,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %exclude /usr/share/koji-web/scripts/includes/header.chtml
 %exclude /usr/share/koji-web/scripts/index.chtml
 %exclude /usr/share/koji-web/scripts/index.py
+%exclude /usr/share/koji-web/scripts/index.pyc
 %exclude /usr/share/koji-web/scripts/notificationedit.chtml
 %exclude /usr/share/koji-web/scripts/packageinfo.chtml
 %exclude /usr/share/koji-web/scripts/packages.chtml
@@ -206,6 +212,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %exclude /usr/share/koji-web/scripts/userinfo.chtml
 %exclude /usr/share/koji-web/scripts/users.chtml
 %exclude /usr/share/koji-web/scripts/wsgi_publisher.py
+%exclude /usr/share/koji-web/scripts/wsgi_publisher.pyc
 %exclude /usr/share/koji-web/static/debug.css
 %exclude /usr/share/koji-web/static/errors/unauthorized.html
 %exclude /usr/share/koji-web/static/images/1px.gif
@@ -237,11 +244,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %exclude /usr/share/koji-web/static/themes/README
 %exclude /usr/share/kojivmd/kojikamid
 /usr/share/koji-hub/__init__.py
-/usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
-/usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
-/usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
-/usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
-/usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
+/usr/share/koji-hub/__init__.pyc
 /usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 
 %files doc
@@ -251,9 +254,13 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %files extras
 %defattr(-,root,root,-)
 /usr/share/koji-hub/kojihub.py
+/usr/share/koji-hub/kojihub.pyc
 /usr/share/koji-hub/kojixmlrpc.py
+/usr/share/koji-hub/kojixmlrpc.pyc
 /usr/share/koji-web/lib/kojiweb/__init__.py
+/usr/share/koji-web/lib/kojiweb/__init__.pyc
 /usr/share/koji-web/lib/kojiweb/util.py
+/usr/share/koji-web/lib/kojiweb/util.pyc
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
@@ -277,6 +284,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/scripts/includes/header.chtml
 /usr/share/koji-web/scripts/index.chtml
 /usr/share/koji-web/scripts/index.py
+/usr/share/koji-web/scripts/index.pyc
 /usr/share/koji-web/scripts/notificationedit.chtml
 /usr/share/koji-web/scripts/packageinfo.chtml
 /usr/share/koji-web/scripts/packages.chtml
@@ -299,6 +307,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/scripts/userinfo.chtml
 /usr/share/koji-web/scripts/users.chtml
 /usr/share/koji-web/scripts/wsgi_publisher.py
+/usr/share/koji-web/scripts/wsgi_publisher.pyc
 /usr/share/koji-web/static/debug.css
 /usr/share/koji-web/static/errors/unauthorized.html
 /usr/share/koji-web/static/images/1px.gif
@@ -330,9 +339,9 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/static/themes/README
 /usr/share/kojivmd/kojikamid
 
+%files legacypython
+%defattr(-,root,root,-)
+/usr/lib/python2*/*
+
 %files python
 %defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
