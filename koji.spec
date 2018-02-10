@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 34
+Release  : 35
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -16,15 +16,14 @@ Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
 Requires: koji-python
-Requires: funcsigs
 Requires: libcomps
-Requires: pbr
 Requires: pyOpenSSL
 Requires: pycurl
 Requires: python-dateutil
 Requires: python-krbV
 Requires: python-rpm
 Requires: six
+BuildRequires : pkgconfig(systemd)
 BuildRequires : python-dev
 BuildRequires : systemd-dev
 Patch1: 0001-builder-use-sudo-to-call-mock.patch
@@ -104,11 +103,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1518265103
+export SOURCE_DATE_EPOCH=1518266146
 make  %{?_smp_mflags} PYTHON=python2
 
 %install
-export SOURCE_DATE_EPOCH=1518265103
+export SOURCE_DATE_EPOCH=1518266146
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
