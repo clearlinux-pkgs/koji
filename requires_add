@@ -1,8 +1,11 @@
 # This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 funcsigs
+libcomps
 pbr
 pycurl
+pyOpenSSL
 python-dateutil
+python-krbV
 python-rpm
 six
