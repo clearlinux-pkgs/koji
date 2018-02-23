@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 35
+Release  : 40
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -17,7 +17,7 @@ Requires: koji-doc
 Requires: koji-data
 Requires: koji-python
 Requires: libcomps
-Requires: pyOpenSSL
+Requires: pyOpenSSL pyOpenSSL-legacypython
 Requires: pycurl
 Requires: python-dateutil
 Requires: python-krbV
