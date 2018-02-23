@@ -1,17 +1,18 @@
-From 91ae31f7762adf170061c59092d416c96bae04f2 Mon Sep 17 00:00:00 2001
-From: William Douglas <william.douglas@intel.com>
-Date: Fri, 9 Feb 2018 20:40:06 +0000
+From d29324fb5fdd35d0247a1e88965e487f625ffb74 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Tue, 20 Feb 2018 20:44:21 -0800
 Subject: [PATCH] Force /usr/bin/python2
 
 ---
  builder/kojid                      | 2 +-
  builder/mergerepos                 | 2 +-
- cli/koji                           | 4 ++--
+ cli/koji                           | 2 +-
  devtools/fakehub                   | 2 +-
  devtools/fakeweb                   | 2 +-
+ docs/source/image_build.rst        | 2 +-
  hub/rpmdiff                        | 2 +-
  koji/context.py                    | 2 +-
- split_cli.py                       | 2 +-
+ runtests                           | 2 +-
  tests/test_lib/test_fixEncoding.py | 2 +-
  tests/test_lib/test_parsers.py     | 2 +-
  util/koji-gc                       | 2 +-
@@ -19,10 +20,10 @@ Subject: [PATCH] Force /usr/bin/python2
  util/kojira                        | 2 +-
  vm/kojikamid.py                    | 2 +-
  vm/kojivmd                         | 2 +-
- 15 files changed, 16 insertions(+), 16 deletions(-)
+ 16 files changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/builder/kojid b/builder/kojid
-index 258949a..f45420a 100755
+index a68353f..18d9f04 100755
 --- a/builder/kojid
 +++ b/builder/kojid
 @@ -1,4 +1,4 @@
@@ -42,7 +43,7 @@ index 714856b..bb3ee6d 100755
  # This program is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
 diff --git a/cli/koji b/cli/koji
-index c88a0fb..d69c20e 100755
+index ab4cdc5..8f19a7a 100755
 --- a/cli/koji
 +++ b/cli/koji
 @@ -1,4 +1,4 @@
@@ -51,15 +52,6 @@ index c88a0fb..d69c20e 100755
  # coding=utf-8
  
  # command line interface for the Koji build system
-@@ -239,7 +239,7 @@ def fix_pyver(options, logger):
-         logger.warning('Invalid python version requested: %s', pyver)
-     if sys.version_info[0] == pyver:
-         return
--    py_exec = '/usr/bin/python%i' % pyver
-+    py_exec = '/usr/bin/python2%i' % pyver
-     if not os.path.exists(py_exec):
-         logger.error('No such file: %s', py_exec)
-         return
 diff --git a/devtools/fakehub b/devtools/fakehub
 index ccb5f73..3b21dfa 100755
 --- a/devtools/fakehub
@@ -80,6 +72,19 @@ index 735a97b..469c693 100755
  
  from __future__ import absolute_import
  from __future__ import print_function
+diff --git a/docs/source/image_build.rst b/docs/source/image_build.rst
+index b2bb0dc..4b86e7e 100644
+--- a/docs/source/image_build.rst
++++ b/docs/source/image_build.rst
+@@ -686,7 +686,7 @@ section instead.
+ 
+ ::
+ 
+-    #!/usr/bin/python -tt
++    #!/usr/bin/python2 -tt
+ 
+     import logging
+     import os.path
 diff --git a/hub/rpmdiff b/hub/rpmdiff
 index 7ef9562..20be660 100755
 --- a/hub/rpmdiff
@@ -100,18 +105,18 @@ index 56a79f7..811c6c1 100755
  # Copyright (c) 2005-2014 Red Hat, Inc.
  #
  #    Koji is free software; you can redistribute it and/or
-diff --git a/split_cli.py b/split_cli.py
-index 909e80c..3ac915e 100755
---- a/split_cli.py
-+++ b/split_cli.py
+diff --git a/runtests b/runtests
+index 8d0adf9..0bd8816 100755
+--- a/runtests
++++ b/runtests
 @@ -1,4 +1,4 @@
 -#!/usr/bin/python
 +#!/usr/bin/python2
  
- import imp
- import inspect
+ from multiprocessing import Pool
+ import subprocess
 diff --git a/tests/test_lib/test_fixEncoding.py b/tests/test_lib/test_fixEncoding.py
-index 4072724..339b072 100644
+index 2f7ca8f..267f53d 100644
 --- a/tests/test_lib/test_fixEncoding.py
 +++ b/tests/test_lib/test_fixEncoding.py
 @@ -1,4 +1,4 @@
@@ -131,7 +136,7 @@ index d8f8760..fc3b164 100644
  """Test the __init__.py module"""
  
 diff --git a/util/koji-gc b/util/koji-gc
-index bea2cd3..9474026 100755
+index 9c20cdb..1b407e2 100755
 --- a/util/koji-gc
 +++ b/util/koji-gc
 @@ -1,4 +1,4 @@
@@ -141,7 +146,7 @@ index bea2cd3..9474026 100755
  # koji-gc: a garbage collection tool for Koji
  # Copyright (c) 2007-2014 Red Hat, Inc.
 diff --git a/util/koji-shadow b/util/koji-shadow
-index 37c2811..232735b 100755
+index 12f9997..e23c5c6 100755
 --- a/util/koji-shadow
 +++ b/util/koji-shadow
 @@ -1,4 +1,4 @@
@@ -151,7 +156,7 @@ index 37c2811..232735b 100755
  # koji-shadow: a tool to shadow builds between koji instances
  # Copyright (c) 2007-2016 Red Hat, Inc.
 diff --git a/util/kojira b/util/kojira
-index 4a21332..81334f3 100755
+index ba8d6fd..ee222ae 100755
 --- a/util/kojira
 +++ b/util/kojira
 @@ -1,4 +1,4 @@
@@ -161,7 +166,7 @@ index 4a21332..81334f3 100755
  # Koji Repository Administrator (kojira)
  # Copyright (c) 2005-2014 Red Hat, Inc.
 diff --git a/vm/kojikamid.py b/vm/kojikamid.py
-index 0499c74..36b61af 100755
+index 1d40e68..271dcaa 100755
 --- a/vm/kojikamid.py
 +++ b/vm/kojikamid.py
 @@ -1,4 +1,4 @@
@@ -171,7 +176,7 @@ index 0499c74..36b61af 100755
  # Koji daemon that runs in a Windows VM and executes commands associated
  # with a task.
 diff --git a/vm/kojivmd b/vm/kojivmd
-index 5491ee9..f16c552 100755
+index bc92f0f..2ed3d54 100755
 --- a/vm/kojivmd
 +++ b/vm/kojivmd
 @@ -1,4 +1,4 @@
@@ -181,5 +186,5 @@ index 5491ee9..f16c552 100755
  # Koji virtual machine management daemon
  # Copyright (c) 2010-2014 Red Hat, Inc.
 -- 
-2.16.1
+2.16.2
 

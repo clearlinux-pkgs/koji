@@ -1,2 +1,4 @@
 0001-builder-use-sudo-to-call-mock.patch
-0002-Force-usr-bin-python2.patch
+0002-Use-old-version-of-NSS-forking-behavior.patch
+0003-Change-install-dir-to-usr-bin.patch
+0004-Force-usr-bin-python2.patch

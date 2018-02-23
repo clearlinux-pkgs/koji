@@ -1,0 +1,59 @@
+From 79b80bbf94a43d87737071a1cb6ebfe6d8692c41 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Tue, 20 Feb 2018 14:35:40 -0800
+Subject: [PATCH] Change install dir to /usr/bin
+
+---
+ builder/Makefile | 4 ++--
+ util/Makefile    | 4 ++--
+ vm/Makefile      | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/builder/Makefile b/builder/Makefile
+index 1de0a9c..8c05916 100644
+--- a/builder/Makefile
++++ b/builder/Makefile
+@@ -17,8 +17,8 @@ _install:
+ 		exit 1; \
+ 	fi
+ 
+-	mkdir -p $(DESTDIR)/usr/sbin
+-	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/sbin
++	mkdir -p $(DESTDIR)/usr/bin
++	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/bin
+ 
+ 	mkdir -p $(DESTDIR)/usr/libexec/kojid
+ 	install -p -m 755 $(LIBEXECFILES) $(DESTDIR)/usr/libexec/kojid
+diff --git a/util/Makefile b/util/Makefile
+index 5ea8bde..72099a6 100644
+--- a/util/Makefile
++++ b/util/Makefile
+@@ -14,8 +14,8 @@ _install:
+ 		echo "ERROR: A destdir is required"; \
+ 		exit 1; \
+ 	fi
+-	mkdir -p $(DESTDIR)/usr/sbin
+-	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/sbin
++	mkdir -p $(DESTDIR)/usr/bin
++	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/bin
+ 
+ 	mkdir -p $(DESTDIR)/etc/kojira
+ 	install -p -m 644 kojira.conf $(DESTDIR)/etc/kojira/kojira.conf
+diff --git a/vm/Makefile b/vm/Makefile
+index 13e340c..de74a39 100644
+--- a/vm/Makefile
++++ b/vm/Makefile
+@@ -19,8 +19,8 @@ _install: kojikamid
+ 		exit 1; \
+ 	fi
+ 
+-	mkdir -p $(DESTDIR)/usr/sbin
+-	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/sbin
++	mkdir -p $(DESTDIR)/usr/bin
++	install -p -m 755 $(BINFILES) $(DESTDIR)/usr/bin
+ 
+ 	mkdir -p $(DESTDIR)/usr/share/kojivmd
+ 	install -p -m 644 $(SHAREFILES) $(DESTDIR)/usr/share/kojivmd
+-- 
+2.16.2
+
