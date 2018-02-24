@@ -34,6 +34,7 @@ ipaddress
 ipaddress-legacypython
 Jinja2
 Jinja2-legacypython
+libcomps
 linecache2
 linecache2-legacypython
 Markdown

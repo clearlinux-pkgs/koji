@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.0
-Release  : 43
+Release  : 44
 URL      : http://releases.pagure.org/koji/koji-1.15.0.tar.bz2
 Source0  : http://releases.pagure.org/koji/koji-1.15.0.tar.bz2
 Summary  : Build system tools
@@ -59,6 +59,7 @@ Requires: imagesize
 Requires: imagesize-legacypython
 Requires: ipaddress
 Requires: ipaddress-legacypython
+Requires: libcomps
 Requires: linecache2
 Requires: linecache2-legacypython
 Requires: nose
@@ -209,12 +210,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519430556
+export SOURCE_DATE_EPOCH=1519432495
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1519430556
+export SOURCE_DATE_EPOCH=1519432495
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
