@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.0
-Release  : 50
+Release  : 51
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.0.tar.gz
 Summary  : Build system tools
@@ -213,14 +213,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519556340
+export SOURCE_DATE_EPOCH=1519597677
 python2 setup.py build -b py2
 
 %install
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
 ## make_install_append content
-/usr/bin/make DESTDIR=%{buildroot} install
+/usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/

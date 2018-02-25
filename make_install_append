@@ -1,4 +1,4 @@
-/usr/bin/make DESTDIR=%{buildroot} install
+/usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/

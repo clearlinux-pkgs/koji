@@ -11,7 +11,8 @@
 #python-rpm
 #requests
 #six
-## The below dependencies were recursively generated as of 20940 ##
+## The below dependencies were recursively generated as of 2/25/2018 ##
+## Packages prefixed and postfixed with `####` are not fully resolvable as of 2/25/2018 ##
 alabaster
 alabaster-legacypython
 argparse
@@ -52,6 +53,7 @@ ipaddress-legacypython
 Jinja2
 Jinja2-legacypython
 libcomps
+####libcomps-legacypython####
 linecache2
 linecache2-legacypython
 Markdown
@@ -114,6 +116,12 @@ urllib3
 urllib3-legacypython
 Whoosh
 Whoosh-legacypython
+####zope.event####
+####zope.event-legacypython####
+####zope.exceptions####
+####zope.exceptions-legacypython####
+####zope.interface####
+####zope.interface-legacypython####
 zope.testing
 zope.testing-legacypython
 zope.testrunner
