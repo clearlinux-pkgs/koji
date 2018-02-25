@@ -1,0 +1,51 @@
+From d59317903440de6182ddddd39cfd7470c33205f0 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Sat, 24 Feb 2018 23:09:40 -0800
+Subject: [PATCH] Do not build kojihub plugins
+
+Building kojihub plugins requires packages that are currently not
+distributed.
+---
+ plugins/Makefile | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/plugins/Makefile b/plugins/Makefile
+index 7e927b1..82310d3 100644
+--- a/plugins/Makefile
++++ b/plugins/Makefile
+@@ -5,16 +5,12 @@ PYLIBDIR = $(PYSYSDIR)/lib/python$(PYVER)
+ PKGDIR = $(PYLIBDIR)/site-packages
+ 
+ CLIPLUGINDIR = $(PKGDIR)/koji_cli_plugins
+-HUBPLUGINDIR = /usr/lib/koji-hub-plugins
+ BUILDERPLUGINDIR = /usr/lib/koji-builder-plugins
+ CLIFILES = $(wildcard cli/*.py)
+-HUBFILES = $(wildcard hub/*.py)
+ BUILDERFILES = $(wildcard builder/*.py)
+ CLICONFDIR = /etc/koji/plugins
+-HUBCONFDIR = /etc/koji-hub/plugins
+ BUILDERCONFDIR = /etc/kojid/plugins
+ CLICONFFILES = $(wildcard cli/*.conf)
+-HUBCONFFILES = $(wildcard hub/*.conf)
+ BUILDERCONFFILES = $(wildcard builder/*.conf)
+ 
+ _default:
+@@ -30,15 +26,10 @@ install:
+ 		exit 1; \
+ 	fi
+ 	if [ "$(PYTHON)" == "python2" ] ; then \
+-		mkdir -p $(DESTDIR)/$(HUBPLUGINDIR); \
+ 		mkdir -p $(DESTDIR)/$(BUILDERPLUGINDIR); \
+-		install -p -m 644 $(HUBFILES) $(DESTDIR)/$(HUBPLUGINDIR); \
+ 		install -p -m 644 $(BUILDERFILES) $(DESTDIR)/$(BUILDERPLUGINDIR); \
+-		$(PYTHON) -c "import compileall; compileall.compile_dir('$(DESTDIR)/$(HUBPLUGINDIR)', 1, '$(HUBPLUGINDIR)', 1)"; \
+ 		$(PYTHON) -c "import compileall; compileall.compile_dir('$(DESTDIR)/$(BUILDERPLUGINDIR)', 1, '$(BUILDERPLUGINDIR)', 1)"; \
+-		mkdir -p $(DESTDIR)/$(HUBCONFDIR); \
+ 		mkdir -p $(DESTDIR)/$(BUILDERCONFDIR); \
+-		install -p -m 644 $(HUBCONFFILES) $(DESTDIR)/$(HUBCONFDIR); \
+ 		install -p -m 644 $(BUILDERCONFFILES) $(DESTDIR)/$(BUILDERCONFDIR); \
+ 	fi
+ 
+-- 
+2.16.1
+

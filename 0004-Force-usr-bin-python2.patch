@@ -1,17 +1,23 @@
-From d29324fb5fdd35d0247a1e88965e487f625ffb74 Mon Sep 17 00:00:00 2001
+From f8795423f211fb43dbf533fba376c90e424580fe Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
-Date: Tue, 20 Feb 2018 20:44:21 -0800
+Date: Sat, 24 Feb 2018 22:56:10 -0800
 Subject: [PATCH] Force /usr/bin/python2
 
 ---
  builder/kojid                      | 2 +-
  builder/mergerepos                 | 2 +-
+ cli/Makefile                       | 2 +-
  cli/koji                           | 2 +-
+ cli/koji_cli/Makefile              | 2 +-
  devtools/fakehub                   | 2 +-
  devtools/fakeweb                   | 2 +-
  docs/source/image_build.rst        | 2 +-
+ hub/Makefile                       | 2 +-
  hub/rpmdiff                        | 2 +-
+ koji/Makefile                      | 2 +-
  koji/context.py                    | 2 +-
+ koji/ssl/Makefile                  | 2 +-
+ plugins/Makefile                   | 4 ++--
  runtests                           | 2 +-
  tests/test_lib/test_fixEncoding.py | 2 +-
  tests/test_lib/test_parsers.py     | 2 +-
@@ -20,7 +26,8 @@ Subject: [PATCH] Force /usr/bin/python2
  util/kojira                        | 2 +-
  vm/kojikamid.py                    | 2 +-
  vm/kojivmd                         | 2 +-
- 16 files changed, 16 insertions(+), 16 deletions(-)
+ www/lib/kojiweb/Makefile           | 2 +-
+ 23 files changed, 24 insertions(+), 24 deletions(-)
 
 diff --git a/builder/kojid b/builder/kojid
 index a68353f..18d9f04 100755
@@ -42,6 +49,18 @@ index 714856b..bb3ee6d 100755
  
  # This program is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
+diff --git a/cli/Makefile b/cli/Makefile
+index c9112f3..b96101b 100644
+--- a/cli/Makefile
++++ b/cli/Makefile
+@@ -1,6 +1,6 @@
+ SUBDIRS=koji_cli
+ 
+-PYTHON=python
++PYTHON=python2
+ PACKAGE = $(shell basename `pwd`)
+ PYVER := $(shell $(PYTHON) -c 'import sys; print("%.3s" %(sys.version))')
+ PYSYSDIR := $(shell $(PYTHON) -c 'import sys; print(sys.prefix)')
 diff --git a/cli/koji b/cli/koji
 index ab4cdc5..8f19a7a 100755
 --- a/cli/koji
@@ -52,6 +71,18 @@ index ab4cdc5..8f19a7a 100755
  # coding=utf-8
  
  # command line interface for the Koji build system
+diff --git a/cli/koji_cli/Makefile b/cli/koji_cli/Makefile
+index 42dcdcf..1fba875 100644
+--- a/cli/koji_cli/Makefile
++++ b/cli/koji_cli/Makefile
+@@ -1,6 +1,6 @@
+ PYFILES = $(wildcard *.py)
+ 
+-PYTHON=python
++PYTHON=python2
+ PACKAGE = $(shell basename `pwd`)
+ PYVER := $(shell $(PYTHON) -c 'import sys; print("%.3s" % (sys.version))')
+ PYSYSDIR := $(shell $(PYTHON) -c 'import sys; print(sys.prefix)')
 diff --git a/devtools/fakehub b/devtools/fakehub
 index ccb5f73..3b21dfa 100755
 --- a/devtools/fakehub
@@ -85,6 +116,16 @@ index b2bb0dc..4b86e7e 100644
  
      import logging
      import os.path
+diff --git a/hub/Makefile b/hub/Makefile
+index 72b475f..a9f7719 100644
+--- a/hub/Makefile
++++ b/hub/Makefile
+@@ -1,4 +1,4 @@
+-PYTHON=python
++PYTHON=python2
+ PACKAGE = $(shell basename `pwd`)
+ LIBEXECFILES = rpmdiff
+ PYFILES = $(wildcard *.py)
 diff --git a/hub/rpmdiff b/hub/rpmdiff
 index 7ef9562..20be660 100755
 --- a/hub/rpmdiff
@@ -95,6 +136,16 @@ index 7ef9562..20be660 100755
  #
  # Copyright (C) 2006 Mandriva; 2009-2014 Red Hat, Inc.
  # Authors: Frederic Lepied, Florian Festi
+diff --git a/koji/Makefile b/koji/Makefile
+index d51de8d..0d3a0d6 100644
+--- a/koji/Makefile
++++ b/koji/Makefile
+@@ -1,4 +1,4 @@
+-PYTHON=python
++PYTHON=python2
+ PACKAGE = $(shell basename `pwd`)
+ ifeq ($(PYTHON), python3)
+     # for python3 we fully support only basic library + CLI
 diff --git a/koji/context.py b/koji/context.py
 index 56a79f7..811c6c1 100755
 --- a/koji/context.py
@@ -105,6 +156,37 @@ index 56a79f7..811c6c1 100755
  # Copyright (c) 2005-2014 Red Hat, Inc.
  #
  #    Koji is free software; you can redistribute it and/or
+diff --git a/koji/ssl/Makefile b/koji/ssl/Makefile
+index f643700..359c0c0 100644
+--- a/koji/ssl/Makefile
++++ b/koji/ssl/Makefile
+@@ -1,6 +1,6 @@
+ FILES = $(wildcard *.py)
+ 
+-PYTHON=python
++PYTHON=python2
+ 
+ _default:
+ 	@echo "nothing to make.  try make install"
+diff --git a/plugins/Makefile b/plugins/Makefile
+index cddab66..7e927b1 100644
+--- a/plugins/Makefile
++++ b/plugins/Makefile
+@@ -1,4 +1,4 @@
+-PYTHON=python
++PYTHON=python2
+ PYVER := $(shell $(PYTHON) -c 'import sys; print("%.3s" %(sys.version))')
+ PYSYSDIR := $(shell $(PYTHON) -c 'import sys; print(sys.prefix)')
+ PYLIBDIR = $(PYSYSDIR)/lib/python$(PYVER)
+@@ -29,7 +29,7 @@ install:
+ 		echo "ERROR: A destdir is required"; \
+ 		exit 1; \
+ 	fi
+-	if [ "$(PYTHON)" == "python" ] ; then \
++	if [ "$(PYTHON)" == "python2" ] ; then \
+ 		mkdir -p $(DESTDIR)/$(HUBPLUGINDIR); \
+ 		mkdir -p $(DESTDIR)/$(BUILDERPLUGINDIR); \
+ 		install -p -m 644 $(HUBFILES) $(DESTDIR)/$(HUBPLUGINDIR); \
 diff --git a/runtests b/runtests
 index 8d0adf9..0bd8816 100755
 --- a/runtests
@@ -185,6 +267,16 @@ index bc92f0f..2ed3d54 100755
  
  # Koji virtual machine management daemon
  # Copyright (c) 2010-2014 Red Hat, Inc.
+diff --git a/www/lib/kojiweb/Makefile b/www/lib/kojiweb/Makefile
+index 85eb559..6a7c318 100644
+--- a/www/lib/kojiweb/Makefile
++++ b/www/lib/kojiweb/Makefile
+@@ -1,4 +1,4 @@
+-PYTHON=python
++PYTHON=python2
+ PACKAGE = $(shell basename `pwd`)
+ PYFILES = $(wildcard *.py)
+ PYVER := $(shell $(PYTHON) -c 'import sys; print("%.3s" % (sys.version))')
 -- 
-2.16.2
+2.16.1
 

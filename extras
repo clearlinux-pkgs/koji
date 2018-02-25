@@ -17,6 +17,7 @@
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
 /usr/share/koji-web/scripts/buildrootinfo.chtml
+/usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 /usr/share/koji-web/scripts/builds.chtml
 /usr/share/koji-web/scripts/buildsbystatus.chtml
 /usr/share/koji-web/scripts/buildsbytarget.chtml

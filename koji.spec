@@ -4,19 +4,20 @@
 #
 Name     : koji
 Version  : 1.15.0
-Release  : 44
-URL      : http://releases.pagure.org/koji/koji-1.15.0.tar.bz2
-Source0  : http://releases.pagure.org/koji/koji-1.15.0.tar.bz2
+Release  : 50
+URL      : https://github.com/koji-project/koji/archive/koji-1.15.0.tar.gz
+Source0  : https://github.com/koji-project/koji/archive/koji-1.15.0.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
 Requires: koji-legacypython
-Requires: koji-python3
 Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
 Requires: koji-python
+Requires: Babel
+Requires: Babel-legacypython
 Requires: Cheetah
 Requires: Cheetah-legacypython
 Requires: Jinja2
@@ -27,6 +28,8 @@ Requires: MarkupSafe
 Requires: MarkupSafe-legacypython
 Requires: Pygments
 Requires: Pygments-legacypython
+Requires: Sphinx
+Requires: Sphinx-legacypython
 Requires: Whoosh
 Requires: Whoosh-legacypython
 Requires: alabaster
@@ -35,6 +38,8 @@ Requires: argparse
 Requires: argparse-legacypython
 Requires: asn1crypto
 Requires: asn1crypto-legacypython
+Requires: attrs
+Requires: attrs-legacypython
 Requires: certifi
 Requires: certifi-legacypython
 Requires: cffi
@@ -43,16 +48,17 @@ Requires: chardet
 Requires: chardet-legacypython
 Requires: colorama
 Requires: colorama-legacypython
-Requires: configparser
-Requires: configparser-legacypython
+Requires: coverage
+Requires: coverage-legacypython
 Requires: cryptography
 Requires: cryptography-legacypython
 Requires: docutils
 Requires: docutils-legacypython
-Requires: enum34
-Requires: enum34-legacypython
 Requires: funcsigs
 Requires: funcsigs-legacypython
+Requires: git
+Requires: html5lib
+Requires: html5lib-legacypython
 Requires: idna
 Requires: idna-legacypython
 Requires: imagesize
@@ -66,14 +72,10 @@ Requires: nose
 Requires: nose-legacypython
 Requires: ordereddict
 Requires: ordereddict-legacypython
-Requires: packaging
-Requires: packaging-legacypython
 Requires: pbr
 Requires: pbr-legacypython
 Requires: pluggy
 Requires: pluggy-legacypython
-Requires: psutil
-Requires: psutil-legacypython
 Requires: psycopg2
 Requires: psycopg2-legacypython
 Requires: py
@@ -82,18 +84,14 @@ Requires: pyOpenSSL
 Requires: pyOpenSSL-legacypython
 Requires: pycparser
 Requires: pycparser-legacypython
-Requires: pyflakes
-Requires: pyflakes-legacypython
-Requires: pyparsing
-Requires: pyparsing-legacypython
 Requires: pytest
 Requires: pytest-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
-Requires: python-krbV
-Requires: python-krbV-legacypython
 Requires: python-mock
 Requires: python-mock-legacypython
+Requires: python-multilib
+Requires: python-multilib-legacypython
 Requires: python-rpm
 Requires: pytz
 Requires: pytz-legacypython
@@ -108,15 +106,26 @@ Requires: six
 Requires: six-legacypython
 Requires: snowballstemmer
 Requires: snowballstemmer-legacypython
+Requires: sphinx_rtd_theme
+Requires: sphinx_rtd_theme-legacypython
 Requires: sphinxcontrib-websupport
 Requires: sphinxcontrib-websupport-legacypython
+Requires: traceback2
+Requires: traceback2-legacypython
+Requires: typing
+Requires: typing-legacypython
+Requires: unittest2
+Requires: unittest2-legacypython
 Requires: urllib3
 Requires: urllib3-legacypython
+Requires: zope.testing
+Requires: zope.testing-legacypython
+Requires: zope.testrunner
+Requires: zope.testrunner-legacypython
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(systemd)
 BuildRequires : python-dev
-BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : setuptools-legacypython
 BuildRequires : systemd-dev
@@ -124,6 +133,8 @@ Patch1: 0001-builder-use-sudo-to-call-mock.patch
 Patch2: 0002-Use-old-version-of-NSS-forking-behavior.patch
 Patch3: 0003-Change-install-dir-to-usr-bin.patch
 Patch4: 0004-Force-usr-bin-python2.patch
+Patch5: 0005-Do-not-build-kojivm.patch
+Patch6: 0006-Do-not-build-kojihub-plugins.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -183,47 +194,33 @@ legacypython components for the koji package.
 %package python
 Summary: python components for the koji package.
 Group: Default
-Requires: koji-python3
 
 %description python
 python components for the koji package.
 
 
-%package python3
-Summary: python3 components for the koji package.
-Group: Default
-Requires: python3-core
-
-%description python3
-python3 components for the koji package.
-
-
 %prep
-%setup -q -n koji-1.15.0
+%setup -q -n koji-koji-1.15.0
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519432495
+export SOURCE_DATE_EPOCH=1519556340
 python2 setup.py build -b py2
-python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1519432495
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
-echo ----[ mark ]----
-cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
-echo ----[ mark ]----
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
 ## make_install_append content
-/usr/bin/make DESTDIR=%{buildroot} INSTALLROOT=%{buildroot} install_prefix=%{buildroot} BUILDROOT=%{buildroot} BUILD_ROOT=%{buildroot} INSTALL_ROOT=%{buildroot} install
+/usr/bin/make DESTDIR=%{buildroot} install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
@@ -234,19 +231,9 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/lib/koji-builder-plugins/__pycache__/runroot.cpython-36.pyc
 /usr/lib/koji-builder-plugins/__pycache__/save_failed_tree.cpython-36.pyc
 /usr/lib/koji-builder-plugins/runroot.py
+/usr/lib/koji-builder-plugins/runroot.pyc
 /usr/lib/koji-builder-plugins/save_failed_tree.py
-/usr/lib/koji-hub-plugins/__pycache__/echo.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/messagebus.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/protonmsg.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/rpm2maven.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/runroot_hub.cpython-36.pyc
-/usr/lib/koji-hub-plugins/__pycache__/save_failed_tree.cpython-36.pyc
-/usr/lib/koji-hub-plugins/echo.py
-/usr/lib/koji-hub-plugins/messagebus.py
-/usr/lib/koji-hub-plugins/protonmsg.py
-/usr/lib/koji-hub-plugins/rpm2maven.py
-/usr/lib/koji-hub-plugins/runroot_hub.py
-/usr/lib/koji-hub-plugins/save_failed_tree.py
+/usr/lib/koji-builder-plugins/save_failed_tree.pyc
 
 %files bin
 %defattr(-,root,root,-)
@@ -255,7 +242,6 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/bin/koji-shadow
 /usr/bin/kojid
 /usr/bin/kojira
-/usr/bin/kojivmd
 /usr/libexec/koji-hub/rpmdiff
 /usr/libexec/kojid/mergerepos
 
@@ -263,18 +249,22 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/kojid.service
 /usr/lib/systemd/system/kojira.service
-/usr/lib/systemd/system/kojivmd.service
 
 %files data
 %defattr(-,root,root,-)
 %exclude /usr/share/koji-hub/kojihub.py
+%exclude /usr/share/koji-hub/kojihub.pyc
 %exclude /usr/share/koji-hub/kojixmlrpc.py
+%exclude /usr/share/koji-hub/kojixmlrpc.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/__init__.py
+%exclude /usr/share/koji-web/lib/kojiweb/__init__.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/util.py
+%exclude /usr/share/koji-web/lib/kojiweb/util.pyc
 %exclude /usr/share/koji-web/scripts/archiveinfo.chtml
 %exclude /usr/share/koji-web/scripts/archivelist.chtml
 %exclude /usr/share/koji-web/scripts/buildinfo.chtml
 %exclude /usr/share/koji-web/scripts/buildrootinfo.chtml
+%exclude /usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 %exclude /usr/share/koji-web/scripts/builds.chtml
 %exclude /usr/share/koji-web/scripts/buildsbystatus.chtml
 %exclude /usr/share/koji-web/scripts/buildsbytarget.chtml
@@ -345,15 +335,14 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %exclude /usr/share/koji-web/static/js/watchlogs.js
 %exclude /usr/share/koji-web/static/koji.css
 %exclude /usr/share/koji-web/static/themes/README
-%exclude /usr/share/kojivmd/kojikamid
 /usr/share/koji-hub/__init__.py
+/usr/share/koji-hub/__init__.pyc
 /usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
 /usr/share/koji-hub/__pycache__/kojixmlrpc.cpython-36.pyc
 /usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
 /usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
 /usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
 /usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
-/usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 
 %files doc
 %defattr(-,root,root,-)
@@ -362,13 +351,18 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %files extras
 %defattr(-,root,root,-)
 /usr/share/koji-hub/kojihub.py
+/usr/share/koji-hub/kojihub.pyc
 /usr/share/koji-hub/kojixmlrpc.py
+/usr/share/koji-hub/kojixmlrpc.pyc
 /usr/share/koji-web/lib/kojiweb/__init__.py
+/usr/share/koji-web/lib/kojiweb/__init__.pyc
 /usr/share/koji-web/lib/kojiweb/util.py
+/usr/share/koji-web/lib/kojiweb/util.pyc
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
 /usr/share/koji-web/scripts/buildrootinfo.chtml
+/usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 /usr/share/koji-web/scripts/builds.chtml
 /usr/share/koji-web/scripts/buildsbystatus.chtml
 /usr/share/koji-web/scripts/buildsbytarget.chtml
@@ -439,7 +433,6 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/static/js/watchlogs.js
 /usr/share/koji-web/static/koji.css
 /usr/share/koji-web/static/themes/README
-/usr/share/kojivmd/kojikamid
 
 %files legacypython
 %defattr(-,root,root,-)
@@ -447,7 +440,3 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files python
 %defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*

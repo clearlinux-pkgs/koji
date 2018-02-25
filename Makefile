@@ -1,5 +1,5 @@
 PKG_NAME := koji
-URL = http://releases.pagure.org/koji/koji-1.15.0.tar.bz2
+URL = https://github.com/koji-project/koji/archive/koji-1.15.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
