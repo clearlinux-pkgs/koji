@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 53
+Release  : 54
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -127,11 +127,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519774252
+export SOURCE_DATE_EPOCH=1519774628
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1519774252
+export SOURCE_DATE_EPOCH=1519774628
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
@@ -167,14 +167,21 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files data
 %defattr(-,root,root,-)
+%exclude /usr/share/koji-hub/__init__.py
+%exclude /usr/share/koji-hub/__init__.pyc
+%exclude /usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
 %exclude /usr/share/koji-hub/kojihub.py
 %exclude /usr/share/koji-hub/kojihub.pyc
 %exclude /usr/share/koji-hub/kojixmlrpc.py
 %exclude /usr/share/koji-hub/kojixmlrpc.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/__init__.py
 %exclude /usr/share/koji-web/lib/kojiweb/__init__.pyc
+%exclude /usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
+%exclude /usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/util.py
 %exclude /usr/share/koji-web/lib/kojiweb/util.pyc
+%exclude /usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
+%exclude /usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
 %exclude /usr/share/koji-web/scripts/archiveinfo.chtml
 %exclude /usr/share/koji-web/scripts/archivelist.chtml
 %exclude /usr/share/koji-web/scripts/buildinfo.chtml
@@ -250,13 +257,6 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 %exclude /usr/share/koji-web/static/js/watchlogs.js
 %exclude /usr/share/koji-web/static/koji.css
 %exclude /usr/share/koji-web/static/themes/README
-/usr/share/koji-hub/__init__.py
-/usr/share/koji-hub/__init__.pyc
-/usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
-/usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
-/usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
-/usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
-/usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
 
 %files doc
 %defattr(-,root,root,-)
@@ -264,14 +264,21 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files extras
 %defattr(-,root,root,-)
+/usr/share/koji-hub/__init__.py
+/usr/share/koji-hub/__init__.pyc
+/usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
 /usr/share/koji-hub/kojihub.py
 /usr/share/koji-hub/kojihub.pyc
 /usr/share/koji-hub/kojixmlrpc.py
 /usr/share/koji-hub/kojixmlrpc.pyc
 /usr/share/koji-web/lib/kojiweb/__init__.py
 /usr/share/koji-web/lib/kojiweb/__init__.pyc
+/usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
+/usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
 /usr/share/koji-web/lib/kojiweb/util.py
 /usr/share/koji-web/lib/kojiweb/util.pyc
+/usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
+/usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
