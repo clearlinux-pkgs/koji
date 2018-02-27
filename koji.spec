@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 54
+Release  : 55
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -17,16 +17,113 @@ Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
 Requires: koji-python
+Requires: Babel
+Requires: Babel-legacypython
 Requires: Cheetah
-Requires: git
+Requires: Cheetah-legacypython
+Requires: Jinja2
+Requires: Jinja2-legacypython
+Requires: Markdown
+Requires: Markdown-legacypython
+Requires: MarkupSafe
+Requires: MarkupSafe-legacypython
+Requires: Pygments
+Requires: Pygments-legacypython
+Requires: Sphinx
+Requires: Sphinx-legacypython
+Requires: Whoosh
+Requires: Whoosh-legacypython
+Requires: alabaster
+Requires: alabaster-legacypython
+Requires: argparse
+Requires: argparse-legacypython
+Requires: asn1crypto
+Requires: asn1crypto-legacypython
+Requires: attrs
+Requires: attrs-legacypython
+Requires: certifi
+Requires: certifi-legacypython
+Requires: cffi
+Requires: cffi-legacypython
+Requires: chardet
+Requires: chardet-legacypython
+Requires: colorama
+Requires: colorama-legacypython
+Requires: coverage
+Requires: coverage-legacypython
+Requires: cryptography
+Requires: cryptography-legacypython
+Requires: docutils
+Requires: docutils-legacypython
+Requires: funcsigs
+Requires: funcsigs-legacypython
+Requires: html5lib
+Requires: html5lib-legacypython
+Requires: idna
+Requires: idna-legacypython
+Requires: imagesize
+Requires: imagesize-legacypython
+Requires: ipaddress
+Requires: ipaddress-legacypython
 Requires: libcomps
+Requires: linecache2
+Requires: linecache2-legacypython
+Requires: nose
+Requires: nose-legacypython
+Requires: ordereddict
+Requires: ordereddict-legacypython
+Requires: pbr
+Requires: pbr-legacypython
+Requires: pluggy
+Requires: pluggy-legacypython
 Requires: psycopg2
+Requires: psycopg2-legacypython
+Requires: py
+Requires: py-legacypython
 Requires: pyOpenSSL
+Requires: pyOpenSSL-legacypython
+Requires: pycparser
+Requires: pycparser-legacypython
 Requires: pycurl
+Requires: pycurl-legacypython
+Requires: pytest
+Requires: pytest-legacypython
 Requires: python-dateutil
+Requires: python-dateutil-legacypython
+Requires: python-mock
+Requires: python-mock-legacypython
 Requires: python-multilib
+Requires: python-multilib-legacypython
 Requires: python-rpm
+Requires: pytz
+Requires: pytz-legacypython
+Requires: requests
+Requires: requests-legacypython
+Requires: rpm
+Requires: setuptools
+Requires: setuptools-legacypython
+Requires: simplejson
+Requires: simplejson-legacypython
 Requires: six
+Requires: six-legacypython
+Requires: snowballstemmer
+Requires: snowballstemmer-legacypython
+Requires: sphinx_rtd_theme
+Requires: sphinx_rtd_theme-legacypython
+Requires: sphinxcontrib-websupport
+Requires: sphinxcontrib-websupport-legacypython
+Requires: traceback2
+Requires: traceback2-legacypython
+Requires: typing
+Requires: typing-legacypython
+Requires: unittest2
+Requires: unittest2-legacypython
+Requires: urllib3
+Requires: urllib3-legacypython
+Requires: zope.testing
+Requires: zope.testing-legacypython
+Requires: zope.testrunner
+Requires: zope.testrunner-legacypython
 BuildRequires : pkgconfig(systemd)
 BuildRequires : python-dev
 BuildRequires : python3-dev
@@ -127,11 +224,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519774628
+export SOURCE_DATE_EPOCH=1519775787
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1519774628
+export SOURCE_DATE_EPOCH=1519775787
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
