@@ -1,6 +1,6 @@
-From d749742dd3c1dc0e6366d76d601015e0859c51ce Mon Sep 17 00:00:00 2001
+From 524b12e0ae15bb7993951d292911185c385ecc3d Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
-Date: Sat, 24 Feb 2018 22:23:18 -0800
+Date: Tue, 27 Feb 2018 13:57:08 -0800
 Subject: [PATCH] Do not build kojivm
 
 This is not a required service and to use it, dependencies on libvirt
@@ -10,17 +10,17 @@ are pulled in, making this a larger package than it should be.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Makefile b/Makefile
-index 21e6ff3..b7f8933 100644
+index 59a6345..cfe08b8 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -1,6 +1,6 @@
  NAME=koji
  SPECFILE = $(firstword $(wildcard *.spec))
--SUBDIRS = hub builder koji cli util www plugins vm
-+SUBDIRS = hub builder koji cli util www plugins
+-SUBDIRS = hub builder koji cli docs util www plugins vm
++SUBDIRS = hub builder koji cli docs util www plugins
  
  ifdef DIST
  DIST_DEFINES := --define "dist $(DIST)"
 -- 
-2.16.1
+2.16.2
 
