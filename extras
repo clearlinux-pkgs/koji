@@ -1,6 +1,3 @@
-/etc/rc.d/init.d/kojid
-/etc/rc.d/init.d/kojira
-/etc/rc.d/init.d/kojivmd
 /usr/share/koji-hub/kojihub.py
 /usr/share/koji-hub/kojihub.pyc
 /usr/share/koji-hub/kojihub.pyo
@@ -93,18 +90,3 @@
 /usr/share/koji-web/static/koji.css
 /usr/share/koji-web/static/themes/README
 /usr/share/kojivmd/kojikamid
-/etc/httpd/conf.d/kojihub.conf
-/etc/httpd/conf.d/kojiweb.conf
-/etc/koji-gc/koji-gc.conf
-/etc/koji-hub/hub.conf
-/etc/koji-hub/plugins/messagebus.conf
-/etc/koji-hub/plugins/rpm2maven.conf
-/etc/koji-shadow/koji-shadow.conf
-/etc/kojid/kojid.conf
-/etc/kojira/kojira.conf
-/etc/kojivmd/kojivmd.conf
-/etc/kojiweb/web.conf
-/etc/sysconfig/kojid
-/etc/sysconfig/kojira
-/etc/sysconfig/kojivmd
-/etc/koji.conf
