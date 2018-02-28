@@ -8,6 +8,7 @@
 #pyOpenSSL
 #pycurl
 #python-dateutil
+#python-krbV
 #python-multilib
 #python-rpm
 #six
@@ -84,6 +85,8 @@ pytest
 pytest-legacypython
 python-dateutil
 python-dateutil-legacypython
+python-krbV
+python-krbV-legacypython
 python-mock
 python-mock-legacypython
 python-multilib

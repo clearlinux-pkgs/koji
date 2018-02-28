@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 56
+Release  : 57
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -91,6 +91,8 @@ Requires: pytest
 Requires: pytest-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
+Requires: python-krbV
+Requires: python-krbV-legacypython
 Requires: python-mock
 Requires: python-mock-legacypython
 Requires: python-multilib
@@ -225,11 +227,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519796887
+export SOURCE_DATE_EPOCH=1519801338
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1519796887
+export SOURCE_DATE_EPOCH=1519801338
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
