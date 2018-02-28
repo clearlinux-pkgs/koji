@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 55
+Release  : 56
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -57,6 +57,7 @@ Requires: docutils
 Requires: docutils-legacypython
 Requires: funcsigs
 Requires: funcsigs-legacypython
+Requires: git
 Requires: html5lib
 Requires: html5lib-legacypython
 Requires: idna
@@ -224,11 +225,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519775787
+export SOURCE_DATE_EPOCH=1519796887
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1519775787
+export SOURCE_DATE_EPOCH=1519796887
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content

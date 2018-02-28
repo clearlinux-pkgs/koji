@@ -1,12 +1,12 @@
-From b0aa40bd30053d94260d55be6f566a2ce66822c3 Mon Sep 17 00:00:00 2001
+From 419d2072c9a7f252887060555efb13b0bf0cae77 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
-Date: Tue, 27 Feb 2018 13:55:00 -0800
+Date: Tue, 27 Feb 2018 21:45:12 -0800
 Subject: [PATCH] Force /usr/bin/python2
 
 ---
  builder/kojid                      | 2 +-
  builder/mergerepos                 | 2 +-
- cli/koji                           | 4 ++--
+ cli/koji                           | 2 +-
  devtools/fakehub                   | 2 +-
  devtools/fakeweb                   | 2 +-
  docs/source/image_build.rst        | 2 +-
@@ -21,7 +21,7 @@ Subject: [PATCH] Force /usr/bin/python2
  util/kojira                        | 2 +-
  vm/kojikamid.py                    | 2 +-
  vm/kojivmd                         | 2 +-
- 17 files changed, 18 insertions(+), 18 deletions(-)
+ 17 files changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/builder/kojid b/builder/kojid
 index 258949a..f45420a 100755
@@ -44,7 +44,7 @@ index 714856b..bb3ee6d 100755
  # This program is free software; you can redistribute it and/or modify
  # it under the terms of the GNU General Public License as published by
 diff --git a/cli/koji b/cli/koji
-index c88a0fb..d69c20e 100755
+index c88a0fb..3726e88 100755
 --- a/cli/koji
 +++ b/cli/koji
 @@ -1,4 +1,4 @@
@@ -53,15 +53,6 @@ index c88a0fb..d69c20e 100755
  # coding=utf-8
  
  # command line interface for the Koji build system
-@@ -239,7 +239,7 @@ def fix_pyver(options, logger):
-         logger.warning('Invalid python version requested: %s', pyver)
-     if sys.version_info[0] == pyver:
-         return
--    py_exec = '/usr/bin/python%i' % pyver
-+    py_exec = '/usr/bin/python2%i' % pyver
-     if not os.path.exists(py_exec):
-         logger.error('No such file: %s', py_exec)
-         return
 diff --git a/devtools/fakehub b/devtools/fakehub
 index ccb5f73..3b21dfa 100755
 --- a/devtools/fakehub

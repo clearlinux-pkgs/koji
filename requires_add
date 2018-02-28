@@ -41,6 +41,7 @@ docutils
 docutils-legacypython
 funcsigs
 funcsigs-legacypython
+git
 html5lib
 html5lib-legacypython
 idna
