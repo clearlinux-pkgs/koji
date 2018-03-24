@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 57
+Release  : 58
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -227,11 +227,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519801338
+export SOURCE_DATE_EPOCH=1521927823
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1519801338
+export SOURCE_DATE_EPOCH=1521927823
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content

@@ -1,13 +1,16 @@
-From 79b80bbf94a43d87737071a1cb6ebfe6d8692c41 Mon Sep 17 00:00:00 2001
+From a6359eb736c75afb8161977f4d505bc24821edb3 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
-Date: Tue, 20 Feb 2018 14:35:40 -0800
+Date: Sat, 24 Mar 2018 14:41:49 -0700
 Subject: [PATCH] Change install dir to /usr/bin
 
 ---
- builder/Makefile | 4 ++--
- util/Makefile    | 4 ++--
- vm/Makefile      | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ builder/Makefile      | 4 ++--
+ builder/kojid.service | 2 +-
+ util/Makefile         | 4 ++--
+ util/kojira.service   | 2 +-
+ vm/Makefile           | 4 ++--
+ vm/kojivmd.service    | 2 +-
+ 6 files changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/builder/Makefile b/builder/Makefile
 index 1de0a9c..8c05916 100644
@@ -24,6 +27,19 @@ index 1de0a9c..8c05916 100644
  
  	mkdir -p $(DESTDIR)/usr/libexec/kojid
  	install -p -m 755 $(LIBEXECFILES) $(DESTDIR)/usr/libexec/kojid
+diff --git a/builder/kojid.service b/builder/kojid.service
+index d456bf1..59e137f 100644
+--- a/builder/kojid.service
++++ b/builder/kojid.service
+@@ -5,7 +5,7 @@ After=network.target
+ 
+ [Service]
+ Environment=NSS_STRICT_NOFORK=DISABLED
+-ExecStart=/usr/sbin/kojid \
++ExecStart=/usr/bin/kojid \
+        --fg \
+        --force-lock \
+        --verbose
 diff --git a/util/Makefile b/util/Makefile
 index 5ea8bde..72099a6 100644
 --- a/util/Makefile
@@ -39,6 +55,19 @@ index 5ea8bde..72099a6 100644
  
  	mkdir -p $(DESTDIR)/etc/kojira
  	install -p -m 644 kojira.conf $(DESTDIR)/etc/kojira/kojira.conf
+diff --git a/util/kojira.service b/util/kojira.service
+index 027f787..3e6bf39 100644
+--- a/util/kojira.service
++++ b/util/kojira.service
+@@ -5,7 +5,7 @@ Documentation=https://docs.pagure.org/koji/server_howto/
+ After=network.target
+ 
+ [Service]
+-ExecStart=/usr/sbin/kojira \
++ExecStart=/usr/bin/kojira \
+        --fg \
+        --force-lock \
+        --verbose
 diff --git a/vm/Makefile b/vm/Makefile
 index 13e340c..de74a39 100644
 --- a/vm/Makefile
@@ -54,6 +83,19 @@ index 13e340c..de74a39 100644
  
  	mkdir -p $(DESTDIR)/usr/share/kojivmd
  	install -p -m 644 $(SHAREFILES) $(DESTDIR)/usr/share/kojivmd
+diff --git a/vm/kojivmd.service b/vm/kojivmd.service
+index 810059b..81da5c1 100644
+--- a/vm/kojivmd.service
++++ b/vm/kojivmd.service
+@@ -5,7 +5,7 @@ Documentation=https://docs.pagure.org/koji/server_howto/
+ After=network.target
+ 
+ [Service]
+-ExecStart=/usr/sbin/kojivmd \
++ExecStart=/usr/bin/kojivmd \
+        --fg \
+        --force-lock \
+        --verbose
 -- 
 2.16.2
 
