@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 58
+Release  : 62
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -121,8 +121,14 @@ Requires: typing
 Requires: typing-legacypython
 Requires: unittest2
 Requires: unittest2-legacypython
+Requires: urlgrabber
+Requires: urlgrabber-legacypython
 Requires: urllib3
 Requires: urllib3-legacypython
+Requires: yum
+Requires: yum-legacypython
+Requires: yum-metadata-parser
+Requires: yum-metadata-parser-python
 Requires: zope.testing
 Requires: zope.testing-legacypython
 Requires: zope.testrunner
@@ -227,11 +233,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1521927823
+export SOURCE_DATE_EPOCH=1522891203
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1521927823
+export SOURCE_DATE_EPOCH=1522891203
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content

@@ -12,6 +12,9 @@
 #python-multilib
 #python-rpm
 #six
+#urlgrabber
+#yum
+#yum-metadata-parser
 ## The below dependencies were recursively generated as of 2/25/2018 ##
 ## Packages prefixed and postfixed with `####` are not fully resolvable as of 2/25/2018 ##
 alabaster
@@ -117,6 +120,8 @@ typing
 typing-legacypython
 unittest2
 unittest2-legacypython
+urlgrabber
+urlgrabber-legacypython
 urllib3
 urllib3-legacypython
 Whoosh
@@ -127,6 +132,10 @@ Whoosh-legacypython
 ####zope.exceptions-legacypython####
 ####zope.interface####
 ####zope.interface-legacypython####
+yum
+yum-legacypython
+yum-metadata-parser
+yum-metadata-parser-python
 zope.testing
 zope.testing-legacypython
 zope.testrunner
