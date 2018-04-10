@@ -138,7 +138,6 @@ Requires: zope.testrunner-legacypython
 
 Requires: Pygments-legacypython
 Requires: docutils-legacypython
-Requires: snowbalstemmer-legacypython
 Requires: babel-legacypython
 Requires: alabaster-legacypython
 Requires: requests-legacypython
