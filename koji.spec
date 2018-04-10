@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 64
+Release  : 65
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -138,7 +138,7 @@ Requires: zope.testrunner-legacypython
 
 Requires: Pygments-legacypython
 Requires: docutils-legacypython
-Requires: babel-legacypython
+Requires: Babel-legacypython
 Requires: alabaster-legacypython
 Requires: requests-legacypython
 Requires: typing-legacypython
