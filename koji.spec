@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.14.0
-Release  : 67
+Release  : 68
 URL      : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.14.0.tar.gz
 Summary  : Build system tools
@@ -133,16 +133,6 @@ Requires: zope.testing
 Requires: zope.testing-legacypython
 Requires: zope.testrunner
 Requires: zope.testrunner-legacypython
-
-# sphinx transitive deps
-
-Requires: Pygments-legacypython
-Requires: docutils-legacypython
-Requires: Babel-legacypython
-Requires: alabaster-legacypython
-Requires: requests-legacypython
-Requires: typing-legacypython
-
 BuildRequires : pkgconfig(systemd)
 BuildRequires : python-dev
 BuildRequires : python3-dev
@@ -155,6 +145,7 @@ Patch3: 0003-Change-install-dir-to-usr-bin.patch
 Patch4: 0004-Force-usr-bin-python2.patch
 Patch5: 0005-Do-not-build-kojivm.patch
 Patch6: 0006-Do-not-build-kojihub-plugins.patch
+Patch7: cve-2018-1002150.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -237,17 +228,22 @@ python3 components for the koji package.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1522891203
+export SOURCE_DATE_EPOCH=1526706031
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1522891203
+export SOURCE_DATE_EPOCH=1526706031
 rm -rf %{buildroot}
 %make_install
 ## make_install_append content
