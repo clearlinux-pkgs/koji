@@ -6,11 +6,11 @@
 #libcomps
 #psycopg2
 #pyOpenSSL
-#pycurl
 #python-dateutil
 #python-krbV
 #python-multilib
 #python-rpm
+#requests
 #six
 #urlgrabber
 #yum
@@ -77,8 +77,6 @@ psycopg2-legacypython
 py
 pycparser
 pycparser-legacypython
-pycurl
-pycurl-legacypython
 Pygments
 Pygments-legacypython
 py-legacypython
