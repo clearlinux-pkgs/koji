@@ -4,14 +4,13 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 70
+Release  : 71
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
-Requires: koji-python3
 Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
@@ -65,6 +64,7 @@ Requires: imagesize
 Requires: imagesize-legacypython
 Requires: ipaddress
 Requires: ipaddress-legacypython
+Requires: koji-legacypython
 Requires: libcomps
 Requires: linecache2
 Requires: linecache2-legacypython
@@ -203,19 +203,9 @@ legacypython components for the koji package.
 %package python
 Summary: python components for the koji package.
 Group: Default
-Requires: koji-python3
 
 %description python
 python components for the koji package.
-
-
-%package python3
-Summary: python3 components for the koji package.
-Group: Default
-Requires: python3-core
-
-%description python3
-python3 components for the koji package.
 
 
 %prep
@@ -232,19 +222,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527097702
+export SOURCE_DATE_EPOCH=1527098418
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-python3 setup.py build -b py3
+python2 setup.py build -b py2
 
 %install
 rm -rf %{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
-echo ----[ mark ]----
-cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
-echo ----[ mark ]----
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
 ## make_install_append content
 /usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
@@ -473,7 +460,3 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files python
 %defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
