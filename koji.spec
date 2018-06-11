@@ -4,14 +4,13 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 73
+Release  : 75
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
-Requires: koji-legacypython
 Requires: koji-config
 Requires: koji-doc
 Requires: koji-data
@@ -65,6 +64,7 @@ Requires: imagesize
 Requires: imagesize-legacypython
 Requires: ipaddress
 Requires: ipaddress-legacypython
+Requires: koji-legacypython
 Requires: libcomps
 Requires: linecache2
 Requires: linecache2-legacypython
@@ -84,8 +84,6 @@ Requires: pyOpenSSL
 Requires: pyOpenSSL-legacypython
 Requires: pycparser
 Requires: pycparser-legacypython
-Requires: pytest
-Requires: pytest-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
 Requires: python-krbV
@@ -222,7 +220,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527117397
+export SOURCE_DATE_EPOCH=1528755155
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -358,7 +356,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-hub/__pycache__/kojixmlrpc.cpython-36.pyc
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/koji/*
 
 %files extras
