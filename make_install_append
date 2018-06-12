@@ -2,3 +2,4 @@
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
+find %{buildroot} -name "*.pyc" | xargs rm
