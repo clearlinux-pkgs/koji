@@ -131,7 +131,7 @@ Requires: zope.testrunner-legacypython
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pkgconfig(systemd)
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : setuptools-legacypython
