@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 77
+Release  : 78
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
@@ -12,7 +12,7 @@ Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin
 Requires: koji-config
-Requires: koji-doc
+Requires: koji-license
 Requires: koji-data
 Requires: koji-python
 Requires: Babel
@@ -128,11 +128,10 @@ Requires: zope.testing
 Requires: zope.testing-legacypython
 Requires: zope.testrunner
 Requires: zope.testrunner-legacypython
-BuildRequires : pbr
-BuildRequires : pip
+BuildRequires : buildreq-distutils
+BuildRequires : buildreq-distutils3
 BuildRequires : pkgconfig(systemd)
-
-BuildRequires : python3-dev
+BuildRequires : python-dev
 BuildRequires : setuptools
 BuildRequires : setuptools-legacypython
 BuildRequires : systemd-dev
@@ -152,6 +151,7 @@ Summary: bin components for the koji package.
 Group: Binaries
 Requires: koji-data
 Requires: koji-config
+Requires: koji-license
 
 %description bin
 bin components for the koji package.
@@ -198,6 +198,14 @@ Requires: python-core
 legacypython components for the koji package.
 
 
+%package license
+Summary: license components for the koji package.
+Group: Default
+
+%description license
+license components for the koji package.
+
+
 %package python
 Summary: python components for the koji package.
 Group: Default
@@ -220,7 +228,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528833052
+export SOURCE_DATE_EPOCH=1532462751
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -229,6 +237,8 @@ python2 setup.py build -b py2
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/koji
+cp COPYING %{buildroot}/usr/share/doc/koji/COPYING
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
 ## make_install_append content
 /usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
@@ -240,8 +250,6 @@ find %{buildroot} -name "*.pyc" | xargs rm
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/koji-builder-plugins/__pycache__/runroot.cpython-36.pyc
-/usr/lib/koji-builder-plugins/__pycache__/save_failed_tree.cpython-36.pyc
 /usr/lib/koji-builder-plugins/runroot.py
 /usr/lib/koji-builder-plugins/save_failed_tree.py
 
@@ -263,15 +271,10 @@ find %{buildroot} -name "*.pyc" | xargs rm
 %files data
 %defattr(-,root,root,-)
 %exclude /usr/share/koji-hub/__init__.py
-%exclude /usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
 %exclude /usr/share/koji-hub/kojihub.py
 %exclude /usr/share/koji-hub/kojixmlrpc.py
 %exclude /usr/share/koji-web/lib/kojiweb/__init__.py
-%exclude /usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
-%exclude /usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
 %exclude /usr/share/koji-web/lib/kojiweb/util.py
-%exclude /usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
-%exclude /usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
 %exclude /usr/share/koji-web/scripts/archiveinfo.chtml
 %exclude /usr/share/koji-web/scripts/archivelist.chtml
 %exclude /usr/share/koji-web/scripts/buildinfo.chtml
@@ -347,7 +350,6 @@ find %{buildroot} -name "*.pyc" | xargs rm
 %exclude /usr/share/koji-web/static/js/watchlogs.js
 %exclude /usr/share/koji-web/static/koji.css
 %exclude /usr/share/koji-web/static/themes/README
-/usr/share/koji-hub/__pycache__/kojixmlrpc.cpython-36.pyc
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -356,15 +358,10 @@ find %{buildroot} -name "*.pyc" | xargs rm
 %files extras
 %defattr(-,root,root,-)
 /usr/share/koji-hub/__init__.py
-/usr/share/koji-hub/__pycache__/__init__.cpython-36.pyc
 /usr/share/koji-hub/kojihub.py
 /usr/share/koji-hub/kojixmlrpc.py
 /usr/share/koji-web/lib/kojiweb/__init__.py
-/usr/share/koji-web/lib/kojiweb/__pycache__/__init__.cpython-36.pyc
-/usr/share/koji-web/lib/kojiweb/__pycache__/util.cpython-36.pyc
 /usr/share/koji-web/lib/kojiweb/util.py
-/usr/share/koji-web/scripts/__pycache__/index.cpython-36.pyc
-/usr/share/koji-web/scripts/__pycache__/wsgi_publisher.cpython-36.pyc
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
@@ -444,6 +441,10 @@ find %{buildroot} -name "*.pyc" | xargs rm
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/koji/COPYING
 
 %files python
 %defattr(-,root,root,-)
