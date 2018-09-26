@@ -85,6 +85,7 @@ pyOpenSSL
 pyOpenSSL-legacypython
 python-dateutil
 python-dateutil-legacypython
+python-dateutil-legacypython=legacypython
 python-krbV
 python-krbV-legacypython
 python-mock

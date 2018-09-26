@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 79
+Release  : 80
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
@@ -86,6 +86,7 @@ Requires: pycparser
 Requires: pycparser-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
+Requires: python-dateutil-legacypython=legacypython
 Requires: python-krbV
 Requires: python-krbV-legacypython
 Requires: python-mock
@@ -149,9 +150,9 @@ contains shared libraries and the command-line interface.
 %package bin
 Summary: bin components for the koji package.
 Group: Binaries
-Requires: koji-data
-Requires: koji-config
-Requires: koji-license
+Requires: koji-data = %{version}-%{release}
+Requires: koji-config = %{version}-%{release}
+Requires: koji-license = %{version}-%{release}
 
 %description bin
 bin components for the koji package.
@@ -228,7 +229,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532462751
+export SOURCE_DATE_EPOCH=1537970347
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -240,13 +241,13 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/koji
 cp COPYING %{buildroot}/usr/share/doc/koji/COPYING
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
-## make_install_append content
+## install_append content
 /usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
 find %{buildroot} -name "*.pyc" | xargs rm
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -353,7 +354,68 @@ find %{buildroot} -name "*.pyc" | xargs rm
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/koji/*
+/usr/share/doc/koji/docs/Makefile
+/usr/share/doc/koji/docs/schema-clear.sql
+/usr/share/doc/koji/docs/schema-update-cgen.sql
+/usr/share/doc/koji/docs/schema-update-cgen2.sql
+/usr/share/doc/koji/docs/schema-update-dist-repos.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.10-1.11.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.11-1.12.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.12-1.13.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.13-1.14.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.14-1.15.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.2-1.3.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.3-1.4.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.4-1.5.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.6-1.7.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.7-1.8.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.8-1.9.sql
+/usr/share/doc/koji/docs/schema-upgrade-1.9-1.10.sql
+/usr/share/doc/koji/docs/schema.sql
+/usr/share/doc/koji/docs/source/HOWTO.rst
+/usr/share/doc/koji/docs/source/conf.py
+/usr/share/doc/koji/docs/source/configuring_jenkins.rst
+/usr/share/doc/koji/docs/source/content_generator_metadata.rst
+/usr/share/doc/koji/docs/source/content_generators.rst
+/usr/share/doc/koji/docs/source/defining_hub_policies.rst
+/usr/share/doc/koji/docs/source/external_repo_server_bootstrap.rst
+/usr/share/doc/koji/docs/source/image_build.rst
+/usr/share/doc/koji/docs/source/index.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.10.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.11.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.12.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.13.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.14.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.15.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.7.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.8.rst
+/usr/share/doc/koji/docs/source/migrating_to_1.9.rst
+/usr/share/doc/koji/docs/source/migrations.rst
+/usr/share/doc/koji/docs/source/misc.rst
+/usr/share/doc/koji/docs/source/plugins.rst
+/usr/share/doc/koji/docs/source/profiles.rst
+/usr/share/doc/koji/docs/source/release_notes.rst
+/usr/share/doc/koji/docs/source/release_notes_1.13.rst
+/usr/share/doc/koji/docs/source/release_notes_1.14.rst
+/usr/share/doc/koji/docs/source/release_notes_1.15.rst
+/usr/share/doc/koji/docs/source/runs_here.rst
+/usr/share/doc/koji/docs/source/server_bootstrap.rst
+/usr/share/doc/koji/docs/source/server_howto.rst
+/usr/share/doc/koji/docs/source/using_the_koji_build_system.rst
+/usr/share/doc/koji/docs/source/volumes.rst
+/usr/share/doc/koji/docs/source/writing_a_plugin.rst
+/usr/share/doc/koji/docs/source/writing_koji_code.rst
+/usr/share/doc/koji/etc/httpd/conf.d/kojihub.conf
+/usr/share/doc/koji/etc/httpd/conf.d/kojiweb.conf
+/usr/share/doc/koji/etc/koji-gc/koji-gc.conf
+/usr/share/doc/koji/etc/koji-hub/hub.conf
+/usr/share/doc/koji/etc/koji-shadow/koji-shadow.conf
+/usr/share/doc/koji/etc/koji.conf
+/usr/share/doc/koji/etc/kojid/kojid.conf
+/usr/share/doc/koji/etc/kojid/plugins/runroot.conf
+/usr/share/doc/koji/etc/kojid/plugins/save_failed_tree.conf
+/usr/share/doc/koji/etc/kojira/kojira.conf
+/usr/share/doc/koji/etc/kojiweb/web.conf
 
 %files extras
 %defattr(-,root,root,-)
@@ -443,7 +505,7 @@ find %{buildroot} -name "*.pyc" | xargs rm
 /usr/lib/python2*/*
 
 %files license
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/doc/koji/COPYING
 
 %files python
