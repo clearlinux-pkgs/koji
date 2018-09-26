@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 80
+Release  : 81
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
@@ -86,7 +86,7 @@ Requires: pycparser
 Requires: pycparser-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
-Requires: python-dateutil-legacypython=legacypython
+Requires: python-dateutil-legacypython-legacypython
 Requires: python-krbV
 Requires: python-krbV-legacypython
 Requires: python-mock
@@ -229,7 +229,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1537970347
+export SOURCE_DATE_EPOCH=1537970442
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
