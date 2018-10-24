@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 83
+Release  : 84
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
