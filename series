@@ -4,3 +4,4 @@
 0004-Force-usr-bin-python2.patch
 0005-Do-not-build-kojivm.patch
 0006-Do-not-build-kojihub-plugins.patch
+0007-Close-koji-db-connections.patch

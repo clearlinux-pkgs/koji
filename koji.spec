@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 82
+Release  : 83
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
@@ -13,6 +13,7 @@ License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
 Requires: koji-config = %{version}-%{release}
 Requires: koji-data = %{version}-%{release}
+Requires: koji-libexec = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
 Requires: Babel
@@ -143,6 +144,7 @@ Patch3: 0003-Change-install-dir-to-usr-bin.patch
 Patch4: 0004-Force-usr-bin-python2.patch
 Patch5: 0005-Do-not-build-kojivm.patch
 Patch6: 0006-Do-not-build-kojihub-plugins.patch
+Patch7: 0007-Close-koji-db-connections.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -152,6 +154,7 @@ contains shared libraries and the command-line interface.
 Summary: bin components for the koji package.
 Group: Binaries
 Requires: koji-data = %{version}-%{release}
+Requires: koji-libexec = %{version}-%{release}
 Requires: koji-config = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 
@@ -200,6 +203,16 @@ Requires: python-core
 legacypython components for the koji package.
 
 
+%package libexec
+Summary: libexec components for the koji package.
+Group: Default
+Requires: koji-config = %{version}-%{release}
+Requires: koji-license = %{version}-%{release}
+
+%description libexec
+libexec components for the koji package.
+
+
 %package license
 Summary: license components for the koji package.
 Group: Default
@@ -224,13 +237,14 @@ python components for the koji package.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539288911
+export SOURCE_DATE_EPOCH=1540352135
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -262,8 +276,6 @@ find %{buildroot} -name "*.pyc" | xargs rm
 /usr/bin/koji-shadow
 /usr/bin/kojid
 /usr/bin/kojira
-/usr/libexec/koji-hub/rpmdiff
-/usr/libexec/kojid/mergerepos
 
 %files config
 %defattr(-,root,root,-)
@@ -444,8 +456,13 @@ find %{buildroot} -name "*.pyc" | xargs rm
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
 
-%files license
+%files libexec
 %defattr(-,root,root,-)
+/usr/libexec/koji-hub/rpmdiff
+/usr/libexec/kojid/mergerepos
+
+%files license
+%defattr(0644,root,root,0755)
 /usr/share/package-licenses/koji/COPYING
 
 %files python
