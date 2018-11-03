@@ -4,18 +4,18 @@
 #
 Name     : koji
 Version  : 1.15.1
-Release  : 85
+Release  : 86
 URL      : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Source0  : https://github.com/koji-project/koji/archive/koji-1.15.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
-Requires: koji-config = %{version}-%{release}
 Requires: koji-data = %{version}-%{release}
 Requires: koji-libexec = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
+Requires: koji-services = %{version}-%{release}
 Requires: Babel
 Requires: Babel-legacypython
 Requires: Cheetah
@@ -155,19 +155,11 @@ Summary: bin components for the koji package.
 Group: Binaries
 Requires: koji-data = %{version}-%{release}
 Requires: koji-libexec = %{version}-%{release}
-Requires: koji-config = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
+Requires: koji-services = %{version}-%{release}
 
 %description bin
 bin components for the koji package.
-
-
-%package config
-Summary: config components for the koji package.
-Group: Default
-
-%description config
-config components for the koji package.
 
 
 %package data
@@ -206,7 +198,6 @@ legacypython components for the koji package.
 %package libexec
 Summary: libexec components for the koji package.
 Group: Default
-Requires: koji-config = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 
 %description libexec
@@ -229,6 +220,14 @@ Group: Default
 python components for the koji package.
 
 
+%package services
+Summary: services components for the koji package.
+Group: Systemd services
+
+%description services
+services components for the koji package.
+
+
 %prep
 %setup -q -n koji-koji-1.15.1
 %patch1 -p1
@@ -244,7 +243,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540352135
+export SOURCE_DATE_EPOCH=1541267553
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -276,11 +275,6 @@ find %{buildroot} -name "*.pyc" | xargs rm
 /usr/bin/koji-shadow
 /usr/bin/kojid
 /usr/bin/kojira
-
-%files config
-%defattr(-,root,root,-)
-/usr/lib/systemd/system/kojid.service
-/usr/lib/systemd/system/kojira.service
 
 %files data
 %defattr(-,root,root,-)
@@ -467,3 +461,8 @@ find %{buildroot} -name "*.pyc" | xargs rm
 
 %files python
 %defattr(-,root,root,-)
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/kojid.service
+/usr/lib/systemd/system/kojira.service
