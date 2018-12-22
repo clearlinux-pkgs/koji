@@ -117,8 +117,6 @@ traceback2
 traceback2-legacypython
 typing
 typing-legacypython
-unittest2
-unittest2-legacypython
 urlgrabber
 urlgrabber-legacypython
 urllib3
