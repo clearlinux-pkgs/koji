@@ -34,7 +34,7 @@ deprecated-certifi-legacypython
 cffi
 deprecated-cffi-legacypython
 chardet
-chardet-legacypython
+deprecated-chardet-legacypython
 Cheetah
 Cheetah-legacypython
 colorama
@@ -44,7 +44,7 @@ deprecated-coverage-legacypython
 cryptography
 deprecated-cryptography-legacypython
 docutils
-docutils-legacypython
+deprecated-docutils-legacypython
 funcsigs
 funcsigs-legacypython
 git

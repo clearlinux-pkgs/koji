@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.2
-Release  : 97
+Release  : 98
 URL      : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Summary  : shared libraries and the command-line interface for building and tracking RPMS
@@ -37,9 +37,7 @@ Requires: asn1crypto
 Requires: attrs
 Requires: certifi
 Requires: cffi
-Requires: cffi-legacypython
 Requires: chardet
-Requires: chardet-legacypython
 Requires: colorama
 Requires: coverage
 Requires: cryptography
@@ -49,11 +47,13 @@ Requires: deprecated-alabaster-legacypython
 Requires: deprecated-asn1crypto-legacypython
 Requires: deprecated-attrs-legacypython
 Requires: deprecated-certifi-legacypython
+Requires: deprecated-cffi-legacypython
+Requires: deprecated-chardet-legacypython
 Requires: deprecated-colorama-legacypython
 Requires: deprecated-coverage-legacypython
 Requires: deprecated-cryptography-legacypython
+Requires: deprecated-docutils-legacypython
 Requires: docutils
-Requires: docutils-legacypython
 Requires: funcsigs
 Requires: funcsigs-legacypython
 Requires: git
@@ -241,7 +241,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554308715
+export SOURCE_DATE_EPOCH=1554311144
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
