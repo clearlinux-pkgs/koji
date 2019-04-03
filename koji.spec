@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.2
-Release  : 99
+Release  : 100
 URL      : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Summary  : shared libraries and the command-line interface for building and tracking RPMS
@@ -20,13 +20,9 @@ Requires: Babel
 Requires: Cheetah
 Requires: Cheetah-legacypython
 Requires: Jinja2
-Requires: Jinja2-legacypython
 Requires: Markdown
-Requires: Markdown-legacypython
 Requires: MarkupSafe
-Requires: MarkupSafe-legacypython
 Requires: Pygments
-Requires: Pygments-legacypython
 Requires: Sphinx
 Requires: Whoosh
 Requires: alabaster
@@ -41,6 +37,10 @@ Requires: colorama
 Requires: coverage
 Requires: cryptography
 Requires: deprecated-Babel-legacypython
+Requires: deprecated-Jinja2-legacypython
+Requires: deprecated-Markdown-legacypython
+Requires: deprecated-MarkupSafe-legacypython
+Requires: deprecated-Pygments-legacypython
 Requires: deprecated-Sphinx-legacypython
 Requires: deprecated-Whoosh-legacypython
 Requires: deprecated-alabaster-legacypython
@@ -53,82 +53,82 @@ Requires: deprecated-colorama-legacypython
 Requires: deprecated-coverage-legacypython
 Requires: deprecated-cryptography-legacypython
 Requires: deprecated-docutils-legacypython
+Requires: deprecated-funcsigs-legacypython
+Requires: deprecated-html5lib-legacypython
+Requires: deprecated-idna-legacypython
+Requires: deprecated-imagesize-legacypython
+Requires: deprecated-ipaddress-legacypython
+Requires: deprecated-linecache2-legacypython
+Requires: deprecated-nose-legacypython
+Requires: deprecated-ordereddict-legacypython
+Requires: deprecated-pluggy-legacypython
+Requires: deprecated-psycopg2-legacypython
+Requires: deprecated-py-legacypython
+Requires: deprecated-pyOpenSSL-legacypython
+Requires: deprecated-pycparser-legacypython
+Requires: deprecated-python-mock-legacypython
+Requires: deprecated-python-multilib-legacypython
+Requires: deprecated-pytz-legacypython
+Requires: deprecated-requests-legacypython
+Requires: deprecated-simplejson-legacypython
+Requires: deprecated-six-legacypython
+Requires: deprecated-snowballstemmer-legacypython
+Requires: deprecated-sphinx_rtd_theme-legacypython
+Requires: deprecated-sphinxcontrib-websupport-legacypython
+Requires: deprecated-traceback2-legacypython
+Requires: deprecated-typing-legacypython
+Requires: deprecated-urllib3-legacypython
+Requires: deprecated-zope.testing-legacypython
+Requires: deprecated-zope.testrunner-legacypython
 Requires: docutils
 Requires: funcsigs
-Requires: funcsigs-legacypython
 Requires: git
 Requires: html5lib
-Requires: html5lib-legacypython
 Requires: idna
-Requires: idna-legacypython
 Requires: imagesize
-Requires: imagesize-legacypython
 Requires: ipaddress
-Requires: ipaddress-legacypython
 Requires: koji-doc
 Requires: koji-legacypython
 Requires: libcomps
 Requires: linecache2
-Requires: linecache2-legacypython
 Requires: nose
-Requires: nose-legacypython
 Requires: ordereddict
-Requires: ordereddict-legacypython
 Requires: pbr
 Requires: pbr-legacypython
 Requires: pluggy
-Requires: pluggy-legacypython
 Requires: psycopg2
-Requires: psycopg2-legacypython
 Requires: py
-Requires: py-legacypython
 Requires: pyOpenSSL
-Requires: pyOpenSSL-legacypython
 Requires: pycparser
-Requires: pycparser-legacypython
 Requires: python-dateutil
 Requires: python-dateutil-legacypython
 Requires: python-dateutil-legacypython-legacypython
 Requires: python-krbV
 Requires: python-krbV-legacypython
 Requires: python-mock
-Requires: python-mock-legacypython
 Requires: python-multilib
-Requires: python-multilib-legacypython
 Requires: python-rpm
 Requires: pytz
-Requires: pytz-legacypython
 Requires: requests
-Requires: requests-legacypython
 Requires: rpm
 Requires: setuptools
 Requires: setuptools-legacypython
 Requires: simplejson
-Requires: simplejson-legacypython
 Requires: six
-Requires: six-legacypython
 Requires: snowballstemmer
-Requires: snowballstemmer-legacypython
 Requires: sphinx_rtd_theme
-Requires: sphinx_rtd_theme-legacypython
 Requires: sphinxcontrib-websupport
-Requires: sphinxcontrib-websupport-legacypython
 Requires: traceback2
-Requires: traceback2-legacypython
 Requires: typing
-Requires: typing-legacypython
 Requires: urlgrabber
 Requires: urlgrabber-legacypython
 Requires: urllib3
-Requires: urllib3-legacypython
 Requires: yum
 Requires: yum-legacypython
 Requires: yum-metadata-parser
 Requires: yum-metadata-parser-python
 Requires: zope.testing
-Requires: zope.testing-legacypython
 Requires: zope.testrunner
-Requires: zope.testrunner-legacypython
 BuildRequires : buildreq-distutils
 BuildRequires : buildreq-distutils3
 BuildRequires : pkgconfig(systemd)
@@ -241,7 +241,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554311358
+export SOURCE_DATE_EPOCH=1554335553
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
