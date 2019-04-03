@@ -4,10 +4,10 @@
 #
 Name     : koji
 Version  : 1.15.2
-Release  : 95
+Release  : 96
 URL      : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
-Summary  : Build system tools
+Summary  : shared libraries and the command-line interface for building and tracking RPMS
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
@@ -29,7 +29,6 @@ Requires: MarkupSafe-legacypython
 Requires: Pygments
 Requires: Pygments-legacypython
 Requires: Sphinx
-Requires: Sphinx-legacypython
 Requires: Whoosh
 Requires: Whoosh-legacypython
 Requires: alabaster
@@ -52,6 +51,7 @@ Requires: coverage
 Requires: coverage-legacypython
 Requires: cryptography
 Requires: cryptography-legacypython
+Requires: deprecated-Sphinx-legacypython
 Requires: docutils
 Requires: docutils-legacypython
 Requires: funcsigs
@@ -241,8 +241,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551210035
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1554303584
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "

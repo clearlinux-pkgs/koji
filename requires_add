@@ -110,7 +110,7 @@ snowballstemmer-legacypython
 Sphinx
 sphinxcontrib-websupport
 sphinxcontrib-websupport-legacypython
-Sphinx-legacypython
+deprecated-Sphinx-legacypython
 sphinx_rtd_theme
 sphinx_rtd_theme-legacypython
 traceback2
