@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.2
-Release  : 98
+Release  : 99
 URL      : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Summary  : shared libraries and the command-line interface for building and tracking RPMS
@@ -29,7 +29,6 @@ Requires: Pygments
 Requires: Pygments-legacypython
 Requires: Sphinx
 Requires: Whoosh
-Requires: Whoosh-legacypython
 Requires: alabaster
 Requires: argparse
 Requires: argparse-legacypython
@@ -43,6 +42,7 @@ Requires: coverage
 Requires: cryptography
 Requires: deprecated-Babel-legacypython
 Requires: deprecated-Sphinx-legacypython
+Requires: deprecated-Whoosh-legacypython
 Requires: deprecated-alabaster-legacypython
 Requires: deprecated-asn1crypto-legacypython
 Requires: deprecated-attrs-legacypython
@@ -241,7 +241,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554311144
+export SOURCE_DATE_EPOCH=1554311358
 export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
