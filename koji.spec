@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.15.2
-Release  : 104
+Release  : 105
 URL      : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.15.2/koji-koji-1.15.2.tar.gz
 Summary  : shared libraries and the command-line interface for building and tracking RPMS
