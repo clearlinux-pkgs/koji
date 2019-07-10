@@ -1,7 +1,7 @@
-From a6359eb736c75afb8161977f4d505bc24821edb3 Mon Sep 17 00:00:00 2001
+From cacf0a49e7fae9509f3d200141eee1d7bdee8090 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Sat, 24 Mar 2018 14:41:49 -0700
-Subject: [PATCH] Change install dir to /usr/bin
+Subject: [PATCH 3/6] Change install dir to /usr/bin
 
 ---
  builder/Makefile      | 4 ++--
@@ -97,5 +97,5 @@ index 810059b..81da5c1 100644
         --force-lock \
         --verbose
 -- 
-2.16.2
+2.22.0
 

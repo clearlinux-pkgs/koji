@@ -1,0 +1,57 @@
+From 373412770082f32432c1c8ab4afc02ebcb5ee53f Mon Sep 17 00:00:00 2001
+From: Mike McLean <mikem@redhat.com>
+Date: Thu, 21 Mar 2019 21:26:51 +0000
+Subject: [PATCH 6/6] kojira: fix iteration over repos in py3
+
+Multiple threads loop over this data, which changes. These loops
+need to use a copy. In py2 .keys() and .values() are copied data,
+but in py3 they are references to the dict data.
+
+Fixes: https://pagure.io/koji/issue/1355
+---
+ util/kojira | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/util/kojira b/util/kojira
+index 8e68cfd..f218655 100755
+--- a/util/kojira
++++ b/util/kojira
+@@ -308,7 +308,7 @@ class RepoManager(object):
+             # This shouldn't normally happen, but might if someone else calls
+             # repoDelete or similar
+             active = set([r['id'] for r in repodata])
+-            for repo_id in self.repos.keys():
++            for repo_id in to_list(self.repos.keys()):
+                 if repo_id not in active:
+                     self.logger.info('Dropping entry for inactive repo: %s', repo_id)
+                     del self.repos[repo_id]
+@@ -506,7 +506,7 @@ class RepoManager(object):
+         self.readCurrentRepos()
+ 
+         # check for stale repos
+-        for repo in self.repos.values():
++        for repo in to_list(self.repos.values()):
+             if repo.stale():
+                 repo.expire()
+ 
+@@ -517,7 +517,7 @@ class RepoManager(object):
+ 
+         # trigger deletes
+         n_deletes = 0
+-        for repo in self.repos.values():
++        for repo in to_list(self.repos.values()):
+             if n_deletes >= self.options.delete_batch_size:
+                 break
+             if repo.expired():
+@@ -582,7 +582,7 @@ class RepoManager(object):
+             ])
+         #index repos by tag
+         tag_repos = {}
+-        for repo in self.repos.values():
++        for repo in to_list(self.repos.values()):
+             tag_repos.setdefault(repo.tag_id, []).append(repo)
+ 
+         for tag_id in self.build_tags:
+-- 
+2.22.0
+
