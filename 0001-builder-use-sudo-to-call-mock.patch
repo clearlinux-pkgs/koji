@@ -1,7 +1,7 @@
-From 5a09fba67338a5c4322f18e9f07fdb77fef4e4ec Mon Sep 17 00:00:00 2001
+From 140df2d0a8f2e83224440d18cf80b57cf645bc85 Mon Sep 17 00:00:00 2001
 From: Caio Marcelo de Oliveira Filho <caio.oliveira@intel.com>
 Date: Tue, 17 Oct 2017 13:58:40 -0700
-Subject: [PATCH 1/6] builder: use sudo to call mock
+Subject: [PATCH 1/8] builder: use sudo to call mock
 
 In Clear Linux we use sudo (instead of consolehelper) to let mock have
 the right permissions.

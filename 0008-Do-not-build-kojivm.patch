@@ -1,10 +1,10 @@
-From 7fc3eb7274351425fd240505076f2030c1788014 Mon Sep 17 00:00:00 2001
-From: William Douglas <william.douglas@intel.com>
-Date: Wed, 10 Jul 2019 11:27:23 -0700
-Subject: [PATCH 4/6] Do not build kojivm
+From 1e22345c3d58aaa35f92744dac9238a2248b6b92 Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Fri, 9 Aug 2019 16:04:53 -0700
+Subject: [PATCH 8/8] Do not build kojivm
 
 This is not a required service and to use it, dependencies on libvirt
-are pulled in, making this a larger package than it should be.
+are pulled in, making this a larger package than desired.
 ---
  Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

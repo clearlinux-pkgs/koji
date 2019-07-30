@@ -1,7 +1,7 @@
-From 373412770082f32432c1c8ab4afc02ebcb5ee53f Mon Sep 17 00:00:00 2001
+From 2f21ff1ba00e9bc0a6e6b4dd3579db2c543ac72b Mon Sep 17 00:00:00 2001
 From: Mike McLean <mikem@redhat.com>
 Date: Thu, 21 Mar 2019 21:26:51 +0000
-Subject: [PATCH 6/6] kojira: fix iteration over repos in py3
+Subject: [PATCH 5/8] kojira: fix iteration over repos in py3
 
 Multiple threads loop over this data, which changes. These loops
 need to use a copy. In py2 .keys() and .values() are copied data,
@@ -13,7 +13,7 @@ Fixes: https://pagure.io/koji/issue/1355
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/util/kojira b/util/kojira
-index 8e68cfd..f218655 100755
+index 2afca1a..5fde583 100755
 --- a/util/kojira
 +++ b/util/kojira
 @@ -308,7 +308,7 @@ class RepoManager(object):

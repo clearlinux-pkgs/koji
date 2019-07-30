@@ -1,0 +1,26 @@
+From 4cf2ed7a3d07e65bd6b7d5378957417213b90bdf Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Fri, 9 Aug 2019 16:05:50 -0700
+Subject: [PATCH 6/8] Remove rpm-py-installer install dependency
+
+This is not needed since the distribution already provides the python
+RPM binding along with the koji install.
+---
+ setup.py | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index e5916ad..687d8bd 100644
+--- a/setup.py
++++ b/setup.py
+@@ -14,7 +14,6 @@ def get_install_requires():
+         'requests-kerberos',
+         'six',
+         #'libcomps',
+-        'rpm-py-installer',
+         #'rpm',
+     ]
+     if sys.version_info[0] < 3:
+-- 
+2.22.0
+

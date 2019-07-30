@@ -4,198 +4,53 @@
 #
 Name     : koji
 Version  : 1.17.0
-Release  : 112
+Release  : 113
 URL      : https://pagure.io/koji/archive/koji-1.17.0/koji-koji-1.17.0.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.17.0/koji-koji-1.17.0.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
+Requires: koji-data = %{version}-%{release}
 Requires: koji-libexec = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
+Requires: koji-python3 = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
-Requires: Babel
-Requires: Cheetah
-Requires: Cheetah-legacypython
-Requires: Jinja2
-Requires: Markdown
-Requires: MarkupSafe
-Requires: Pygments
-Requires: Sphinx
-Requires: Whoosh
-Requires: alabaster
-Requires: argparse
-Requires: argparse-legacypython
-Requires: asn1crypto
-Requires: attrs
-Requires: certifi
-Requires: cffi
-Requires: chardet
-Requires: colorama
-Requires: coverage
-Requires: cryptography
-Requires: deprecated-Babel-legacypython
-Requires: deprecated-Jinja2-legacypython
-Requires: deprecated-Markdown-legacypython
-Requires: deprecated-MarkupSafe-legacypython
-Requires: deprecated-Pygments-legacypython
-Requires: deprecated-Sphinx-legacypython
-Requires: deprecated-Whoosh-legacypython
-Requires: deprecated-alabaster-legacypython
-Requires: deprecated-asn1crypto-legacypython
-Requires: deprecated-attrs-legacypython
-Requires: deprecated-certifi-legacypython
-Requires: deprecated-cffi-legacypython
-Requires: deprecated-chardet-legacypython
-Requires: deprecated-colorama-legacypython
-Requires: deprecated-coverage-legacypython
-Requires: deprecated-cryptography-legacypython
-Requires: deprecated-docutils-legacypython
-Requires: deprecated-funcsigs-legacypython
-Requires: deprecated-html5lib-legacypython
-Requires: deprecated-idna-legacypython
-Requires: deprecated-imagesize-legacypython
-Requires: deprecated-ipaddress-legacypython
-Requires: deprecated-linecache2-legacypython
-Requires: deprecated-nose-legacypython
-Requires: deprecated-ordereddict-legacypython
-Requires: deprecated-pluggy-legacypython
-Requires: deprecated-psycopg2-legacypython
-Requires: deprecated-py-legacypython
-Requires: deprecated-pyOpenSSL-legacypython
-Requires: deprecated-pycparser-legacypython
-Requires: deprecated-python-mock-legacypython
-Requires: deprecated-python-multilib-legacypython
-Requires: deprecated-pytz-legacypython
-Requires: deprecated-requests-legacypython
-Requires: deprecated-simplejson-legacypython
-Requires: deprecated-six-legacypython
-Requires: deprecated-snowballstemmer-legacypython
-Requires: deprecated-sphinx_rtd_theme-legacypython
-Requires: deprecated-sphinxcontrib-websupport-legacypython
-Requires: deprecated-traceback2-legacypython
-Requires: deprecated-typing-legacypython
-Requires: deprecated-urllib3-legacypython
-Requires: deprecated-zope.testing-legacypython
-Requires: deprecated-zope.testrunner-legacypython
-Requires: docutils
-Requires: funcsigs
+Requires: Cheetah3
 Requires: git
-Requires: html5lib
-Requires: idna
-Requires: imagesize
-Requires: ipaddress
 Requires: koji-doc
-Requires: koji-legacypython
 Requires: libcomps
-Requires: linecache2
-Requires: nose
-Requires: ordereddict
-Requires: pbr
-Requires: pbr-legacypython
-Requires: pluggy
+Requires: librepo
 Requires: psycopg2
-Requires: py
 Requires: pyOpenSSL
-Requires: pycparser
 Requires: python-dateutil
-Requires: python-dateutil-legacypython
-Requires: python-dateutil-legacypython-legacypython
-Requires: python-krbV
-Requires: python-krbV-legacypython
-Requires: python-mock
 Requires: python-multilib
 Requires: python-rpm
-Requires: pytz
 Requires: requests
-Requires: rpm
-Requires: setuptools
-Requires: setuptools-legacypython
-Requires: simplejson
+Requires: requests-kerberos
 Requires: six
-Requires: snowballstemmer
-Requires: sphinx_rtd_theme
-Requires: sphinxcontrib-websupport
-Requires: traceback2
-Requires: typing
-Requires: urlgrabber
-Requires: urlgrabber-legacypython
-Requires: urllib3
-Requires: yum
-Requires: yum-legacypython
-Requires: yum-metadata-parser
-Requires: yum-metadata-parser-python
-Requires: zope.testing
-Requires: zope.testrunner
-BuildRequires : Babel
-BuildRequires : Cheetah
-BuildRequires : Jinja2
-BuildRequires : Markdown
-BuildRequires : MarkupSafe
-BuildRequires : Pygments
-BuildRequires : Sphinx
-BuildRequires : Whoosh
-BuildRequires : alabaster
-BuildRequires : argparse
-BuildRequires : asn1crypto
-BuildRequires : attrs
-BuildRequires : buildreq-distutils
 BuildRequires : buildreq-distutils3
-BuildRequires : certifi
-BuildRequires : cffi
-BuildRequires : chardet
-BuildRequires : colorama
-BuildRequires : coverage
-BuildRequires : cryptography
-BuildRequires : docutils
-BuildRequires : funcsigs
 BuildRequires : git
-BuildRequires : html5lib
-BuildRequires : idna
-BuildRequires : imagesize
-BuildRequires : ipaddress
 BuildRequires : libcomps
-BuildRequires : linecache2
-BuildRequires : nose
-BuildRequires : ordereddict
-BuildRequires : pbr
+BuildRequires : librepo
 BuildRequires : pkgconfig(systemd)
-BuildRequires : pluggy
 BuildRequires : psycopg2
-BuildRequires : py
 BuildRequires : pyOpenSSL
-BuildRequires : pycparser
 BuildRequires : python-dateutil
-BuildRequires : python-dateutil-legacypython
-BuildRequires : python-dev
-BuildRequires : python-krbV
-BuildRequires : python-mock
 BuildRequires : python-multilib
-BuildRequires : pytz
 BuildRequires : requests
-BuildRequires : rpm
-BuildRequires : setuptools
-BuildRequires : setuptools-legacypython
-BuildRequires : simplejson
+BuildRequires : requests-kerberos
 BuildRequires : six
-BuildRequires : snowballstemmer
-BuildRequires : sphinxcontrib-websupport
 BuildRequires : systemd-dev
-BuildRequires : traceback2
-BuildRequires : typing
-BuildRequires : urlgrabber
-BuildRequires : urllib3
-BuildRequires : yum
-BuildRequires : yum-metadata-parser
-BuildRequires : zope.testing
-BuildRequires : zope.testrunner
 Patch1: 0001-builder-use-sudo-to-call-mock.patch
 Patch2: 0002-Use-old-version-of-NSS-forking-behavior.patch
-Patch3: 0003-Change-install-dir-to-usr-bin.patch
-Patch4: 0004-Do-not-build-kojivm.patch
-Patch5: 0005-Close-koji-db-connections.patch
-Patch6: 0006-kojira-fix-iteration-over-repos-in-py3.patch
+Patch3: 0003-Close-koji-db-connections.patch
+Patch4: 0004-Force-python3-for-executables.patch
+Patch5: 0005-kojira-fix-iteration-over-repos-in-py3.patch
+Patch6: 0006-Remove-rpm-py-installer-install-dependency.patch
+Patch7: 0007-Change-install-dir-to-usr-bin.patch
+Patch8: 0008-Do-not-build-kojivm.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -204,12 +59,21 @@ contains shared libraries and the command-line interface.
 %package bin
 Summary: bin components for the koji package.
 Group: Binaries
+Requires: koji-data = %{version}-%{release}
 Requires: koji-libexec = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
 
 %description bin
 bin components for the koji package.
+
+
+%package data
+Summary: data components for the koji package.
+Group: Data
+
+%description data
+data components for the koji package.
 
 
 %package doc
@@ -226,15 +90,6 @@ Group: Default
 
 %description extras
 extras components for the koji package.
-
-
-%package legacypython
-Summary: legacypython components for the koji package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the koji package.
 
 
 %package libexec
@@ -257,9 +112,19 @@ license components for the koji package.
 %package python
 Summary: python components for the koji package.
 Group: Default
+Requires: koji-python3 = %{version}-%{release}
 
 %description python
 python components for the koji package.
+
+
+%package python3
+Summary: python3 components for the koji package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the koji package.
 
 
 %package services
@@ -278,44 +143,41 @@ services components for the koji package.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563231307
+export SOURCE_DATE_EPOCH=1565392828
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export MAKEFLAGS=%{?_smp_mflags}
-python2 setup.py build -b py2
+python3 setup.py build
 
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp COPYING %{buildroot}/usr/share/package-licenses/koji/COPYING
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
+python3 -tt setup.py build  install --root=%{buildroot}
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 ## install_append content
-/usr/bin/make DESTDIR=%{buildroot} PYTHON=python2 install
+make DESTDIR=%{buildroot} KOJI_MINIMAL=1 PYTHON=python3 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
-find %{buildroot} -name "*.pyc" | xargs rm
 ## install_append end
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/koji-builder-plugins/runroot.py
-/usr/lib/koji-builder-plugins/save_failed_tree.py
-/usr/lib/koji-hub-plugins/echo.py
-/usr/lib/koji-hub-plugins/protonmsg.py
-/usr/lib/koji-hub-plugins/rpm2maven.py
-/usr/lib/koji-hub-plugins/runroot_hub.py
-/usr/lib/koji-hub-plugins/save_failed_tree.py
 
 %files bin
 %defattr(-,root,root,-)
@@ -324,6 +186,89 @@ find %{buildroot} -name "*.pyc" | xargs rm
 /usr/bin/koji-shadow
 /usr/bin/kojid
 /usr/bin/kojira
+
+%files data
+%defattr(-,root,root,-)
+%exclude /usr/share/koji-hub/__init__.py
+%exclude /usr/share/koji-hub/kojihub.py
+%exclude /usr/share/koji-hub/kojixmlrpc.py
+%exclude /usr/share/koji-web/lib/kojiweb/__init__.py
+%exclude /usr/share/koji-web/lib/kojiweb/util.py
+%exclude /usr/share/koji-web/scripts/archiveinfo.chtml
+%exclude /usr/share/koji-web/scripts/archivelist.chtml
+%exclude /usr/share/koji-web/scripts/buildinfo.chtml
+%exclude /usr/share/koji-web/scripts/buildrootinfo.chtml
+%exclude /usr/share/koji-web/scripts/buildrootinfo_cg.chtml
+%exclude /usr/share/koji-web/scripts/builds.chtml
+%exclude /usr/share/koji-web/scripts/buildsbystatus.chtml
+%exclude /usr/share/koji-web/scripts/buildsbytarget.chtml
+%exclude /usr/share/koji-web/scripts/buildsbyuser.chtml
+%exclude /usr/share/koji-web/scripts/buildtargetedit.chtml
+%exclude /usr/share/koji-web/scripts/buildtargetinfo.chtml
+%exclude /usr/share/koji-web/scripts/buildtargets.chtml
+%exclude /usr/share/koji-web/scripts/channelinfo.chtml
+%exclude /usr/share/koji-web/scripts/error.chtml
+%exclude /usr/share/koji-web/scripts/externalrepoinfo.chtml
+%exclude /usr/share/koji-web/scripts/fileinfo.chtml
+%exclude /usr/share/koji-web/scripts/hostedit.chtml
+%exclude /usr/share/koji-web/scripts/hostinfo.chtml
+%exclude /usr/share/koji-web/scripts/hosts.chtml
+%exclude /usr/share/koji-web/scripts/imageinfo.chtml
+%exclude /usr/share/koji-web/scripts/includes/footer.chtml
+%exclude /usr/share/koji-web/scripts/includes/header.chtml
+%exclude /usr/share/koji-web/scripts/index.chtml
+%exclude /usr/share/koji-web/scripts/index.py
+%exclude /usr/share/koji-web/scripts/notificationedit.chtml
+%exclude /usr/share/koji-web/scripts/packageinfo.chtml
+%exclude /usr/share/koji-web/scripts/packages.chtml
+%exclude /usr/share/koji-web/scripts/packagesbyuser.chtml
+%exclude /usr/share/koji-web/scripts/recentbuilds.chtml
+%exclude /usr/share/koji-web/scripts/reports.chtml
+%exclude /usr/share/koji-web/scripts/rpminfo.chtml
+%exclude /usr/share/koji-web/scripts/rpmlist.chtml
+%exclude /usr/share/koji-web/scripts/rpmsbyhost.chtml
+%exclude /usr/share/koji-web/scripts/search.chtml
+%exclude /usr/share/koji-web/scripts/searchresults.chtml
+%exclude /usr/share/koji-web/scripts/tagedit.chtml
+%exclude /usr/share/koji-web/scripts/taginfo.chtml
+%exclude /usr/share/koji-web/scripts/tagparent.chtml
+%exclude /usr/share/koji-web/scripts/tags.chtml
+%exclude /usr/share/koji-web/scripts/taskinfo.chtml
+%exclude /usr/share/koji-web/scripts/tasks.chtml
+%exclude /usr/share/koji-web/scripts/tasksbyhost.chtml
+%exclude /usr/share/koji-web/scripts/tasksbyuser.chtml
+%exclude /usr/share/koji-web/scripts/userinfo.chtml
+%exclude /usr/share/koji-web/scripts/users.chtml
+%exclude /usr/share/koji-web/scripts/wsgi_publisher.py
+%exclude /usr/share/koji-web/static/debug.css
+%exclude /usr/share/koji-web/static/errors/unauthorized.html
+%exclude /usr/share/koji-web/static/images/1px.gif
+%exclude /usr/share/koji-web/static/images/assigned.png
+%exclude /usr/share/koji-web/static/images/bkgrnd_greydots.png
+%exclude /usr/share/koji-web/static/images/building.png
+%exclude /usr/share/koji-web/static/images/canceled.png
+%exclude /usr/share/koji-web/static/images/closed.png
+%exclude /usr/share/koji-web/static/images/complete.png
+%exclude /usr/share/koji-web/static/images/deleted.png
+%exclude /usr/share/koji-web/static/images/expired.png
+%exclude /usr/share/koji-web/static/images/failed.png
+%exclude /usr/share/koji-web/static/images/free.png
+%exclude /usr/share/koji-web/static/images/gray-triangle-down.gif
+%exclude /usr/share/koji-web/static/images/gray-triangle-up.gif
+%exclude /usr/share/koji-web/static/images/init.png
+%exclude /usr/share/koji-web/static/images/initializing.png
+%exclude /usr/share/koji-web/static/images/koji.ico
+%exclude /usr/share/koji-web/static/images/koji.png
+%exclude /usr/share/koji-web/static/images/no.png
+%exclude /usr/share/koji-web/static/images/open.png
+%exclude /usr/share/koji-web/static/images/powered-by-koji.png
+%exclude /usr/share/koji-web/static/images/ready.png
+%exclude /usr/share/koji-web/static/images/unknown.png
+%exclude /usr/share/koji-web/static/images/waiting.png
+%exclude /usr/share/koji-web/static/images/yes.png
+%exclude /usr/share/koji-web/static/js/watchlogs.js
+%exclude /usr/share/koji-web/static/koji.css
+%exclude /usr/share/koji-web/static/themes/README
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -412,13 +357,9 @@ find %{buildroot} -name "*.pyc" | xargs rm
 /usr/share/koji-web/static/koji.css
 /usr/share/koji-web/static/themes/README
 
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
-
 %files libexec
 %defattr(-,root,root,-)
-/usr/libexec/kojid/mergerepos
+%exclude /usr/libexec/kojid/mergerepos
 
 %files license
 %defattr(0644,root,root,0755)
@@ -426,6 +367,10 @@ find %{buildroot} -name "*.pyc" | xargs rm
 
 %files python
 %defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
 
 %files services
 %defattr(-,root,root,-)
