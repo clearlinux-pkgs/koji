@@ -1,4 +1,3 @@
-make DESTDIR=%{buildroot} KOJI_MINIMAL=1 PYTHON=python3 install
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
