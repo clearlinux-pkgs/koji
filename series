@@ -2,7 +2,6 @@
 0002-Use-old-version-of-NSS-forking-behavior.patch
 0003-Close-koji-db-connections.patch
 0004-Force-python3-for-executables.patch
-0005-kojira-fix-iteration-over-repos-in-py3.patch
 0006-Remove-rpm-py-installer-install-dependency.patch
 0007-Change-install-dir-to-usr-bin.patch
 0008-Do-not-build-kojivm.patch

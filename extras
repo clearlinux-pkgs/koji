@@ -42,7 +42,6 @@
 /usr/share/koji-web/scripts/rpmlist.chtml
 /usr/share/koji-web/scripts/rpmsbyhost.chtml
 /usr/share/koji-web/scripts/search.chtml
-/usr/share/koji-web/scripts/searchresults.chtml
 /usr/share/koji-web/scripts/tagedit.chtml
 /usr/share/koji-web/scripts/taginfo.chtml
 /usr/share/koji-web/scripts/tagparent.chtml
