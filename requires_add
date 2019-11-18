@@ -9,7 +9,7 @@ psycopg2
 pyOpenSSL
 python-dateutil
 python-multilib
-python-rpm
 requests
 requests-kerberos
+rpm
 six

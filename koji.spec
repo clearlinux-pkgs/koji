@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.17.1
-Release  : 115
+Release  : 116
 URL      : https://pagure.io/koji/archive/koji-1.17.1/koji-koji-1.17.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.17.1/koji-koji-1.17.1.tar.gz
 Summary  : Build system tools
@@ -24,9 +24,9 @@ Requires: psycopg2
 Requires: pyOpenSSL
 Requires: python-dateutil
 Requires: python-multilib
-Requires: python-rpm
 Requires: requests
 Requires: requests-kerberos
+Requires: rpm
 Requires: six
 BuildRequires : Cheetah3
 BuildRequires : buildreq-distutils3
@@ -40,6 +40,7 @@ BuildRequires : python-dateutil
 BuildRequires : python-multilib
 BuildRequires : requests
 BuildRequires : requests-kerberos
+BuildRequires : rpm
 BuildRequires : six
 BuildRequires : systemd-dev
 Patch1: 0001-builder-use-sudo-to-call-mock.patch
@@ -117,6 +118,7 @@ services components for the koji package.
 
 %prep
 %setup -q -n koji-koji-1.17.1
+cd %{_builddir}/koji-koji-1.17.1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -131,7 +133,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570651550
+export SOURCE_DATE_EPOCH=1574117821
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -141,10 +143,10 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1570651550
+export SOURCE_DATE_EPOCH=1574117821
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
-cp COPYING %{buildroot}/usr/share/package-licenses/koji/COPYING
+cp %{_builddir}/koji-koji-1.17.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 %make_install KOJI_MINIMAL=1 PYTHON=/usr/bin/python3
 ## Remove excluded files
 rm -f %{buildroot}/usr/libexec/kojid/mergerepos
@@ -254,7 +256,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/koji/COPYING
+/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 
 %files python
 %defattr(-,root,root,-)
