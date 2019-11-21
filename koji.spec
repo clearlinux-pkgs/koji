@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.19.1
-Release  : 119
+Release  : 120
 URL      : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Summary  : Build system tools
@@ -131,7 +131,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574282789
+export SOURCE_DATE_EPOCH=1574375012
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -141,7 +141,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1574282789
+export SOURCE_DATE_EPOCH=1574375012
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.19.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
