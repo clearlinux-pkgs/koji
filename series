@@ -5,3 +5,5 @@
 0006-Remove-rpm-py-installer-install-dependency.patch
 0007-Change-install-dir-to-usr-bin.patch
 0008-Do-not-build-kojivm.patch
+0001-Use-html.escape-instead-of-deprecated-cgi.escape.patch
+0002-Remove-unused-cgi-import-from-taskinfo-template.patch

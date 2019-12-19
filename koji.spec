@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.19.1
-Release  : 121
+Release  : 122
 URL      : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Summary  : Build system tools
@@ -50,6 +50,8 @@ Patch4: 0004-Force-python3-for-executables.patch
 Patch5: 0006-Remove-rpm-py-installer-install-dependency.patch
 Patch6: 0007-Change-install-dir-to-usr-bin.patch
 Patch7: 0008-Do-not-build-kojivm.patch
+Patch8: 0001-Use-html.escape-instead-of-deprecated-cgi.escape.patch
+Patch9: 0002-Remove-unused-cgi-import-from-taskinfo-template.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -125,13 +127,15 @@ cd %{_builddir}/koji-koji-1.19.1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574375012
+export SOURCE_DATE_EPOCH=1576780771
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -141,7 +145,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1574375012
+export SOURCE_DATE_EPOCH=1576780771
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.19.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

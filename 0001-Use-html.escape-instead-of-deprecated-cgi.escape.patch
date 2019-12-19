@@ -1,0 +1,92 @@
+From c2c9bc3e03cefc8d3da4bb1b5eb70573be05b2e5 Mon Sep 17 00:00:00 2001
+From: Murilo Belluzzo <murilo.belluzzo@intel.com>
+Date: Wed, 18 Dec 2019 09:43:29 -0800
+Subject: [PATCH 1/2] Use html.escape instead of deprecated cgi.escape
+
+This is required in order to have koji functional on Python3.8.
+
+https://docs.python.org/3/whatsnew/3.8.html#api-and-feature-removals
+
+Signed-off-by: Murilo Belluzzo <murilo.belluzzo@intel.com>
+---
+ www/kojiweb/includes/header.chtml | 4 ++--
+ www/kojiweb/search.chtml          | 4 ++--
+ www/lib/kojiweb/util.py           | 6 +++---
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/www/kojiweb/includes/header.chtml b/www/kojiweb/includes/header.chtml
+index d008f4e3..8e0dbf2c 100644
+--- a/www/kojiweb/includes/header.chtml
++++ b/www/kojiweb/includes/header.chtml
+@@ -1,5 +1,5 @@
+ #encoding UTF-8
+-#import cgi
++#import html
+ #import koji
+ #from kojiweb import util
+ #from koji_cli.lib import greetings
+@@ -51,7 +51,7 @@ $localnav
+               #end if
+             </select>
+             #try
+-                #set $old_terms = cgi.escape($terms)
++                #set $old_terms = html.escape($terms)
+             #except
+                 #set $old_terms = ""
+             #end try
+diff --git a/www/kojiweb/search.chtml b/www/kojiweb/search.chtml
+index 9d838533..4864b92d 100644
+--- a/www/kojiweb/search.chtml
++++ b/www/kojiweb/search.chtml
+@@ -1,4 +1,4 @@
+-#import cgi
++#import html
+ #from kojiweb import util
+ #from six.moves.urllib.parse import quote
+ 
+@@ -14,7 +14,7 @@
+         #end if
+         <th>Search</th>
+         #try
+-            #set $old_terms = cgi.escape($terms)
++            #set $old_terms = html.escape($terms)
+         #except
+             #set $old_terms = ""
+         #end try
+diff --git a/www/lib/kojiweb/util.py b/www/lib/kojiweb/util.py
+index d8fa83ee..cbcad4ac 100644
+--- a/www/lib/kojiweb/util.py
++++ b/www/lib/kojiweb/util.py
+@@ -21,10 +21,10 @@
+ #       Mike McLean <mikem@redhat.com>
+ from __future__ import absolute_import
+ from __future__ import division
+-import cgi
+ import Cheetah.Template
+ import datetime
+ import hashlib
++import html
+ import koji
+ import os
+ import six
+@@ -666,7 +666,7 @@ class TaskResultFragment(object):
+         else:
+             text = self.text[:length]
+         if self.need_escape:
+-            text = cgi.escape(text)
++            text = html.escape(text)
+         if self.size > 0 and text == '':
+             text = self.empty_str_placeholder
+         return '%s%s%s' % (self.begin_tag, text, self.end_tag)
+@@ -722,7 +722,7 @@ class TaskResultLine(object):
+                 size += fragment.size
+ 
+         if self.need_escape:
+-            line_text = cgi.escape(line_text)
++            line_text = html.escape(line_text)
+ 
+         return '%s%s%s%s' % (self.begin_tag, line_text, postscript, self.end_tag)
+ 
+-- 
+2.24.1
+

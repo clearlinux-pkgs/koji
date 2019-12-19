@@ -1,0 +1,25 @@
+From 231c6122a2d933175e977cb83d00cff5a17c00ef Mon Sep 17 00:00:00 2001
+From: Murilo Belluzzo <murilo.belluzzo@intel.com>
+Date: Wed, 18 Dec 2019 09:47:03 -0800
+Subject: [PATCH 2/2] Remove unused cgi import from 'taskinfo' template
+
+Signed-off-by: Murilo Belluzzo <murilo.belluzzo@intel.com>
+---
+ www/kojiweb/taskinfo.chtml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/www/kojiweb/taskinfo.chtml b/www/kojiweb/taskinfo.chtml
+index 23637426..b5bb41fe 100644
+--- a/www/kojiweb/taskinfo.chtml
++++ b/www/kojiweb/taskinfo.chtml
+@@ -1,7 +1,6 @@
+ #import koji
+ #from kojiweb import util
+ #from six.moves.urllib.parse import quote
+-#import cgi
+ #import time
+ 
+ #def printValue($key, $value, $sep=', ')
+-- 
+2.24.1
+
