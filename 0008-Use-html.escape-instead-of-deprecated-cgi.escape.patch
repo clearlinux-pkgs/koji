@@ -1,7 +1,7 @@
-From c2c9bc3e03cefc8d3da4bb1b5eb70573be05b2e5 Mon Sep 17 00:00:00 2001
+From c87e2cce834ff8b15bd3e4f480afb323fbdbfeba Mon Sep 17 00:00:00 2001
 From: Murilo Belluzzo <murilo.belluzzo@intel.com>
 Date: Wed, 18 Dec 2019 09:43:29 -0800
-Subject: [PATCH 1/2] Use html.escape instead of deprecated cgi.escape
+Subject: [PATCH 8/9] Use html.escape instead of deprecated cgi.escape
 
 This is required in order to have koji functional on Python3.8.
 
@@ -15,7 +15,7 @@ Signed-off-by: Murilo Belluzzo <murilo.belluzzo@intel.com>
  3 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/www/kojiweb/includes/header.chtml b/www/kojiweb/includes/header.chtml
-index d008f4e3..8e0dbf2c 100644
+index d008f4e..8e0dbf2 100644
 --- a/www/kojiweb/includes/header.chtml
 +++ b/www/kojiweb/includes/header.chtml
 @@ -1,5 +1,5 @@
@@ -35,7 +35,7 @@ index d008f4e3..8e0dbf2c 100644
                  #set $old_terms = ""
              #end try
 diff --git a/www/kojiweb/search.chtml b/www/kojiweb/search.chtml
-index 9d838533..4864b92d 100644
+index 9d83853..4864b92 100644
 --- a/www/kojiweb/search.chtml
 +++ b/www/kojiweb/search.chtml
 @@ -1,4 +1,4 @@
@@ -54,7 +54,7 @@ index 9d838533..4864b92d 100644
              #set $old_terms = ""
          #end try
 diff --git a/www/lib/kojiweb/util.py b/www/lib/kojiweb/util.py
-index d8fa83ee..cbcad4ac 100644
+index d8fa83e..cbcad4a 100644
 --- a/www/lib/kojiweb/util.py
 +++ b/www/lib/kojiweb/util.py
 @@ -21,10 +21,10 @@
@@ -88,5 +88,5 @@ index d8fa83ee..cbcad4ac 100644
          return '%s%s%s%s' % (self.begin_tag, line_text, postscript, self.end_tag)
  
 -- 
-2.24.1
+2.24.0
 

@@ -1,7 +1,7 @@
-From d578d08487f580658a72ee94afdbad5f4f700b4a Mon Sep 17 00:00:00 2001
+From 21a5b1561cdfc94bcbb0b7f6b98dbbb353030c2d Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Thu, 1 Aug 2019 23:11:29 -0700
-Subject: [PATCH 4/4] Force python3 for executables
+Subject: [PATCH 7/9] Force python3 for executables
 
 This is done in the upstream specfile.
 ---
@@ -85,5 +85,5 @@ index 24ca674..117b327 100755
  # Koji virtual machine management daemon
  # Copyright (c) 2010-2014 Red Hat, Inc.
 -- 
-2.23.0
+2.24.0
 

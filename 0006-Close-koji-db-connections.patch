@@ -1,7 +1,7 @@
-From f685510e677b91d907472bcc2a71f4cf963897f9 Mon Sep 17 00:00:00 2001
+From dbed35714b2fec6db94fef96b1a37eb99a102a78 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Tue, 23 Oct 2018 20:29:52 -0700
-Subject: [PATCH 3/8] Close koji db connections
+Subject: [PATCH 6/9] Close koji db connections
 
 Instead of trying to reuse previous connections to the db, just close
 connections in the object and let new connections be created as
@@ -32,5 +32,5 @@ index 3f238a8..516ba30 100644
  
  
 -- 
-2.22.0
+2.24.0
 

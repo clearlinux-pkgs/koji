@@ -1,7 +1,7 @@
-From 446a343265ac68473901824dd457602e19021f86 Mon Sep 17 00:00:00 2001
+From 5075b9ff4b14383b499cd26a4efadba8ca3e3f1d Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Sat, 24 Mar 2018 14:41:49 -0700
-Subject: [PATCH 7/8] Change install dir to /usr/bin
+Subject: [PATCH 2/9] Change install dir to /usr/bin
 
 ---
  builder/Makefile      | 4 ++--
@@ -28,20 +28,20 @@ index 1de0a9c..8c05916 100644
  	mkdir -p $(DESTDIR)/usr/libexec/kojid
  	install -p -m 755 $(LIBEXECFILES) $(DESTDIR)/usr/libexec/kojid
 diff --git a/builder/kojid.service b/builder/kojid.service
-index d456bf1..59e137f 100644
+index 43c85de..b6fecaa 100644
 --- a/builder/kojid.service
 +++ b/builder/kojid.service
-@@ -5,7 +5,7 @@ After=network.target
+@@ -5,7 +5,7 @@ Documentation=https://docs.pagure.org/koji/server_howto/
+ After=network.target
  
  [Service]
- Environment=NSS_STRICT_NOFORK=DISABLED
 -ExecStart=/usr/sbin/kojid \
 +ExecStart=/usr/bin/kojid \
         --fg \
         --force-lock \
         --verbose
 diff --git a/util/Makefile b/util/Makefile
-index 5ea8bde..72099a6 100644
+index c1bcdcb..0ce79d0 100644
 --- a/util/Makefile
 +++ b/util/Makefile
 @@ -14,8 +14,8 @@ _install:
@@ -97,5 +97,5 @@ index 810059b..81da5c1 100644
         --force-lock \
         --verbose
 -- 
-2.22.0
+2.24.0
 

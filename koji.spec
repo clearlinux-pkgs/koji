@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.19.1
-Release  : 122
+Release  : 123
 URL      : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Summary  : Build system tools
@@ -43,15 +43,15 @@ BuildRequires : requests-kerberos
 BuildRequires : rpm
 BuildRequires : six
 BuildRequires : systemd-dev
-Patch1: 0001-builder-use-sudo-to-call-mock.patch
-Patch2: 0002-Use-old-version-of-NSS-forking-behavior.patch
-Patch3: 0003-Close-koji-db-connections.patch
-Patch4: 0004-Force-python3-for-executables.patch
-Patch5: 0006-Remove-rpm-py-installer-install-dependency.patch
-Patch6: 0007-Change-install-dir-to-usr-bin.patch
-Patch7: 0008-Do-not-build-kojivm.patch
-Patch8: 0001-Use-html.escape-instead-of-deprecated-cgi.escape.patch
-Patch9: 0002-Remove-unused-cgi-import-from-taskinfo-template.patch
+Patch1: 0001-Remove-rpm-py-installer-install-dependency.patch
+Patch2: 0002-Change-install-dir-to-usr-bin.patch
+Patch3: 0003-Do-not-build-kojivm.patch
+Patch4: 0004-builder-use-sudo-to-call-mock.patch
+Patch5: 0005-Use-old-version-of-NSS-forking-behavior.patch
+Patch6: 0006-Close-koji-db-connections.patch
+Patch7: 0007-Force-python3-for-executables.patch
+Patch8: 0008-Use-html.escape-instead-of-deprecated-cgi.escape.patch
+Patch9: 0009-Remove-unused-cgi-import-from-taskinfo-template.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576780771
+export SOURCE_DATE_EPOCH=1576791944
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -145,7 +145,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1576780771
+export SOURCE_DATE_EPOCH=1576791944
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.19.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
