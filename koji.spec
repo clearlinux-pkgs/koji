@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.19.1
-Release  : 123
+Release  : 124
 URL      : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.19.1/koji-koji-1.19.1.tar.gz
 Summary  : Build system tools
@@ -30,16 +30,20 @@ Requires: rpm
 Requires: six
 BuildRequires : Cheetah3
 BuildRequires : buildreq-distutils3
+BuildRequires : coverage
 BuildRequires : git
 BuildRequires : libcomps
 BuildRequires : librepo
+BuildRequires : nose
 BuildRequires : pkgconfig(systemd)
 BuildRequires : psycopg2
 BuildRequires : pyOpenSSL
 BuildRequires : python-dateutil
+BuildRequires : python-mock
 BuildRequires : python-multilib
 BuildRequires : requests
 BuildRequires : requests-kerberos
+BuildRequires : requests-mock
 BuildRequires : rpm
 BuildRequires : six
 BuildRequires : systemd-dev
@@ -135,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576791944
+export SOURCE_DATE_EPOCH=1576890604
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -144,8 +148,15 @@ export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved
 make  %{?_smp_mflags}
 
 
+%check
+export LANG=C.UTF-8
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+make test3 PYTHON=python3 || :
+
 %install
-export SOURCE_DATE_EPOCH=1576791944
+export SOURCE_DATE_EPOCH=1576890604
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.19.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
