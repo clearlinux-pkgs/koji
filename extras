@@ -8,6 +8,7 @@
 /usr/share/koji-web/lib/kojiweb/__init__.pyc
 /usr/share/koji-web/lib/kojiweb/util.py
 /usr/share/koji-web/lib/kojiweb/util.pyc
+/usr/share/koji-web/scripts/api.chtml
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
@@ -21,6 +22,7 @@
 /usr/share/koji-web/scripts/buildtargetinfo.chtml
 /usr/share/koji-web/scripts/buildtargets.chtml
 /usr/share/koji-web/scripts/channelinfo.chtml
+/usr/share/koji-web/scripts/clusterhealth.chtml
 /usr/share/koji-web/scripts/error.chtml
 /usr/share/koji-web/scripts/externalrepoinfo.chtml
 /usr/share/koji-web/scripts/fileinfo.chtml
