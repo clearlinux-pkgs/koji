@@ -5,3 +5,4 @@
 0005-Close-koji-db-connections.patch
 0006-Force-python3-for-executables.patch
 0007-Replace-cgi.escape-with-html.escape.patch
+0008-Remove-check-for-existence-of-config-file.patch

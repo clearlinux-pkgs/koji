@@ -1,7 +1,7 @@
-From 3090ce3fff6f24d56b61c56f4a488bcc566ac883 Mon Sep 17 00:00:00 2001
+From 3707c77a84283c3d26297d5b4482e0af456f6926 Mon Sep 17 00:00:00 2001
 From: Caio Marcelo de Oliveira Filho <caio.oliveira@intel.com>
 Date: Tue, 17 Oct 2017 13:58:40 -0700
-Subject: [PATCH 3/7] builder: use sudo to call mock
+Subject: [PATCH 3/8] builder: use sudo to call mock
 
 In Clear Linux we use sudo (instead of consolehelper) to let mock have
 the right permissions.
@@ -25,5 +25,5 @@ index 0c6a256..235d635 100755
          workdir = getattr(self, 'workdir', None)
          mocklog = 'mock_output.log'
 -- 
-2.25.0
+2.25.1
 

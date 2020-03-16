@@ -1,7 +1,7 @@
-From 013491934ee067c7976b5706dc2b23ce81db0d3e Mon Sep 17 00:00:00 2001
+From 966ab11d9809f49ff9680b11909ce2ce5db435dd Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Tue, 25 Feb 2020 15:34:59 -0800
-Subject: [PATCH 7/7] Replace cgi.escape with html.escape
+Subject: [PATCH 7/8] Replace cgi.escape with html.escape
 
 For supporting koji on python 3.8
 
@@ -83,5 +83,5 @@ index 3e8a08c..efbf856 100644
          return '%s%s%s%s' % (self.begin_tag, line_text, postscript, self.end_tag)
  
 -- 
-2.25.0
+2.25.1
 

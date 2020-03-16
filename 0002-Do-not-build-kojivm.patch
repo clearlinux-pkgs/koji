@@ -1,7 +1,7 @@
-From 2196c22e0d6cc7da33669d5e0af24ac96f0807e2 Mon Sep 17 00:00:00 2001
+From 6ef29fd2e2284d7546c63718c6396fd1f3ca28e6 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Fri, 9 Aug 2019 16:04:53 -0700
-Subject: [PATCH 2/7] Do not build kojivm
+Subject: [PATCH 2/8] Do not build kojivm
 
 This is not a required service and to use it, dependencies on libvirt
 are pulled in, making this a larger package than desired.
@@ -22,5 +22,5 @@ index 995b23f..720fd46 100644
  ifndef PYTHON
  export PYTHON=python2
 -- 
-2.25.0
+2.25.1
 
