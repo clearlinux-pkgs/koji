@@ -49,6 +49,7 @@
 /usr/share/koji-web/scripts/tagparent.chtml
 /usr/share/koji-web/scripts/tags.chtml
 /usr/share/koji-web/scripts/taskinfo.chtml
+/usr/share/koji-web/scripts/taskinfo_params.chtml
 /usr/share/koji-web/scripts/tasksbyhost.chtml
 /usr/share/koji-web/scripts/tasksbyuser.chtml
 /usr/share/koji-web/scripts/tasks.chtml
