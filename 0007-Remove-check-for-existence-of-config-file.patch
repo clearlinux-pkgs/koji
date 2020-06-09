@@ -1,7 +1,7 @@
-From cff3dd877f1c0b5fd4324cb5de2aa16aa671b731 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Mon, 16 Mar 2020 13:08:36 -0700
-Subject: [PATCH 8/8] Remove check for existence of config file
+Subject: [PATCH] Remove check for existence of config file
 
 Sane defaults are already provided by koji.  Use these for stateless
 configuration.
@@ -10,10 +10,10 @@ configuration.
  1 file changed, 7 deletions(-)
 
 diff --git a/koji/__init__.py b/koji/__init__.py
-index aa4371e..8170fc9 100644
+index c05cc1b..370fabe 100644
 --- a/koji/__init__.py
 +++ b/koji/__init__.py
-@@ -1802,9 +1802,7 @@ def read_config(profile_name, user_config=None):
+@@ -1875,9 +1875,7 @@ def read_config(profile_name, user_config=None):
      config = read_config_files(configs)
  
      # Load the configs in a particular order
@@ -22,8 +22,8 @@ index aa4371e..8170fc9 100644
 -        got_conf = True
          result['profile'] = profile_name
          for name, value in config.items(profile_name):
-             #note the config_defaults dictionary also serves to indicate which
-@@ -1826,11 +1824,6 @@ def read_config(profile_name, user_config=None):
+             # note the config_defaults dictionary also serves to indicate which
+@@ -1900,11 +1898,6 @@ def read_config(profile_name, user_config=None):
                  else:
                      result[name] = value
  
@@ -35,6 +35,3 @@ index aa4371e..8170fc9 100644
      # special handling for cert defaults
      cert_defaults = {
          'cert': '~/.koji/client.crt',
--- 
-2.25.1
-

@@ -1,7 +1,7 @@
-From 0eddc7fc900560baba717114f7ff0d074346d45e Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: George T Kramer <george.t.kramer@intel.com>
 Date: Thu, 1 Aug 2019 23:11:29 -0700
-Subject: [PATCH 6/8] Force python3 for executables
+Subject: [PATCH] Force python3 for executables
 
 This is done in the upstream specfile.
 ---
@@ -15,7 +15,7 @@ This is done in the upstream specfile.
  7 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/builder/kojid b/builder/kojid
-index 235d635..35e3ca4 100755
+index 81f3d03..169bfae 100755
 --- a/builder/kojid
 +++ b/builder/kojid
 @@ -1,4 +1,4 @@
@@ -25,7 +25,7 @@ index 235d635..35e3ca4 100755
  # Koji build daemon
  # Copyright (c) 2005-2014 Red Hat, Inc.
 diff --git a/cli/koji b/cli/koji
-index fb9e105..8c51f5d 100755
+index 08bd6d5..1dbe19f 100755
 --- a/cli/koji
 +++ b/cli/koji
 @@ -1,4 +1,4 @@
@@ -35,7 +35,7 @@ index fb9e105..8c51f5d 100755
  
  # command line interface for the Koji build system
 diff --git a/util/koji-gc b/util/koji-gc
-index 19d7e26..bf84e97 100755
+index a588f71..32a4c25 100755
 --- a/util/koji-gc
 +++ b/util/koji-gc
 @@ -1,4 +1,4 @@
@@ -45,7 +45,7 @@ index 19d7e26..bf84e97 100755
  # koji-gc: a garbage collection tool for Koji
  # Copyright (c) 2007-2014 Red Hat, Inc.
 diff --git a/util/koji-shadow b/util/koji-shadow
-index f8e8300..c31275d 100755
+index 52d2e0c..0066e05 100755
 --- a/util/koji-shadow
 +++ b/util/koji-shadow
 @@ -1,4 +1,4 @@
@@ -55,7 +55,7 @@ index f8e8300..c31275d 100755
  # koji-shadow: a tool to shadow builds between koji instances
  # Copyright (c) 2007-2016 Red Hat, Inc.
 diff --git a/util/koji-sweep-db b/util/koji-sweep-db
-index 6c4283f..3665417 100755
+index c4c72bb..98fdd89 100755
 --- a/util/koji-sweep-db
 +++ b/util/koji-sweep-db
 @@ -1,4 +1,4 @@
@@ -65,7 +65,7 @@ index 6c4283f..3665417 100755
  import os
  from optparse import OptionParser
 diff --git a/util/kojira b/util/kojira
-index a9176b4..e4cc3b9 100755
+index a9e5fc9..1a9448a 100755
 --- a/util/kojira
 +++ b/util/kojira
 @@ -1,4 +1,4 @@
@@ -75,7 +75,7 @@ index a9176b4..e4cc3b9 100755
  # Koji Repository Administrator (kojira)
  # Copyright (c) 2005-2014 Red Hat, Inc.
 diff --git a/vm/kojivmd b/vm/kojivmd
-index ff616d8..b533a23 100755
+index de06624..dfb633b 100755
 --- a/vm/kojivmd
 +++ b/vm/kojivmd
 @@ -1,4 +1,4 @@
@@ -84,6 +84,3 @@ index ff616d8..b533a23 100755
  
  # Koji virtual machine management daemon
  # Copyright (c) 2010-2014 Red Hat, Inc.
--- 
-2.25.1
-

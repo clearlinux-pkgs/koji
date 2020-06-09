@@ -1,7 +1,7 @@
-From 6d0c9e6e94375448056db0965a342c60de9bf518 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Tue, 23 Oct 2018 20:29:52 -0700
-Subject: [PATCH 5/8] Close koji db connections
+Subject: [PATCH] Close koji db connections
 
 Instead of trying to reuse previous connections to the db, just close
 connections in the object and let new connections be created as
@@ -14,16 +14,16 @@ re-use that was not root caused.
  1 file changed, 4 insertions(+), 3 deletions(-)
 
 diff --git a/koji/db.py b/koji/db.py
-index 8a085bf..a287f3f 100644
+index 784c04b..7e09832 100644
 --- a/koji/db.py
 +++ b/koji/db.py
-@@ -74,9 +74,10 @@ class DBWrapper:
+@@ -75,9 +75,10 @@ class DBWrapper:
          # this DBWrapper is no longer usable after close()
          if not self.cnx:
              raise Exception('connection is closed')
 -        self.cnx.cursor().execute('ROLLBACK')
--        #We do this rather than cnx.rollback to avoid opening a new transaction
--        #If our connection gets recycled cnx.rollback will be called then.
+-        # We do this rather than cnx.rollback to avoid opening a new transaction
+-        # If our connection gets recycled cnx.rollback will be called then.
 +        # Instead of saving connections, just close as the connection
 +        # pool seems to not get cleaned up. Further investigation
 +        # required but for now this optimization isn't needed.
@@ -31,6 +31,3 @@ index 8a085bf..a287f3f 100644
          self.cnx = None
  
  
--- 
-2.25.1
-
