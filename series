@@ -5,3 +5,4 @@
 0005-Close-koji-db-connections.patch
 0006-Force-python3-for-executables.patch
 0007-Remove-check-for-existence-of-config-file.patch
+0008-Fix-isAlive-is_alive-for-python3.9.patch
