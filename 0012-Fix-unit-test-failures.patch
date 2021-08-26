@@ -1,0 +1,176 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Tue, 31 Aug 2021 11:13:33 -0700
+Subject: [PATCH] Fix unit test failures
+
+Without this patch, there are some minor test failures, all related to
+timezone handling. Failure output is pasted below for completeness. I'm
+not sure which of these may be related to differences in underlying
+Python versions, but it would be worth investigating these failures more
+deeply at some point.
+
+
+FAIL: test_build_notification (tests.test_builder.test_build_notification.TestBuildNotification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_builder/test_build_notification.py", line 108, in test_build_notification
+    self.assertMultiLineEqual(message.decode(), msg_expect.decode())
+AssertionError: ...
+...
+  Status: complete
+  Built by: user
+  ID: 612609
+- Started: Wed, 18 Feb 2015 09:50:37
++ Started: Wed, 18 Feb 2015 09:50:37 EST
+?                                    +++
+- Finished: Wed, 18 Feb 2015 09:57:37
++ Finished: Wed, 18 Feb 2015 09:57:37 EST
+?                                     +++
+  Changelog:
+  * Wed Feb 18 2015 Happy Koji User <user@example.com> - 1:0.3.0-0.2.M1
+  - Unbundle ASM
+...
+
+======================================================================
+FAIL: test_buildinfo_more_build_with_non_exist_build (tests.test_cli.test_buildinfo.TestBuildinfo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/mock/mock.py", line 1346, in patched
+    return func(*newargs, **newkeywargs)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/test_buildinfo.py", line 104, in test_buildinfo_more_build_with_non_exist_build
+    self.assert_console_message(stdout, expected_stdout)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/utils.py", line 83, in assert_console_message
+    self.assertMultiLineEqual(output, message)
+AssertionError: ...
+...
+  Built by: kojiadmin
+  Volume: DEFAULT
+  Task: none
+- Finished: Thu, 04 Mar 2021 14:45:40
++ Finished: Thu, 04 Mar 2021 14:45:40 UTC
+?                                     +++
+  Tags:
+
+
+======================================================================
+FAIL: test_buildinfo_valid (tests.test_cli.test_buildinfo.TestBuildinfo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/mock/mock.py", line 1346, in patched
+    return func(*newargs, **newkeywargs)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/test_buildinfo.py", line 69, in test_buildinfo_valid
+    self.assert_console_message(stdout, expected_stdout)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/utils.py", line 83, in assert_console_message
+    self.assertMultiLineEqual(output, message)
+AssertionError: ...
+...
+  Built by: kojiadmin
+  Volume: DEFAULT
+  Task: 8 build (target, src)
+- Finished: Thu, 04 Mar 2021 14:45:40
++ Finished: Thu, 04 Mar 2021 14:45:40 UTC
+?                                     +++
+  Tags:
+
+
+======================================================================
+FAIL: test_hostinfo_more_hosts_with_non_exit_host (tests.test_cli.test_hostinfo.TestHostinfo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/mock/mock.py", line 1346, in patched
+    return func(*newargs, **newkeywargs)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/test_hostinfo.py", line 110, in test_hostinfo_more_hosts_with_non_exit_host
+    self.assert_console_message(stdout, expected_stdout)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/utils.py", line 83, in assert_console_message
+    self.assertMultiLineEqual(output, message)
+AssertionError: ...
+...
+  Comment:
+  Enabled: yes
+  Ready: yes
+- Last Update: Tue, 16 Mar 2021 06:19:14
++ Last Update: Tue, 16 Mar 2021 06:19:14 UTC
+?                                        +++
+  Channels: default createrepo
+  Active Buildroots:
+  None
+
+
+======================================================================
+FAIL: test_hostinfo_valid (tests.test_cli.test_hostinfo.TestHostinfo)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/mock/mock.py", line 1346, in patched
+    return func(*newargs, **newkeywargs)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/test_hostinfo.py", line 77, in test_hostinfo_valid
+    self.assert_console_message(stdout, expected)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/utils.py", line 83, in assert_console_message
+    self.assertMultiLineEqual(output, message)
+AssertionError: ...
+...
+  Comment:
+  Enabled: yes
+  Ready: yes
+- Last Update: Tue, 16 Mar 2021 06:19:14
++ Last Update: Tue, 16 Mar 2021 06:19:14 UTC
+?                                        +++
+  Channels: default createrepo
+  Active Buildroots:
+  None
+
+
+======================================================================
+FAIL: test_list_hosts_valid (tests.test_cli.test_list_hosts.TestListHosts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/site-packages/mock/mock.py", line 1346, in patched
+    return func(*newargs, **newkeywargs)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/test_list_hosts.py", line 54, in test_list_hosts_valid
+    self.assert_console_message(stdout, expected)
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_cli/utils.py", line 83, in assert_console_message
+    self.assertMultiLineEqual(output, message)
+AssertionError: ...
+- kojibuilder Y   Y    0.0/2.0  x86_64           Tue, 16 Mar 2021 06:19:14
+?                                                                          ^^^
++ kojibuilder Y   Y    0.0/2.0  x86_64           Tue, 16 Mar 2021 06:19:14 UTC
+?                                                                          ^^^
+
+
+======================================================================
+FAIL: test_format_time_long (tests.test_lib.test_format_time.TestFormatTime)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/builddir/build/BUILD/koji-koji-1.26.0/tests/test_lib/test_format_time.py", line 82, in test_format_time_long
+    self.assertEqual(r, desired)
+AssertionError: ...
+- Thu, 05 Oct 2017 07:52:31
++ Thu, 05 Oct 2017 07:52:31 GMT
+?                           +++
+
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ koji/__init__.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/koji/__init__.py b/koji/__init__.py
+index dfe6cc4..908a181 100644
+--- a/koji/__init__.py
++++ b/koji/__init__.py
+@@ -3299,14 +3299,14 @@ def formatTimeLong(value):
+     elif isinstance(value, xmlrpc_client.DateTime):
+         t = dateutil.parser.parse(value.value)
+     elif isinstance(value, (int, float)):
+-        t = datetime.datetime.fromtimestamp(value)
++        t = datetime.datetime.fromtimestamp(value, tz=datetime.timezone.utc)
+     else:
+         t = value
+     # return date in local timezone, py 2.6 has tzone as astimezone required parameter
+     # would work simply as t.astimezone() for py 2.7+
+     if t.tzinfo is None:
+         t = t.replace(tzinfo=dateutil.tz.gettz())
+-    t = t.astimezone(dateutil.tz.gettz())
++    t = t.astimezone()
+     return datetime.datetime.strftime(t, '%a, %d %b %Y %H:%M:%S %Z')
+ 
+ 

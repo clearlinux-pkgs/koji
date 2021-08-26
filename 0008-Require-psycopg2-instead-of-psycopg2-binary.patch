@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Fri, 26 Feb 2021 21:32:21 +0000
+Subject: [PATCH] Require psycopg2 instead of psycopg2-binary
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ requirements.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/requirements.txt b/requirements.txt
+index 83107c7..abc163d 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,7 +1,7 @@
+ -e .
+ Cheetah;python_version < '3.0'
+ Cheetah3;python_version >= '3.0'
+-psycopg2-binary;python_version >= '3.0'
++psycopg2;python_version >= '3.0'
+ python-multilib
+ python-qpid-proton
+ rpm-py-installer

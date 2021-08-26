@@ -1,6 +1,7 @@
 # This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 Cheetah3
+createrepo_c
 git
 koji-doc
 libcomps
@@ -10,6 +11,9 @@ pyOpenSSL
 python-dateutil
 python-multilib
 requests
+requests-gssapi
 requests-kerberos
 rpm
+rpm-py-installer
 six
+tzdata

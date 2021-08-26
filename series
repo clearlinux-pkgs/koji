@@ -5,4 +5,8 @@
 0005-Close-koji-db-connections.patch
 0006-Force-python3-for-executables.patch
 0007-Remove-check-for-existence-of-config-file.patch
-0008-Fix-isAlive-is_alive-for-python3.9.patch
+0008-Require-psycopg2-instead-of-psycopg2-binary.patch
+0009-Disable-protonmsg-plugin-tests.patch
+0010-Remove-version-pin-for-python-mock.patch
+0011-Use-the-system-installed-coverage-tool.patch
+0012-Fix-unit-test-failures.patch

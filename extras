@@ -12,12 +12,12 @@
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
-/usr/share/koji-web/scripts/buildrootinfo_cg.chtml
 /usr/share/koji-web/scripts/buildrootinfo.chtml
+/usr/share/koji-web/scripts/buildrootinfo_cg.chtml
+/usr/share/koji-web/scripts/builds.chtml
 /usr/share/koji-web/scripts/buildsbystatus.chtml
 /usr/share/koji-web/scripts/buildsbytarget.chtml
 /usr/share/koji-web/scripts/buildsbyuser.chtml
-/usr/share/koji-web/scripts/builds.chtml
 /usr/share/koji-web/scripts/buildtargetedit.chtml
 /usr/share/koji-web/scripts/buildtargetinfo.chtml
 /usr/share/koji-web/scripts/buildtargets.chtml
@@ -36,9 +36,10 @@
 /usr/share/koji-web/scripts/index.py
 /usr/share/koji-web/scripts/notificationedit.chtml
 /usr/share/koji-web/scripts/packageinfo.chtml
-/usr/share/koji-web/scripts/packagesbyuser.chtml
 /usr/share/koji-web/scripts/packages.chtml
+/usr/share/koji-web/scripts/packagesbyuser.chtml
 /usr/share/koji-web/scripts/recentbuilds.chtml
+/usr/share/koji-web/scripts/repoinfo.chtml
 /usr/share/koji-web/scripts/reports.chtml
 /usr/share/koji-web/scripts/rpminfo.chtml
 /usr/share/koji-web/scripts/rpmlist.chtml
@@ -50,9 +51,9 @@
 /usr/share/koji-web/scripts/tags.chtml
 /usr/share/koji-web/scripts/taskinfo.chtml
 /usr/share/koji-web/scripts/taskinfo_params.chtml
+/usr/share/koji-web/scripts/tasks.chtml
 /usr/share/koji-web/scripts/tasksbyhost.chtml
 /usr/share/koji-web/scripts/tasksbyuser.chtml
-/usr/share/koji-web/scripts/tasks.chtml
 /usr/share/koji-web/scripts/userinfo.chtml
 /usr/share/koji-web/scripts/users.chtml
 /usr/share/koji-web/scripts/wsgi_publisher.py
@@ -71,8 +72,8 @@
 /usr/share/koji-web/static/images/free.png
 /usr/share/koji-web/static/images/gray-triangle-down.gif
 /usr/share/koji-web/static/images/gray-triangle-up.gif
-/usr/share/koji-web/static/images/initializing.png
 /usr/share/koji-web/static/images/init.png
+/usr/share/koji-web/static/images/initializing.png
 /usr/share/koji-web/static/images/koji.ico
 /usr/share/koji-web/static/images/koji.png
 /usr/share/koji-web/static/images/no.png

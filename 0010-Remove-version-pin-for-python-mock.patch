@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Wed, 25 Aug 2021 15:34:48 -0700
+Subject: [PATCH] Remove version pin for python-mock
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ test-requirements.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test-requirements.txt b/test-requirements.txt
+index 8f78224..3d2f7d0 100644
+--- a/test-requirements.txt
++++ b/test-requirements.txt
+@@ -1,7 +1,7 @@
+ -e .
+ flake8
+ flake8-import-order
+-mock<=2.0.0
++mock
+ requests-mock
+ coverage
+ nose

@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Wed, 25 Aug 2021 15:25:28 -0700
+Subject: [PATCH] Disable protonmsg plugin tests
+
+We will not be using this plugin for Clear Linux OS, so no need to run
+the associated tests.
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ requirements.txt                                                 | 1 -
+ .../{test_protonmsg.py => test_protonmsg.py.do-not-test}         | 0
+ 2 files changed, 1 deletion(-)
+ rename tests/test_plugins/{test_protonmsg.py => test_protonmsg.py.do-not-test} (100%)
+
+diff --git a/requirements.txt b/requirements.txt
+index abc163d..d4570f3 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,5 +3,4 @@ Cheetah;python_version < '3.0'
+ Cheetah3;python_version >= '3.0'
+ psycopg2;python_version >= '3.0'
+ python-multilib
+-python-qpid-proton
+ rpm-py-installer
+diff --git a/tests/test_plugins/test_protonmsg.py b/tests/test_plugins/test_protonmsg.py.do-not-test
+similarity index 100%
+rename from tests/test_plugins/test_protonmsg.py
+rename to tests/test_plugins/test_protonmsg.py.do-not-test
