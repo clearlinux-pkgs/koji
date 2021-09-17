@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.0
-Release  : 147
+Release  : 148
 URL      : https://pagure.io/koji/archive/koji-1.26.0/koji-koji-1.26.0.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.0/koji-koji-1.26.0.tar.gz
 Summary  : Build system tools
