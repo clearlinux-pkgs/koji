@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 151
+Release  : 152
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
