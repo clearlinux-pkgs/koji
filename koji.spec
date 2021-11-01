@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 152
+Release  : 153
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
@@ -39,6 +39,8 @@ BuildRequires : dnf
 BuildRequires : flake8
 BuildRequires : flake8-import-order
 BuildRequires : git
+BuildRequires : gnupg
+BuildRequires : gpgme-dev
 BuildRequires : libcomps
 BuildRequires : librepo
 BuildRequires : nose
@@ -157,7 +159,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633622046
+export SOURCE_DATE_EPOCH=1635747259
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -174,13 +176,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3 || :
 
 %install
-export SOURCE_DATE_EPOCH=1633622046
+export SOURCE_DATE_EPOCH=1635747259
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.26.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 %make_install KOJI_MINIMAL=1 PYTHON=/usr/bin/python3
 ## Remove excluded files
-rm -f %{buildroot}/usr/libexec/kojid/mergerepos
+rm -f %{buildroot}*/usr/libexec/kojid/mergerepos
 ## install_append content
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
