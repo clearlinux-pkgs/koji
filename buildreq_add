@@ -1,21 +1,4 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-Cheetah3
-coverage
-dnf
-flake8
-flake8-import-order
-nose
-pip
-psycopg2
-python-dateutil
-python-mock
-python-multilib
-requests
-requests-gssapi
-requests-kerberos
-requests-mock
-rpm-py-installer
-systemd-dev
-tox
-tzdata
+pypi(cheetah3)
+pypi-tox

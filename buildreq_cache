@@ -1,3 +1,12 @@
 1.26.1
-gnupg
-gpgme-dev
+pypi(coverage)
+pypi(flake8)
+pypi(flake8_import_order)
+pypi(mock)
+pypi(nose)
+pypi(psycopg2)
+pypi(python_dateutil)
+pypi(python_multilib)
+pypi(requests_gssapi)
+pypi(requests_mock)
+pypi(rpm_py_installer)
