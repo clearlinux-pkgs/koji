@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 157
+Release  : 158
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
@@ -23,11 +23,11 @@ Requires: libcomps
 Requires: librepo
 Requires: psycopg2
 Requires: pyOpenSSL
+Requires: pypi(requests_kerberos)
 Requires: python-dateutil
 Requires: python-multilib
 Requires: requests
 Requires: requests-gssapi
-Requires: requests-kerberos
 Requires: rpm
 Requires: rpm-py-installer
 Requires: six
@@ -111,8 +111,6 @@ python components for the koji package.
 Summary: python3 components for the koji package.
 Group: Default
 Requires: python3-core
-Requires: pypi(python_multilib)
-Requires: pypi(rpm_py_installer)
 
 %description python3
 python3 components for the koji package.
@@ -147,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641585640
+export SOURCE_DATE_EPOCH=1641596413
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -164,7 +162,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3 || :
 
 %install
-export SOURCE_DATE_EPOCH=1641585640
+export SOURCE_DATE_EPOCH=1641596413
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.26.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

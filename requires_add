@@ -12,7 +12,7 @@ python-dateutil
 python-multilib
 requests
 requests-gssapi
-requests-kerberos
+pypi(requests_kerberos)
 rpm
 rpm-py-installer
 six
