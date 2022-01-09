@@ -4,14 +4,13 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 158
+Release  : 159
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
-Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
 Requires: koji-python3 = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
@@ -67,7 +66,6 @@ contains shared libraries and the command-line interface.
 %package bin
 Summary: bin components for the koji package.
 Group: Binaries
-Requires: koji-license = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
 
 %description bin
@@ -88,14 +86,6 @@ Group: Default
 
 %description extras
 extras components for the koji package.
-
-
-%package license
-Summary: license components for the koji package.
-Group: Default
-
-%description license
-license components for the koji package.
 
 
 %package python
@@ -145,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641596413
+export SOURCE_DATE_EPOCH=1641751653
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -162,10 +152,8 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3 || :
 
 %install
-export SOURCE_DATE_EPOCH=1641596413
+export SOURCE_DATE_EPOCH=1641751653
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/koji
-cp %{_builddir}/koji-koji-1.26.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 %make_install KOJI_MINIMAL=1 PYTHON=/usr/bin/python3
 ## Remove excluded files
 rm -f %{buildroot}*/usr/libexec/kojid/mergerepos
@@ -277,10 +265,6 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/static/js/watchlogs.js
 /usr/share/koji-web/static/koji.css
 /usr/share/koji-web/static/themes/README
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 
 %files python
 %defattr(-,root,root,-)
