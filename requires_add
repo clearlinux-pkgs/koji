@@ -7,7 +7,7 @@ koji-doc
 libcomps
 librepo
 psycopg2
-pyOpenSSL
+pypi(pyopenssl)
 python-dateutil
 python-multilib
 requests

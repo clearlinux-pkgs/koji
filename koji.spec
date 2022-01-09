@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 159
+Release  : 160
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
@@ -21,7 +21,7 @@ Requires: koji-doc
 Requires: libcomps
 Requires: librepo
 Requires: psycopg2
-Requires: pyOpenSSL
+Requires: pypi(pyopenssl)
 Requires: pypi(requests_kerberos)
 Requires: python-dateutil
 Requires: python-multilib
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641751653
+export SOURCE_DATE_EPOCH=1641752825
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -152,7 +152,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3 || :
 
 %install
-export SOURCE_DATE_EPOCH=1641751653
+export SOURCE_DATE_EPOCH=1641752825
 rm -rf %{buildroot}
 %make_install KOJI_MINIMAL=1 PYTHON=/usr/bin/python3
 ## Remove excluded files
