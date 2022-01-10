@@ -4,33 +4,34 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 160
+Release  : 161
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1
 Requires: koji-bin = %{version}-%{release}
+Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
 Requires: koji-python3 = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
-Requires: Cheetah3
 Requires: createrepo_c
 Requires: git
 Requires: koji-doc
 Requires: libcomps
 Requires: librepo
-Requires: psycopg2
+Requires: pypi(cheetah3)
+Requires: pypi(psycopg2)
 Requires: pypi(pyopenssl)
+Requires: pypi(python_dateutil)
+Requires: pypi(python_multilib)
+Requires: pypi(requests)
+Requires: pypi(requests_gssapi)
 Requires: pypi(requests_kerberos)
-Requires: python-dateutil
-Requires: python-multilib
-Requires: requests
-Requires: requests-gssapi
+Requires: pypi(rpm_py_installer)
+Requires: pypi(six)
+Requires: pypi(tzdata)
 Requires: rpm
-Requires: rpm-py-installer
-Requires: six
-Requires: tzdata
 BuildRequires : buildreq-distutils3
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pypi(cheetah3)
@@ -66,6 +67,7 @@ contains shared libraries and the command-line interface.
 %package bin
 Summary: bin components for the koji package.
 Group: Binaries
+Requires: koji-license = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
 
 %description bin
@@ -86,6 +88,14 @@ Group: Default
 
 %description extras
 extras components for the koji package.
+
+
+%package license
+Summary: license components for the koji package.
+Group: Default
+
+%description license
+license components for the koji package.
 
 
 %package python
@@ -135,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641752825
+export SOURCE_DATE_EPOCH=1641840678
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -152,8 +162,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3 || :
 
 %install
-export SOURCE_DATE_EPOCH=1641752825
+export SOURCE_DATE_EPOCH=1641840678
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/koji
+cp %{_builddir}/koji-koji-1.26.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 %make_install KOJI_MINIMAL=1 PYTHON=/usr/bin/python3
 ## Remove excluded files
 rm -f %{buildroot}*/usr/libexec/kojid/mergerepos
@@ -265,6 +277,10 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/static/js/watchlogs.js
 /usr/share/koji-web/static/koji.css
 /usr/share/koji-web/static/themes/README
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f
 
 %files python
 %defattr(-,root,root,-)
