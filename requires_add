@@ -1,19 +1,19 @@
 # This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-Cheetah3
+pypi(cheetah3)
 createrepo_c
 git
 koji-doc
 libcomps
 librepo
-psycopg2
+pypi(psycopg2)
 pypi(pyopenssl)
-python-dateutil
-python-multilib
-requests
-requests-gssapi
+pypi(python_dateutil)
+pypi(python_multilib)
+pypi(requests)
+pypi(requests_gssapi)
 pypi(requests_kerberos)
 rpm
-rpm-py-installer
-six
-tzdata
+pypi(rpm_py_installer)
+pypi(six)
+pypi(tzdata)
