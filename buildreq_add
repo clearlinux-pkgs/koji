@@ -1,4 +1,19 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 pypi(cheetah3)
+pypi(flake8)
+pypi(flake8_import_order)
+pypi(mock)
+pypi(psycopg2)
+pypi(python_dateutil)
+pypi(python_multilib)
+pypi(requests_gssapi)
+pypi(requests_mock)
+pypi(rpm_py_installer)
+# Need the executables in /usr/bin for these packages
+pypi-coverage
+pypi-nose
 pypi-tox
+# Other non-pypi packages needed for testsuite
+dnf
+tzdata

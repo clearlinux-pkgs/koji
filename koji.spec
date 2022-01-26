@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.26.1
-Release  : 161
+Release  : 162
 URL      : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.26.1/koji-koji-1.26.1.tar.gz
 Summary  : Build system tools
@@ -33,20 +33,22 @@ Requires: pypi(six)
 Requires: pypi(tzdata)
 Requires: rpm
 BuildRequires : buildreq-distutils3
+BuildRequires : dnf
 BuildRequires : pkgconfig(systemd)
 BuildRequires : pypi(cheetah3)
-BuildRequires : pypi(coverage)
 BuildRequires : pypi(flake8)
 BuildRequires : pypi(flake8_import_order)
 BuildRequires : pypi(mock)
-BuildRequires : pypi(nose)
 BuildRequires : pypi(psycopg2)
 BuildRequires : pypi(python_dateutil)
 BuildRequires : pypi(python_multilib)
 BuildRequires : pypi(requests_gssapi)
 BuildRequires : pypi(requests_mock)
 BuildRequires : pypi(rpm_py_installer)
+BuildRequires : pypi-coverage
+BuildRequires : pypi-nose
 BuildRequires : pypi-tox
+BuildRequires : tzdata
 Patch1: 0001-Change-install-dir-to-usr-bin.patch
 Patch2: 0002-Do-not-build-kojivm.patch
 Patch3: 0003-builder-use-sudo-to-call-mock.patch
@@ -145,7 +147,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641840678
+export SOURCE_DATE_EPOCH=1643172999
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -159,10 +161,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make test3 PYTHON=python3 || :
+make test3 PYTHON=python3
 
 %install
-export SOURCE_DATE_EPOCH=1641840678
+export SOURCE_DATE_EPOCH=1643172999
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.26.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

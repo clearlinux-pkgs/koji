@@ -1,1 +1,1 @@
-make test3 PYTHON=python3 || :
+make test3 PYTHON=python3
