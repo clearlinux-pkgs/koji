@@ -1,0 +1,33 @@
+From 3919afbd52c5c670d319933bfc29302995e9987f Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 14 Apr 2022 18:25:48 -0700
+Subject: [PATCH] Add git 2.35.3 workaround
+
+In git 2.35.3 a workaround was added after a CVE fix caused some pain
+for git users, this workaround is needed for koji in order to use git
+on directories that have been chowned to the koji builder user for
+mock. Unfortunately the work around needs $HOME to be set in order to
+function so update the environment accordingly as a temporary
+workaround while upstream figures out the right fix. If you run kojid
+as non-root this will not work.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ koji/daemon.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/koji/daemon.py b/koji/daemon.py
+index d487803..4851edc 100644
+--- a/koji/daemon.py
++++ b/koji/daemon.py
+@@ -672,6 +672,7 @@ class SCM(object):
+         }
+         if self.scmtype.startswith('GIT'):
+             cmd = ['git', 'rev-parse', 'HEAD']
++            os.putenv('HOME', '/root')
+             proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                     cwd=self.sourcedir,)
+             out, _ = proc.communicate()
+-- 
+2.35.1
+

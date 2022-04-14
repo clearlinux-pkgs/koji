@@ -6,6 +6,9 @@ git
 koji-doc
 libcomps
 librepo
+# At least needs the dnf python module but that may
+# need other bits of dnf so just add the main package
+dnf
 pypi(psycopg2)
 pypi(pyopenssl)
 pypi(python_dateutil)
