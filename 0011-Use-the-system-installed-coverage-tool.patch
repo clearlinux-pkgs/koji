@@ -1,15 +1,15 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Patrick McCarty <patrick.mccarty@intel.com>
-Date: Wed, 25 Aug 2021 18:24:36 -0700
+From eb6d6bcc136ae2dd80769a500d6f92d84a59b364 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 14 Apr 2022 09:59:28 -0700
 Subject: [PATCH] Use the system-installed coverage tool
 
-Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  tox.ini | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/tox.ini b/tox.ini
-index 934d334..8ae1813 100644
+index a498aff..66ceaa8 100644
 --- a/tox.ini
 +++ b/tox.ini
 @@ -29,19 +29,19 @@ setenv =
@@ -28,12 +28,15 @@ index 934d334..8ae1813 100644
 -    {envbindir}/coverage3 erase --rcfile .coveragerc3
 +    coverage3 erase --rcfile .coveragerc3
  commands = 
--    {envbindir}/coverage3 run --rcfile .coveragerc3 --source . -m nose {posargs}
+-    {envbindir}/coverage3 run --rcfile .coveragerc3 --source . -m pytest {posargs}
 -    {envbindir}/coverage3 report --rcfile .coveragerc3
 -    {envbindir}/coverage3 html -d {toxinidir}/htmlcov/py3 --rcfile .coveragerc3
-+    coverage3 run --rcfile .coveragerc3 --source . -m nose {posargs}
++    coverage3 run --rcfile .coveragerc3 --source . -m pytest {posargs}
 +    coverage3 report --rcfile .coveragerc3
 +    coverage3 html -d {toxinidir}/htmlcov/py3 --rcfile .coveragerc3
  
  [testenv:py2]
  setenv = 
+-- 
+2.35.1
+
