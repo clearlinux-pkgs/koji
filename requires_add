@@ -17,6 +17,5 @@ pypi(requests)
 pypi(requests_gssapi)
 pypi(requests_kerberos)
 rpm
-pypi(rpm_py_installer)
 pypi(six)
 pypi(tzdata)

@@ -9,7 +9,6 @@ pypi(python_dateutil)
 pypi(python_multilib)
 pypi(requests_gssapi)
 pypi(requests_mock)
-pypi(rpm_py_installer)
 # Need the executables in /usr/bin for these packages
 pypi-coverage
 pypi-nose

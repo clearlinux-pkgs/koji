@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.28.1
-Release  : 165
+Release  : 166
 URL      : https://pagure.io/koji/archive/koji-1.28.1/koji-koji-1.28.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.28.1/koji-koji-1.28.1.tar.gz
 Summary  : Build system tools
@@ -29,7 +29,6 @@ Requires: pypi(python_multilib)
 Requires: pypi(requests)
 Requires: pypi(requests_gssapi)
 Requires: pypi(requests_kerberos)
-Requires: pypi(rpm_py_installer)
 Requires: pypi(six)
 Requires: pypi(tzdata)
 Requires: rpm
@@ -46,7 +45,6 @@ BuildRequires : pypi(python_dateutil)
 BuildRequires : pypi(python_multilib)
 BuildRequires : pypi(requests_gssapi)
 BuildRequires : pypi(requests_mock)
-BuildRequires : pypi(rpm_py_installer)
 BuildRequires : pypi-coverage
 BuildRequires : pypi-nose
 BuildRequires : pypi-tox
@@ -64,6 +62,7 @@ Patch10: 0010-Remove-version-pin-for-python-mock.patch
 Patch11: 0011-Use-the-system-installed-coverage-tool.patch
 Patch12: 0012-Fix-unit-test-failures.patch
 Patch13: 0013-Add-git-2.35.3-workaround.patch
+Patch14: 0014-Remove-unneeded-dep-rpm-py-installer.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -145,13 +144,14 @@ cd %{_builddir}/koji-koji-1.28.1
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649986426
+export SOURCE_DATE_EPOCH=1651275076
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
@@ -168,7 +168,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3
 
 %install
-export SOURCE_DATE_EPOCH=1649986426
+export SOURCE_DATE_EPOCH=1651275076
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-1.28.1/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

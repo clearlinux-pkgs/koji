@@ -3,3 +3,4 @@
 pypi(cheetah)
 pypi(psycopg2_binary)
 pypi(python_qpid_proton)
+pypi(rpm_py_installer)

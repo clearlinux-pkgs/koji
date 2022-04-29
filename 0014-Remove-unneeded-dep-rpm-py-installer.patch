@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Fri, 29 Apr 2022 16:15:12 -0700
+Subject: [PATCH] Remove unneeded dep: rpm-py-installer
+
+The python bindings for rpm are already installed in the build
+environment, and they are also installed at runtime (via `rpm` ->
+`rpm-python3`).
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ requirements.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/requirements.txt b/requirements.txt
+index d4570f3..6348e0f 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,4 +3,3 @@ Cheetah;python_version < '3.0'
+ Cheetah3;python_version >= '3.0'
+ psycopg2;python_version >= '3.0'
+ python-multilib
+-rpm-py-installer
