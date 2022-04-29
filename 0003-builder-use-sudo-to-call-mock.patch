@@ -13,7 +13,7 @@ diff --git a/builder/kojid b/builder/kojid
 index a105d75..81f3d03 100755
 --- a/builder/kojid
 +++ b/builder/kojid
-@@ -426,6 +426,10 @@ class BuildRoot(object):
+@@ -440,6 +440,10 @@ class BuildRoot(object):
              else:
                  cmd.append('--old-chroot')
          cmd.extend(args)

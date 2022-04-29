@@ -157,7 +157,7 @@ diff --git a/koji/__init__.py b/koji/__init__.py
 index dfe6cc4..908a181 100644
 --- a/koji/__init__.py
 +++ b/koji/__init__.py
-@@ -3299,14 +3299,14 @@ def formatTimeLong(value):
+@@ -3356,14 +3356,14 @@ def formatTimeLong(value):
      elif isinstance(value, xmlrpc_client.DateTime):
          t = dateutil.parser.parse(value.value)
      elif isinstance(value, (int, float)):

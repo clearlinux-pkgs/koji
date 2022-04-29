@@ -13,7 +13,7 @@ diff --git a/koji/__init__.py b/koji/__init__.py
 index c05cc1b..370fabe 100644
 --- a/koji/__init__.py
 +++ b/koji/__init__.py
-@@ -1968,9 +1968,7 @@ def read_config(profile_name, user_config=None):
+@@ -2007,9 +2007,7 @@ def read_config(profile_name, user_config=None):
      config = read_config_files(configs)
  
      # Load the configs in a particular order
@@ -23,7 +23,7 @@ index c05cc1b..370fabe 100644
          result['profile'] = profile_name
          for name, value in config.items(profile_name):
              # note the config_defaults dictionary also serves to indicate which
-@@ -1992,11 +1990,6 @@ def read_config(profile_name, user_config=None):
+@@ -2031,11 +2029,6 @@ def read_config(profile_name, user_config=None):
                  else:
                      result[name] = value
  

@@ -20,4 +20,4 @@ index 8f78224..3d2f7d0 100644
 +mock
  requests-mock
  coverage
- nose
+ pytest
