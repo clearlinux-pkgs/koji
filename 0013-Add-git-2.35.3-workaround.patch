@@ -1,4 +1,4 @@
-From 8095c6e8a7532c34e8ea94d361ea4fcc0dbfeab1 Mon Sep 17 00:00:00 2001
+From 96958d1a3025bb73414b35b9de47c9de27f2857f Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Thu, 14 Apr 2022 18:25:48 -0700
 Subject: [PATCH] Add git 2.35.3 workaround
@@ -14,23 +14,27 @@ as non-root this will not work.
 Skip the test for git source checkout as part of this change rather
 than rework the test.
 
+Note the configuration:
+
+git config --global --add safe.directory '*'
+
+Will need to be set by the root user before koji can be used.
+
 Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
- koji/daemon.py    |  4 ++++
+ koji/daemon.py    |  2 ++
  tests/test_scm.py | 40 ++++++++++++++++++++--------------------
- 2 files changed, 24 insertions(+), 20 deletions(-)
+ 2 files changed, 22 insertions(+), 20 deletions(-)
 
 diff --git a/koji/daemon.py b/koji/daemon.py
-index d487803..4f31055 100644
+index d487803..72fd5c8 100644
 --- a/koji/daemon.py
 +++ b/koji/daemon.py
-@@ -671,11 +671,15 @@ class SCM(object):
+@@ -671,11 +671,13 @@ class SCM(object):
              'source': '',
          }
          if self.scmtype.startswith('GIT'):
-+            cmd = ['git', 'config', '--global', '--add', 'safe.directory', '*']
 +            os.putenv('HOME', '/root')
-+            subprocess.run(cmd, check=True)
              cmd = ['git', 'rev-parse', 'HEAD']
              proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                                      cwd=self.sourcedir,)
