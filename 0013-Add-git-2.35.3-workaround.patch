@@ -1,100 +1,21 @@
-From 96958d1a3025bb73414b35b9de47c9de27f2857f Mon Sep 17 00:00:00 2001
-From: William Douglas <william.douglas@intel.com>
-Date: Thu, 14 Apr 2022 18:25:48 -0700
-Subject: [PATCH] Add git 2.35.3 workaround
-
-In git 2.35.3 a workaround was added after a CVE fix caused some pain
-for git users, this workaround is needed for koji in order to use git
-on directories that have been chowned to the koji builder user for
-mock. Unfortunately the work around needs $HOME to be set in order to
-function so update the environment accordingly as a temporary
-workaround while upstream figures out the right fix. If you run kojid
-as non-root this will not work.
-
-Skip the test for git source checkout as part of this change rather
-than rework the test.
-
-Note the configuration:
-
-git config --global --add safe.directory '*'
-
-Will need to be set by the root user before koji can be used.
-
-Signed-off-by: William Douglas <william.douglas@intel.com>
----
- koji/daemon.py    |  2 ++
- tests/test_scm.py | 40 ++++++++++++++++++++--------------------
- 2 files changed, 22 insertions(+), 20 deletions(-)
-
-diff --git a/koji/daemon.py b/koji/daemon.py
-index d487803..72fd5c8 100644
---- a/koji/daemon.py
-+++ b/koji/daemon.py
-@@ -671,11 +671,13 @@ class SCM(object):
-             'source': '',
-         }
-         if self.scmtype.startswith('GIT'):
-+            os.putenv('HOME', '/root')
-             cmd = ['git', 'rev-parse', 'HEAD']
-             proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-                                     cwd=self.sourcedir,)
-             out, _ = proc.communicate()
-             status = proc.wait()
-+            os.unsetenv('HOME')
-             if status != 0:
-                 raise koji.GenericError('Error getting commit hash for git')
-             fragment = out.strip()
-diff --git a/tests/test_scm.py b/tests/test_scm.py
-index a75f259..97e5571 100644
---- a/tests/test_scm.py
-+++ b/tests/test_scm.py
-@@ -595,26 +595,26 @@ class TestSCMCheckouts(unittest.TestCase):
-                           cwd=self.tempdir, logerror=1, append=False, env=None)
-         self.log_output.assert_has_calls([call1])
+diff --git a/builder/kojid b/builder/kojid
+index 522b82f..a202425 100755
+--- a/builder/kojid
++++ b/builder/kojid
+@@ -5072,6 +5072,8 @@ class BuildSRPMFromSCMTask(BaseBuildTask):
+                            scratch=opts.get('scratch'),
+                            srcdir=sourcedir,
+                            buildroot=broot)
++        # get the source before chown, git > 2.35.2 would refuse to that later
++        source = scm.get_source()
+         # chown the sourcedir and everything under it to the mockuser
+         # so we can build the srpm as non-root
+         uid = pwd.getpwnam(self.options.mockuser)[2]
+@@ -5143,7 +5145,6 @@ class BuildSRPMFromSCMTask(BaseBuildTask):
+         brootid = broot.id
+         log_files = glob.glob('%s/*.log' % broot.resultdir())
  
--    @mock.patch('subprocess.Popen')
--    def test_get_source_git(self, popen):
--        popen.return_value.wait.return_value = 0
--        popen.return_value.communicate = mock.MagicMock()
--        popen.return_value.communicate.return_value = (six.b('hash '), six.b('any'))
--
--        url = "git://default/koji.git#asdasd"
--        scm = SCM(url)
--        scm.assert_allowed(self.config)
--        scm.checkout(self.tempdir, session=self.session,
--                     uploadpath=self.uploadpath, logfile=self.logfile)
--
 -        source = scm.get_source()
--        self.assertEqual(source, {'url': url, 'source': 'git://default/koji.git#hash'})
--
--        popen.return_value.wait.return_value = 1
--        with self.assertRaises(koji.GenericError) as cm:
--            source = scm.get_source()
--        self.assertEqual(cm.exception.args[0],
--                         'Error getting commit hash for git')
-+    # @mock.patch('subprocess.Popen')
-+    # def test_get_source_git(self, popen):
-+    #     popen.return_value.wait.return_value = 0
-+    #     popen.return_value.communicate = mock.MagicMock()
-+    #     popen.return_value.communicate.return_value = (six.b('hash '), six.b('any'))
-+
-+    #     url = "git://default/koji.git#asdasd"
-+    #     scm = SCM(url)
-+    #     scm.assert_allowed(self.config)
-+    #     scm.checkout(self.tempdir, session=self.session,
-+    #                  uploadpath=self.uploadpath, logfile=self.logfile)
-+
-+    #     source = scm.get_source()
-+    #     self.assertEqual(source, {'url': url, 'source': 'git://default/koji.git#hash'})
-+
-+    #     popen.return_value.wait.return_value = 1
-+    #     with self.assertRaises(koji.GenericError) as cm:
-+    #         source = scm.get_source()
-+    #     self.assertEqual(cm.exception.args[0],
-+    #                      'Error getting commit hash for git')
+         broot.expire()
  
-     @mock.patch('subprocess.Popen')
-     def test_get_source_other(self, popen):
--- 
-2.36.0
-
+         return {'srpm': "%s/%s" % (uploadpath, srpm_name),
