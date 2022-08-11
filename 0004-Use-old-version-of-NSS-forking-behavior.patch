@@ -1,28 +1,27 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: George T Kramer <george.t.kramer@intel.com>
-Date: Tue, 20 Feb 2018 14:30:33 -0800
+From ed83724e16cb4d41070ee8f17a5444518d2ea1cc Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 11 Aug 2022 15:19:43 -0700
 Subject: [PATCH] Use old version of NSS forking behavior
 
 Because kojid forks proceses, and because modern versions of NSS trigger
 an assertion failure when cryptographic processes are forked, reverting
 to the old behavior by setting an enviornment variable for NSS.
 ---
- builder/kojid.service | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ builder/kojid.service | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/builder/kojid.service b/builder/kojid.service
-index b6fecaa..59e137f 100644
+index 64506d8..a9e5914 100644
 --- a/builder/kojid.service
 +++ b/builder/kojid.service
-@@ -1,10 +1,10 @@
- [Unit]
- Description=Koji build server
- Documentation=https://docs.pagure.org/koji/server_howto/
--
- After=network.target
+@@ -6,6 +6,7 @@ Documentation=https://docs.pagure.org/koji/server_howto/
+ After=network.target httpd.service
  
  [Service]
 +Environment=NSS_STRICT_NOFORK=DISABLED
  ExecStart=/usr/bin/kojid \
         --fg \
         --force-lock \
+-- 
+2.36.1
+

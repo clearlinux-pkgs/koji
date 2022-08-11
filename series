@@ -10,5 +10,4 @@
 0010-Remove-version-pin-for-python-mock.patch
 0011-Use-the-system-installed-coverage-tool.patch
 0012-Fix-unit-test-failures.patch
-0013-Add-git-2.35.3-workaround.patch
-0014-Remove-unneeded-dep-rpm-py-installer.patch
+0013-Remove-unneeded-dep-rpm-py-installer.patch
