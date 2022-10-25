@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.29.1
-Release  : 174
+Release  : 175
 URL      : https://pagure.io/koji/archive/koji-1.29.1/koji-koji-1.29.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.29.1/koji-koji-1.29.1.tar.gz
 Summary  : Build system tools
