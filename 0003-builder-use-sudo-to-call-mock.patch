@@ -1,26 +1,27 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Caio Marcelo de Oliveira Filho <caio.oliveira@intel.com>
-Date: Tue, 17 Oct 2017 13:58:40 -0700
-Subject: [PATCH] builder: use sudo to call mock
+From 7b5820d7ab0e65a39b3e272ed3f1cb50f593c9bf Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 27 Oct 2022 10:36:36 -0700
+Subject: [PATCH 03/13] builder: use sudo to call mock
 
 In Clear Linux we use sudo (instead of consolehelper) to let mock have
 the right permissions.
 ---
- builder/kojid | 4 ++++
- 1 file changed, 4 insertions(+)
+ builder/kojid | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/builder/kojid b/builder/kojid
-index a105d75..81f3d03 100755
+index 3033637..56e49d5 100755
 --- a/builder/kojid
 +++ b/builder/kojid
-@@ -440,6 +440,10 @@ class BuildRoot(object):
+@@ -449,6 +449,8 @@ class BuildRoot(object):
              else:
                  cmd.append('--old-chroot')
          cmd.extend(args)
-+
 +        # In Clear Linux we call mock using sudo.
 +        cmd.insert(0, "/usr/bin/sudo")
-+
-         self.logger.info(' '.join(cmd))
+         self.logger.info(format_shell_cmd(cmd))
          workdir = getattr(self, 'workdir', None)
          mocklog = 'mock_output.log'
+-- 
+2.37.3
+
