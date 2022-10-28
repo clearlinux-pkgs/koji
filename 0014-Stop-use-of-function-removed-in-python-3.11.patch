@@ -1,19 +1,19 @@
-From f966ae1c117255aaba6caed403bc56cb61edf7f8 Mon Sep 17 00:00:00 2001
+From b4517eb4127405f820fb71c6067d032b51829f11 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
-Date: Wed, 26 Oct 2022 19:59:05 -0700
-Subject: [PATCH] Stop use of function seemingly removed in python 3.11
+Date: Fri, 28 Oct 2022 15:37:19 -0700
+Subject: [PATCH] Stop use of function removed in python 3.11
 
 ---
- hub/kojixmlrpc.py                     | 2 +-
+ hub/kojixmlrpc.py                     | 6 +++---
  tests/test_builder/test_taskparams.py | 2 +-
  www/kojiweb/wsgi_publisher.py         | 4 ++--
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/hub/kojixmlrpc.py b/hub/kojixmlrpc.py
-index fc2cd67..5b5c673 100644
+index fc2cd67..3098526 100644
 --- a/hub/kojixmlrpc.py
 +++ b/hub/kojixmlrpc.py
-@@ -117,7 +117,7 @@ class HandlerRegistry(object):
+@@ -117,17 +117,17 @@ class HandlerRegistry(object):
          ret = self.argspec_cache.get(func)
          if ret:
              return ret
@@ -21,7 +21,19 @@ index fc2cd67..5b5c673 100644
 +        ret = tuple(inspect.getfullargspec(func))
          if inspect.ismethod(func) and func.__self__:
              # bound method, remove first arg
-             args, varargs, varkw, defaults = ret
+-            args, varargs, varkw, defaults = ret
++            args, varargs, varkw, defaults, _kwonlyargs, _kwonlydefaults, _annotations = ret
+             if args:
+                 aname = args[0]  # generally "self"
+                 del args[0]
+                 if defaults and aname in defaults:
+                     # shouldn't happen, but...
+                     del defaults[aname]
+-        return ret
++        return tuple([args, varargs, varkw, defaults])
+ 
+     def list_api(self):
+         funcs = []
 diff --git a/tests/test_builder/test_taskparams.py b/tests/test_builder/test_taskparams.py
 index 56ee6b2..91f32d4 100644
 --- a/tests/test_builder/test_taskparams.py
@@ -36,7 +48,7 @@ index 56ee6b2..91f32d4 100644
                  spec.args.pop(0)
  
 diff --git a/www/kojiweb/wsgi_publisher.py b/www/kojiweb/wsgi_publisher.py
-index f703f1e..ade82c2 100644
+index 4d46a6b..5dfc235 100644
 --- a/www/kojiweb/wsgi_publisher.py
 +++ b/www/kojiweb/wsgi_publisher.py
 @@ -216,7 +216,7 @@ class Dispatcher(object):
@@ -53,7 +65,7 @@ index f703f1e..ade82c2 100644
                  data[arg] = val[0]
          environ['koji.form'] = fs
 -        args, varargs, varkw, defaults = inspect.getargspec(func)
-+        args, varargs, varkw, defaults = inspect.getfullargspec(func)
++        args, varargs, varkw, defaults, _kwonlyargs, _kwonlydefaults, _annotations = inspect.getfullargspec(func)
          if not varkw:
              # remove any unexpected args
              data = dslice(data, args, strict=False)

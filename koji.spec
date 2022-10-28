@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.30.1
-Release  : 178
+Release  : 179
 URL      : https://pagure.io/koji/archive/koji-1.30.1/koji-koji-1.30.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.30.1/koji-koji-1.30.1.tar.gz
 Summary  : Build system tools
@@ -63,6 +63,7 @@ Patch10: 0010-Remove-version-pin-for-python-mock.patch
 Patch11: 0011-Use-the-system-installed-coverage-tool.patch
 Patch12: 0012-Fix-unit-test-failures.patch
 Patch13: 0013-Remove-unneeded-dep-rpm-py-installer.patch
+Patch14: 0014-Stop-use-of-function-removed-in-python-3.11.patch
 
 %description
 Koji is a system for building and tracking RPMS.  The base package
@@ -144,13 +145,14 @@ cd %{_builddir}/koji-koji-1.30.1
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666892508
+export SOURCE_DATE_EPOCH=1666996762
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -167,7 +169,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3
 
 %install
-export SOURCE_DATE_EPOCH=1666892508
+export SOURCE_DATE_EPOCH=1666996762
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-%{version}/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

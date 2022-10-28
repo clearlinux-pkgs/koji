@@ -11,3 +11,4 @@
 0011-Use-the-system-installed-coverage-tool.patch
 0012-Fix-unit-test-failures.patch
 0013-Remove-unneeded-dep-rpm-py-installer.patch
+0014-Stop-use-of-function-removed-in-python-3.11.patch
