@@ -4,7 +4,7 @@
 #
 Name     : koji
 Version  : 1.30.1
-Release  : 179
+Release  : 180
 URL      : https://pagure.io/koji/archive/koji-1.30.1/koji-koji-1.30.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.30.1/koji-koji-1.30.1.tar.gz
 Summary  : Build system tools
@@ -152,7 +152,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666996762
+export SOURCE_DATE_EPOCH=1668118975
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -169,7 +169,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make test3 PYTHON=python3
 
 %install
-export SOURCE_DATE_EPOCH=1666996762
+export SOURCE_DATE_EPOCH=1668118975
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-%{version}/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f

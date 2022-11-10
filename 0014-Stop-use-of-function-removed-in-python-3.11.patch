@@ -1,19 +1,19 @@
-From b4517eb4127405f820fb71c6067d032b51829f11 Mon Sep 17 00:00:00 2001
+From 55f0893d8d234ea925b3dca640c128fc5211ea24 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Fri, 28 Oct 2022 15:37:19 -0700
-Subject: [PATCH] Stop use of function removed in python 3.11
+Subject: [PATCH] Stop use of functions removed in python 3.11
 
 ---
- hub/kojixmlrpc.py                     | 6 +++---
+ hub/kojixmlrpc.py                     | 8 ++++----
  tests/test_builder/test_taskparams.py | 2 +-
  www/kojiweb/wsgi_publisher.py         | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/hub/kojixmlrpc.py b/hub/kojixmlrpc.py
-index fc2cd67..3098526 100644
+index fc2cd67..c3340e4 100644
 --- a/hub/kojixmlrpc.py
 +++ b/hub/kojixmlrpc.py
-@@ -117,17 +117,17 @@ class HandlerRegistry(object):
+@@ -117,10 +117,10 @@ class HandlerRegistry(object):
          ret = self.argspec_cache.get(func)
          if ret:
              return ret
@@ -22,18 +22,28 @@ index fc2cd67..3098526 100644
          if inspect.ismethod(func) and func.__self__:
              # bound method, remove first arg
 -            args, varargs, varkw, defaults = ret
-+            args, varargs, varkw, defaults, _kwonlyargs, _kwonlydefaults, _annotations = ret
++            args, _varargs, _varkw, defaults, _kwonlyargs, _kwonlydefaults, _annotations = ret
              if args:
                  aname = args[0]  # generally "self"
                  del args[0]
-                 if defaults and aname in defaults:
-                     # shouldn't happen, but...
-                     del defaults[aname]
--        return ret
-+        return tuple([args, varargs, varkw, defaults])
+@@ -139,7 +139,7 @@ class HandlerRegistry(object):
+             funcs.append({'name': name,
+                           'doc': func.__doc__,
+                           'argspec': argspec,
+-                          'argdesc': inspect.formatargspec(*argspec),
++                          'argdesc': format(inspect.signature(func)),
+                           'args': args})
+         return funcs
  
-     def list_api(self):
-         funcs = []
+@@ -167,7 +167,7 @@ class HandlerRegistry(object):
+         func = self.funcs.get(method)
+         if func is None:
+             return ""
+-        args = inspect.formatargspec(*self.getargspec(func))
++        args = format(inspect.signature(func))
+         ret = '%s%s' % (method, args)
+         if func.__doc__:
+             ret += "\ndescription: %s" % func.__doc__
 diff --git a/tests/test_builder/test_taskparams.py b/tests/test_builder/test_taskparams.py
 index 56ee6b2..91f32d4 100644
 --- a/tests/test_builder/test_taskparams.py
