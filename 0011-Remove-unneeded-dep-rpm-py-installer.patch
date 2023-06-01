@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 6f3fcb33c6592d3e6628868e44e1a236c49e0907 Mon Sep 17 00:00:00 2001
 From: Patrick McCarty <patrick.mccarty@intel.com>
 Date: Fri, 29 Apr 2022 16:15:12 -0700
-Subject: [PATCH] Remove unneeded dep: rpm-py-installer
+Subject: [PATCH 11/11] Remove unneeded dep: rpm-py-installer
 
 The python bindings for rpm are already installed in the build
 environment, and they are also installed at runtime (via `rpm` ->
@@ -21,3 +21,6 @@ index d4570f3..6348e0f 100644
  psycopg2;python_version >= '3.0'
  python-multilib
 -rpm-py-installer
+-- 
+2.40.1
+

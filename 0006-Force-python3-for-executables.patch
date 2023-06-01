@@ -1,17 +1,18 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: George T Kramer <george.t.kramer@intel.com>
-Date: Thu, 1 Aug 2019 23:11:29 -0700
-Subject: [PATCH] Force python3 for executables
+From 7dbea5a381fe32fb87c044ff2f14700ad748d44a Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 31 May 2023 10:08:31 -0700
+Subject: [PATCH 06/11] Force python3 for executables
 
 This is done in the upstream specfile.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
- builder/kojid      | 2 +-
- cli/koji           | 2 +-
- util/koji-sweep-db | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ builder/kojid | 2 +-
+ cli/koji      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/builder/kojid b/builder/kojid
-index 81f3d03..169bfae 100755
+index f021d9b..131628e 100755
 --- a/builder/kojid
 +++ b/builder/kojid
 @@ -1,4 +1,4 @@
@@ -21,7 +22,7 @@ index 81f3d03..169bfae 100755
  # Koji build daemon
  # Copyright (c) 2005-2014 Red Hat, Inc.
 diff --git a/cli/koji b/cli/koji
-index 08bd6d5..1dbe19f 100755
+index 87fd6f1..3b2e625 100755
 --- a/cli/koji
 +++ b/cli/koji
 @@ -1,4 +1,4 @@
@@ -30,13 +31,6 @@ index 08bd6d5..1dbe19f 100755
  # coding=utf-8
  
  # command line interface for the Koji build system
-diff --git a/util/koji-sweep-db b/util/koji-sweep-db
-index c4c72bb..98fdd89 100755
---- a/util/koji-sweep-db
-+++ b/util/koji-sweep-db
-@@ -1,4 +1,4 @@
--#!/usr/bin/python2
-+#!/usr/bin/python3
- 
- import os
- import xmlrpc.client
+-- 
+2.40.1
+

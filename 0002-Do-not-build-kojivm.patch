@@ -1,24 +1,26 @@
-From 346ad00dca160ac8402d221664454fa1d5b96c03 Mon Sep 17 00:00:00 2001
+From 553f972a9baed05fcca0bb53c9c74531099d9c14 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
-Date: Thu, 27 Oct 2022 10:33:34 -0700
-Subject: [PATCH 02/13] Do not build kojivm
+Date: Wed, 31 May 2023 10:03:09 -0700
+Subject: [PATCH 02/11] Do not build kojivm
 
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Makefile b/Makefile
-index 1c21385..da8fa31 100644
+index 2c52af1..50dfb00 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -1,6 +1,6 @@
- NAME=koji
- SPECFILE = $(firstword $(wildcard *.spec))
--SUBDIRS = hub builder koji cli util www plugins vm
-+SUBDIRS = hub builder koji cli util www plugins
+@@ -9,7 +9,7 @@ PYVER_MAJOR := $(shell $(PYTHON) -c 'import sys; print(".".join(sys.version.spli
+ ifeq ($(PYVER_MAJOR),2)
+ 	SUBDIRS = builder koji cli plugins vm
+ else
+-	SUBDIRS = kojihub builder koji cli util www plugins vm
++	SUBDIRS = kojihub builder koji cli util www plugins
+ endif
  
- ifndef PYTHON
- export PYTHON=python2
+ 
 -- 
-2.37.3
+2.40.1
 

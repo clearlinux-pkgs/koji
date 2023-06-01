@@ -1,15 +1,15 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Patrick McCarty <patrick.mccarty@intel.com>
-Date: Fri, 26 Feb 2021 21:32:21 +0000
-Subject: [PATCH] Require psycopg2 instead of psycopg2-binary
+From b4bc9c2657be357d51feeb5e88d5546e27146401 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Wed, 31 May 2023 10:09:33 -0700
+Subject: [PATCH 08/11] Require psycopg2 instead of psycopg2-binary
 
-Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  requirements.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/requirements.txt b/requirements.txt
-index 83107c7..abc163d 100644
+index af34dc6..4c09d14 100644
 --- a/requirements.txt
 +++ b/requirements.txt
 @@ -1,7 +1,7 @@
@@ -19,5 +19,8 @@ index 83107c7..abc163d 100644
 -psycopg2-binary;python_version >= '3.0'
 +psycopg2;python_version >= '3.0'
  python-multilib
- python-qpid-proton
- rpm-py-installer
+ python-qpid-proton<0.38.0;python_version < '3.0'
+ python-qpid-proton;python_version >= '3.0'
+-- 
+2.40.1
+

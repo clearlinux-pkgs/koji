@@ -8,7 +8,4 @@
 0008-Require-psycopg2-instead-of-psycopg2-binary.patch
 0009-Disable-protonmsg-plugin-tests.patch
 0010-Remove-version-pin-for-python-mock.patch
-0011-Use-the-system-installed-coverage-tool.patch
-0012-Fix-unit-test-failures.patch
-0013-Remove-unneeded-dep-rpm-py-installer.patch
-0014-Stop-use-of-function-removed-in-python-3.11.patch
+0011-Remove-unneeded-dep-rpm-py-installer.patch

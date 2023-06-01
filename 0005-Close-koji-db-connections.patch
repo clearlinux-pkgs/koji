@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 70875ca252b376b131669b3967c7044ac13ff2be Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
-Date: Tue, 23 Oct 2018 20:29:52 -0700
-Subject: [PATCH] Close koji db connections
+Date: Wed, 31 May 2023 10:06:45 -0700
+Subject: [PATCH 05/11] Close koji db connections
 
 Instead of trying to reuse previous connections to the db, just close
 connections in the object and let new connections be created as
@@ -9,15 +9,17 @@ needed. This is in response to an issue where db connections would
 continue to grow beyond the max connections for postgres (100 by
 default) causing koji builds to fail due to the lack of connection
 re-use that was not root caused.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
- koji/db.py | 7 ++++---
+ kojihub/db.py | 7 ++++---
  1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/koji/db.py b/koji/db.py
-index 784c04b..7e09832 100644
---- a/koji/db.py
-+++ b/koji/db.py
-@@ -75,9 +75,10 @@ class DBWrapper:
+diff --git a/kojihub/db.py b/kojihub/db.py
+index d5e29df..2521a6a 100644
+--- a/kojihub/db.py
++++ b/kojihub/db.py
+@@ -81,9 +81,10 @@ class DBWrapper:
          # this DBWrapper is no longer usable after close()
          if not self.cnx:
              raise Exception('connection is closed')
@@ -31,3 +33,6 @@ index 784c04b..7e09832 100644
          self.cnx = None
  
  
+-- 
+2.40.1
+

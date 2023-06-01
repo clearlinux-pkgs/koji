@@ -1,7 +1,7 @@
-From f9c6d2e1ebb2ccc61de0b8046db6cdf90c981359 Mon Sep 17 00:00:00 2001
+From 24717b9012fb5bf3fc27a9d295ed09245730caa2 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Thu, 27 Oct 2022 10:33:00 -0700
-Subject: [PATCH 01/13] Change install dir to /usr/bin
+Subject: [PATCH 01/11] Change install dir to /usr/bin
 
 ---
  builder/Makefile      | 4 ++--
@@ -97,5 +97,5 @@ index 810059b..81da5c1 100644
         --force-lock \
         --verbose
 -- 
-2.37.3
+2.40.1
 
