@@ -2,7 +2,6 @@
 # picked up automatically. One name per line, no whitespace.
 pypi(cheetah3)
 pypi(flake8)
-pypi(flake8_import_order)
 pypi(mock)
 pypi(psycopg2)
 pypi(python_dateutil)
