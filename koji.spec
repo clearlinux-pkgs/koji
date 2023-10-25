@@ -7,14 +7,13 @@
 #
 Name     : koji
 Version  : 1.33.1
-Release  : 185
+Release  : 187
 URL      : https://pagure.io/koji/archive/koji-1.33.1/koji-koji-1.33.1.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.33.1/koji-koji-1.33.1.tar.gz
 Summary  : Build system tools
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ LGPL-2.0 LGPL-2.1 LGPL-2.1-only
 Requires: koji-bin = %{version}-%{release}
-Requires: koji-data = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-python = %{version}-%{release}
 Requires: koji-python3 = %{version}-%{release}
@@ -71,20 +70,11 @@ contains shared libraries and the command-line interface.
 %package bin
 Summary: bin components for the koji package.
 Group: Binaries
-Requires: koji-data = %{version}-%{release}
 Requires: koji-license = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
 
 %description bin
 bin components for the koji package.
-
-
-%package data
-Summary: data components for the koji package.
-Group: Data
-
-%description data
-data components for the koji package.
 
 
 %package doc
@@ -158,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1698099973
+export SOURCE_DATE_EPOCH=1698274765
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -185,7 +175,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1698099973
+export SOURCE_DATE_EPOCH=1698274765
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-%{version}/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f || :
@@ -196,6 +186,7 @@ rm -f %{buildroot}*/usr/libexec/kojid/mergerepos
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
+ln -s $(python -c 'import sys; print(sys.path[-1])')/kojihub/kojixmlrpc.py %{buildroot}/usr/share/koji-hub/
 ## install_append end
 
 %files
@@ -211,27 +202,24 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/bin/kojid
 /usr/bin/kojira
 
-%files data
-%defattr(-,root,root,-)
-/usr/share/koji-hub/kojiapp.py
-/usr/share/koji-web/scripts/activesession.chtml
-/usr/share/koji-web/scripts/buildroots.chtml
-/usr/share/koji-web/scripts/taginfo_deleted.chtml
-
 %files doc
 %defattr(0644,root,root,0755)
 /usr/share/doc/koji/*
 
 %files extras
 %defattr(-,root,root,-)
+/usr/share/koji-hub/kojiapp.py
+/usr/share/koji-hub/kojixmlrpc.py
 /usr/share/koji-web/lib/kojiweb/__init__.py
 /usr/share/koji-web/lib/kojiweb/util.py
+/usr/share/koji-web/scripts/activesession.chtml
 /usr/share/koji-web/scripts/api.chtml
 /usr/share/koji-web/scripts/archiveinfo.chtml
 /usr/share/koji-web/scripts/archivelist.chtml
 /usr/share/koji-web/scripts/buildinfo.chtml
 /usr/share/koji-web/scripts/buildrootinfo.chtml
 /usr/share/koji-web/scripts/buildrootinfo_cg.chtml
+/usr/share/koji-web/scripts/buildroots.chtml
 /usr/share/koji-web/scripts/builds.chtml
 /usr/share/koji-web/scripts/buildsbystatus.chtml
 /usr/share/koji-web/scripts/buildsbytarget.chtml
@@ -265,6 +253,7 @@ cp -a docs  %{buildroot}/usr/share/doc/koji/
 /usr/share/koji-web/scripts/search.chtml
 /usr/share/koji-web/scripts/tagedit.chtml
 /usr/share/koji-web/scripts/taginfo.chtml
+/usr/share/koji-web/scripts/taginfo_deleted.chtml
 /usr/share/koji-web/scripts/tagparent.chtml
 /usr/share/koji-web/scripts/tags.chtml
 /usr/share/koji-web/scripts/taskinfo.chtml
