@@ -1,7 +1,7 @@
-From cf24beac77ee2fe568cd76ef0cf3a72b0cde9ef8 Mon Sep 17 00:00:00 2001
+From db020ab6f0fd75be2812bd92346382bea9f92700 Mon Sep 17 00:00:00 2001
 From: William Douglas <william.douglas@intel.com>
 Date: Thu, 11 Aug 2022 15:19:43 -0700
-Subject: [PATCH 04/11] Use old version of NSS forking behavior
+Subject: [PATCH 04/10] Use old version of NSS forking behavior
 
 Because kojid forks proceses, and because modern versions of NSS trigger
 an assertion failure when cryptographic processes are forked, reverting
@@ -23,5 +23,5 @@ index 64506d8..a9e5914 100644
         --fg \
         --force-lock \
 -- 
-2.40.1
+2.45.1
 

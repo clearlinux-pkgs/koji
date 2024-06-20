@@ -1,19 +1,19 @@
-From bad2f58ca631d757405e71936736ba0935ce897f Mon Sep 17 00:00:00 2001
-From: Patrick McCarty <patrick.mccarty@intel.com>
-Date: Wed, 25 Aug 2021 15:34:48 -0700
-Subject: [PATCH 10/11] Remove version pin for python-mock
+From f2577cdfb6f262c98fefe497e60f05326014dc91 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 20 Jun 2024 11:10:46 -0700
+Subject: [PATCH 10/10] Remove version pin for python-mock
 
-Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+Signed-off-by: William Douglas <william.douglas@intel.com>
 ---
  test-requirements.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/test-requirements.txt b/test-requirements.txt
-index 71780e9..81b1f88 100644
+index 897624f..6bcb481 100644
 --- a/test-requirements.txt
 +++ b/test-requirements.txt
-@@ -1,7 +1,7 @@
- -e .
+@@ -2,7 +2,7 @@
+ defusedxml
  flake8
  flake8-import-order
 -mock<=2.0.0
@@ -22,5 +22,5 @@ index 71780e9..81b1f88 100644
  coverage
  pytest
 -- 
-2.40.1
+2.45.1
 
