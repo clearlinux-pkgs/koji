@@ -1,4 +1,4 @@
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
-ln -s $(python -c 'import sys; print(sys.path[-1])')/kojihub/kojixmlrpc.py %{buildroot}/usr/share/koji-hub/
+ln -s ../../..$(python -c 'import sys; print(sys.path[-1])')/kojihub/kojixmlrpc.py %{buildroot}/usr/share/koji-hub/

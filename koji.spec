@@ -7,7 +7,7 @@
 #
 Name     : koji
 Version  : 1.34.2
-Release  : 188
+Release  : 190
 URL      : https://pagure.io/koji/archive/koji-1.34.2/koji-koji-1.34.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.34.2/koji-koji-1.34.2.tar.gz
 Summary  : Build system tools
@@ -20,6 +20,7 @@ Requires: koji-python = %{version}-%{release}
 Requires: koji-python3 = %{version}-%{release}
 Requires: koji-services = %{version}-%{release}
 Requires: createrepo_c
+Requires: defusedxml
 Requires: dnf
 Requires: git
 Requires: koji-doc
@@ -156,7 +157,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1718907391
+export SOURCE_DATE_EPOCH=1718924511
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -184,7 +185,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1718907391
+export SOURCE_DATE_EPOCH=1718924511
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/koji
 cp %{_builddir}/koji-koji-%{version}/COPYING %{buildroot}/usr/share/package-licenses/koji/c4b884eb09c7b65e2a469c7dbaf2f927e2af8e9f || :
@@ -197,7 +198,7 @@ rm -f %{buildroot}*/usr/libexec/kojid/mergerepos
 mkdir -p %{buildroot}/usr/share/doc/koji/
 mv %{buildroot}/etc %{buildroot}/usr/share/doc/koji/
 cp -a docs  %{buildroot}/usr/share/doc/koji/
-ln -s $(python -c 'import sys; print(sys.path[-1])')/kojihub/kojixmlrpc.py %{buildroot}/usr/share/koji-hub/
+ln -s ../../..$(python -c 'import sys; print(sys.path[-1])')/kojihub/kojixmlrpc.py %{buildroot}/usr/share/koji-hub/
 ## install_append end
 
 %files
