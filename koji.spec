@@ -7,7 +7,7 @@
 #
 Name     : koji
 Version  : 1.34.2
-Release  : 190
+Release  : 191
 URL      : https://pagure.io/koji/archive/koji-1.34.2/koji-koji-1.34.2.tar.gz
 Source0  : https://pagure.io/koji/archive/koji-1.34.2/koji-koji-1.34.2.tar.gz
 Summary  : Build system tools
